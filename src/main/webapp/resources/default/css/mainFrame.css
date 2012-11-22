@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* 通用 */
+*{ word-wrap:break-word; outline:none; }
+body{ background:#FFF; text-align:center; }
+body, td, input, textarea, select, button{ color:#333333; font:12px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, "宋体", sans-serif; }
+body, ul, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset { margin:0; padding:0; }
+ul{ list-style:none; }
+h1, h2, h3, h4, h5, h6{ font-size:12px; }
+a{ color:#000000; text-decoration:none;}
+	a img{ border:none; }
+em, cite, th{ font-style:normal; font-weight:normal; }
+table{ border-collapse:collapse; }
+th{ text-align:left; }
+label{ cursor:pointer; }
+/**************** 头部 *******************/
+.topbody{background:url(../images/headbg.gif) repeat-x top left #ccdef4;}
+.head{height:92px; width:100%;background:url(../images/topleft.jpg) top left no-repeat; }
+.header{height:92px;) no-repeat top right;}
+.right_navi{width:350px;height:20px;top:0px;right:0px;text-align:center; margin-top:3px; color:#FFFFFF}
+.right_navi a{color:#FFFFFF; text-decoration:none;}
+.right_navi a:hover{ color:#FFFFFF; text-decoration:underline}
+.right_navi img{ border:none; vertical-align:middle; margin-right:5px}
+#navi {
+	TEXT-ALIGN: center; WIDTH: 100%; HEIGHT: 25px
+}
+#navi UL {
+	LIST-STYLE-TYPE: none; PADDING-RIGHT: 10px; FLOAT: right; HEIGHT: 25px
+}
+#navi LI {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; LINE-HEIGHT: 25px; FLOAT: left; HEIGHT: 25px; OVERFLOW: hidden; MARGIN-RIGHT: 1px
+}
+#navi A {
+	PADDING-LEFT: 5px; DISPLAY: block; BACKGROUND: url(../images/3.gif) no-repeat left top; FONT-SIZE: 12px; CURSOR: pointer; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+#navi A SPAN {
+	PADDING-RIGHT: 5px; DISPLAY: block; BACKGROUND: url(../images/3.gif) no-repeat right top
+}
+#navi A:link {
+	COLOR: #333
+}
+#navi A:visited {
+	COLOR: #333
+}
+#navi A:hover {
+	BACKGROUND: url(../images/04.gif) no-repeat left top; COLOR: #ffffff
+}
+#navi A:hover SPAN {
+	DISPLAY: block; BACKGROUND: url(../images/04.gif) no-repeat right top; COLOR: #ffffff
+}
+#navi .current A {
+	PADDING-LEFT: 5px; DISPLAY: block; BACKGROUND: url(../images/04.gif) no-repeat left top; FONT-SIZE: 12px; CURSOR: pointer; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+#navi .current A SPAN {
+	PADDING-RIGHT: 5px; DISPLAY: block; BACKGROUND: url(../images/04.gif) no-repeat right top; COLOR: #ffffff
+}
+/* 左侧菜单 */
+#wrap{width:190px; height:100%; text-align:left;margin-left:4px}
+#menu {margin:auto; text-align:left;}
+#menu h1 { cursor:pointer; color:#000000; font-weight:normal;font-size:12px;background:url(../images/leftmenubg1.gif) no-repeat 0 0;height:29px;padding-top:6px;padding-left:10px;}
+#menu h2 { cursor:pointer; font-size:12px;font-weight:normal;padding-left:20px;height:24px;padding-top:4px;}
+#menu ul {background-color:#ffffff;border:1px solid #cce9ee;}
+#menu ul li {height:24px;padding-top:4px;padding-left:30px;}
+.bodyleft{ background:url(../images/leftbg.gif) left top repeat-x #f5fafe;height:100%;}
+#lefttop{background:url(../images/lefttop.gif) center top no-repeat ; height:36px; line-height:36px;font-size:14px; font-weight:bold; color:#FFFFFF;}
+#lefttop span img{ float:left; margin:8px 10px 0px 30px}
+#menu h1 img{ float:left; margin:0px 0px 0px 10px}
+#leftfoot{background:url(../images/leftfoot.gif) center bottom no-repeat; font-size:10px;border:#d0dded solid 1px; border-top:none; overflow:hidden; height:10px}
+.no { display:none;}
+.yes { display:block;}
+/*菜单栏滚动条*/
+#contentWrap {width:190px; border:#d0dded solid 1px; border-top:none; border-bottom:none; overflow:auto;overflow-x:auto;
+scrollbar-face-color: #75a8d3; /*滚动条凸出部分的颜色*/
+scrollbar-hightight-color: #f1f1f1; /*滚动条空白部分的颜色*/
+scrollbar-shadow-color: #fcfcfc; /*立体滚动条阴影的颜色*/
+scrollbar-3dlinghe-color: #fcfcfc; /*滚动条亮边的颜色*/
+scrollbar-arrow-color: #ffffff; /*上下按钮上三角箭头的颜色*/
+scrollbar-track-color: #fcfcfc; /*滚动条的背景颜色*/
+scrollbar-darkshadow-color: #66c0f4; /*立体滚动条强阴影的颜色*/
+scrollbar-base-color: #fcfcfc ; /*滚动条的基本颜色*/
+}

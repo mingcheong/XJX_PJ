@@ -1,0 +1,491 @@
+.data_content {
+	padding-top: 5px;
+	padding-left: 5px;
+	width: 99%;
+}
+
+.queryFrom {
+	
+}
+
+.element_bottom {
+	vertical-align: center;
+}
+
+.table_input_my .queryTable {
+	padding: 1% 0% 0% 0%;
+}
+
+.table_input_my .queryTable #queryTable tr td {
+	text-align: left;
+}
+
+#queryTable td {
+	text-align: left;
+	line-height: 30px
+}
+
+#queryTable th {
+	line-height: 30px
+}
+
+.view_INPUT {
+	border: none;
+}
+
+.view_TEXTAREA {
+	border: none;
+}
+
+.SELECT {
+	BORDER-RIGHT: 0px;
+	BORDER-TOP: 0px;
+	FONT-SIZE: 12px;
+	LEFT: -2px;
+	BORDER-LEFT: 0px;
+	COLOR: #000000;
+	LINE-HEIGHT: 18px;
+	BORDER-BOTTOM: 0px;
+	POSITION: relative;
+	TOP: -2px;
+	HEIGHT: 19px;
+	BACKGROUND-COLOR: #ffffff;
+	WIDTH: 150px;
+}
+
+.table_input .box {
+	OVERFLOW: hidden;
+	WIDTH: 107px;
+	CLIP: rect(0px, 146px, 16px, 0px);
+	HEIGHT: 18px;
+	border: 1px solid #FFFFFF;
+}
+
+.head_title {
+	color: #FF5500;
+	font-size: 10pt;
+}
+
+.table_input_my {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #ccc;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #ccc;
+	margin-top: 0px;
+	border: 1px solid;
+	border-color: #D2D9E3;
+	width: 100%;
+}
+
+.table_input_my th {
+	background-color: #F0F0F0;
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	height: 20px;
+	text-align: right;
+	padding-right: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 15%;
+	font-weight: bold
+}
+
+.table_input_my .input_title {
+	FILTER: progid : DXImageTransform.Microsoft.Gradient (GradientType = 0, StartColorStr = #ffffff, EndColorStr = #cccccc );
+	height: 25px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	color: #0D448E;
+}
+
+.table_input_my td {
+	font-size: 12px;
+	color: #333;
+	padding-left: 3px;
+	padding-right: 2px;
+	line-height: 18px;
+	background-color: #F9F9F9;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.table_input .checkbox {
+	border: 0px;
+}
+
+.queryParam {
+	vertical-align: center;
+	padding: 0px 10px;
+}
+
+.queryBtn {
+	vertical-align: bottom;
+}
+
+.table_list_my {
+	border: #CCCCCC solid 1px;
+	border-top: none;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.table_list_my a {
+	text-decoration: none;
+	color: blue;
+}
+
+.table_list_my th {
+	background: transparent url(../img/fhbg.gif) repeat-x scroll left top;
+	border-collapse: collapse;
+	border-color: #FFA500 #CCCCCC;
+	border-style: none solid solid;
+	border-width: medium 1px 2px;
+	font-size: 12px;
+	font-weight: bold;
+	height: 24px;
+	padding: 0 5px;
+	text-align: center;
+}
+
+.table_list_my th a {
+	display: block;
+	cursor: none;
+	height: 24px;
+	border-bottom: #ffa500 solid 1px;
+	padding-left: 10px;
+	line-height: 24px;
+	text-decoration: none;
+	color: #333333;
+}
+
+.table_list_my th a:hover {
+	display: block;
+	height: 24px;
+	border-bottom: #ffa500 solid 1px;
+	text-decoration: none;
+	color: #333333;
+	background: url(../img/up.png) no-repeat center top;
+	line-height: 24px;
+}
+
+.table_list_my tr {
+	background-color: expression((this.sectionRowIndex % 2 == 0) ? "#f0f0f0" : "#ffffff" );
+}
+
+.table_list_my td {
+	height: 28px;
+	border-left: left;
+	border-right: none;
+	border-collapse: collapse;
+	border-top: none;
+	font-size: 12px;
+	color: #333333;
+	padding: 0px 5px;
+	text-align: center;
+	border-bottom: 1px solid #D2D9E3;
+}
+
+.table_list_my .number {
+	text-align: right;
+}
+
+.table_list_my .operator {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table_list_my .operator img {
+	cursor: pointer;
+	padding-left: 2px;
+}
+
+.list_bottom_bar {
+	width: 100%;
+}
+
+tr.over td {
+	background: #D6E8F8;
+}
+
+.tool-toggle-td {
+	text-align: center;
+}
+
+.tool-toggle {
+	-moz-background-clip: border;
+	-moz-background-inline-policy: continuous;
+	-moz-background-origin: padding;
+	background: transparent url(../img/toggle_bg.gif) no-repeat scroll 0 -80px;
+	display: block;
+	height: 16px;
+	margin: 0 auto;
+	outline-color: -moz-use-text-color;
+	outline-style: none;
+	outline-width: medium;
+	text-indent: -999px;
+	width: 610px;
+}
+
+.buttonBarTr {
+	height: 30px;
+	vertical-align: center;
+	text-align: center;
+}
+
+.buttonBar input {
+	font-size: 12px;
+	color: #000;
+	height: 20px;
+	vertical-align: center;
+	border: 1px solid #336699;
+	background: url(../img/input_button_bg.gif) repeat-x 0px -2px;
+}
+
+.table_list_new {
+	border: #CCCCCC solid 1px;
+	border-top: none;
+	border-bottom: none;
+	background: url(../img/wbg.gif) left top repeat-x;
+}
+
+.table_list_new .font {
+	font-weight: bold;
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+.menu_new {
+	background: url(../img/listbg.gif) left top repeat-x;
+	height: 27px;
+	padding-left: 5px
+}
+
+.menu_list_new {
+	padding-left: 7px;
+	overflow: hidden;
+	height: 27px;
+}
+
+.menu_list_new li {
+	list-style: none;
+	float: left;
+	height: 19px;
+	line-height: 19px;
+	margin-top: 3px;
+	margin-right: 3px
+}
+
+.menu_list_new li a {
+	display: block;
+	float: left;
+	height: 19px;
+	color: #333333;
+	text-decoration: none;
+	border: #f5f5f5 solid 1px;
+	padding-left: 2px;
+	padding-right: 2px
+}
+
+.menu_list_new li a:hover {
+	display: block;
+	float: left;
+	height: 19px;
+	background: url(../img/abg.gif) left top repeat-x;
+	color: #333333;
+	text-decoration: none;
+	border: #CCCCCC solid 1px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.menu_new a img {
+	vertical-align: text-bottom;
+	margin-right: 3px;
+	border: 0px
+}
+
+.imgBtn {
+	cursor: pointer;
+}
+
+.print_table {
+	font-family: ����;
+	font-size: 12pt;
+	border: 1px solid thin;
+	border-collapse: collapse;
+	letter-spacing: 1px;
+	line-height: 1.2;
+	width: 635px;
+}
+
+.print_table th {
+	width: 20%;
+	padding: 3 3 3 3;
+	border: 1px solid;
+	height: 38px;
+}
+
+.print_table td {
+	padding: 3 3 3 3;
+	border: 1px solid;
+}
+
+.print_table .print_content {
+	line-height: 1.2;
+	text-align: left;
+	vertical-align: top;
+	padding-left: 10px;
+}
+
+.readonly_textarea {
+	border: 0;
+	overflow: hidden;
+}
+
+.collapsed_tool_toggle:hover {
+	background-position: 0 -40
+}
+
+.tool-toggle:hover {
+	background-position: 0, -120;
+}
+
+.input_foucs {
+	border-style: inset;
+}
+
+.input_blur {
+	
+}
+
+.hiddenDiv {
+	display: none;
+	position: absolute;
+	background: #DCFAFA none repeat scroll 0 0;
+	border: 1px solid;
+}
+
+.table_list_01 {
+	border: #dddddd solid 0px;
+	border-collapse: collapse;
+	color: #333333;
+	vertical-align: middle;
+}
+
+.table_list_01 td {
+	text-align: center;
+	border: #dddddd solid 1px;
+	height: 20px;
+	font-size: 12px;
+	color: #333333;
+	vertical-align: middle;
+	height:25px;
+}
+
+.table_list_01 td a {
+	color: #333333;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+	PADDING-TOP: 5px;
+}
+
+.table_list_01 td a:hover {
+	color: #d15a59;
+	text-decoration: underline;
+	background: #faf4d2;
+	vertical-align: middle;
+}
+
+.table_list_01 th {
+	border: #dddddd solid 1px;
+	background: #DCFAFA;
+	font-size: 12px;
+	height: 20px;
+	color: #5494af;
+	vertical-align: middle;
+}
+
+td.font {
+	color: #5494af;
+	font-weight: bold;
+}
+
+.table_list_01 .print_title {
+	height: 40px;
+	font-size: 20pt;
+	line-height: 30px;
+	background: white;
+}
+
+.table_list_01 .print_title_right {
+	height: 20px;
+	font-size: 12pt;
+	line-height: 15px;
+	text-align: right;
+}
+
+/* ��ϸ�߱��*/
+.common_table {
+	border: 1px solid #ccc;
+	border-width: 1px 0 0 1px;
+	margin: 2px 0 2px 0;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.common_table th {
+	text-align: center;
+	font-weight: 600;
+	font-size: 12px;
+	background-color: #E6EDF7;
+}
+
+.common_table td {
+	border: 1px solid #ccc;
+	border-width: 0 1px 1px 0;
+	margin: 2px 0 2px 0;
+	text-align: left;
+	padding-left: 5px;
+}
+
+.common_table .operator {
+	text-align: center;
+}
+
+.common_table .right {
+	text-align: right;
+}
+
+.common_table .left {
+	text-align: left;
+}
+
+.common_table th.a {
+	hieght: 40px;
+}
+
+.common_table td.a {
+	hieght: 20px;
+}
+/* Сͼ���CSS��ʽ��һ�Ŵ�ͼ�����?�߱�ʾСͼ��Ĵ�С��Ȼ��ʹ��x��y���ж�λ*/
+span.icon_my { /*cursor:pointer;*/
+	height: 16px;
+	width: 18px;
+	overflow: hidden;
+}
+
+.Ru {
+	background: transparent url(../img/test_img.gif) no-repeat scroll -48px
+		-16;
+}
+
+.Rr {
+	background: transparent url(../img/test_img.gif) no-repeat scroll -48px
+		0;
+}

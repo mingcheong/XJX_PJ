@@ -1,0 +1,57 @@
+#con {
+	width: 100%;
+	margin: 0px auto 0px auto;
+	padding: 0px
+}
+
+#tags li {
+	background-image: url(../img/tagleft.jpg);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	margin-right: 2px;
+	float: left;
+	overflow: hidden;
+}
+
+#tags li a {
+	display: block;
+	padding: 0px 20px;
+	background-image: url(../img/tagright.jpg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	float: left;
+	color: #666666;
+	line-height: 27px;
+	height: 27px;
+	text-decoration: none;
+	font-weight: bold
+}
+
+#tags li.selectTag {
+	background-position: left top;
+	margin-bottom: -1px;
+	overflow: hidden;
+}
+
+#tags li.selectTag a {
+	display: block;
+	background-position: right top;
+	color: #000;
+	overflow: hidden;
+	line-height: 28px;
+	height: 28px;
+}
+
+#tagContent {
+	width: 100%;
+	clear: both;
+}
+
+.tagContent {
+	display: none;
+	color: #000000;
+}
+
+#tagContent div.selectTag {
+	display: block
+}

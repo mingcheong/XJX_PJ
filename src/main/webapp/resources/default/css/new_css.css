@@ -1,0 +1,361 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+	border: none
+}
+
+ul,li {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px
+}
+
+a {
+	color: #0033FF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FF0000;
+	text-decoration: none
+}
+
+/**************** *******************/
+.sqcontentbg {
+	background: url(../images/13x157.gif) repeat-x left top #f5fafe;
+}
+
+.topgzq {
+	height: 28px;
+	background: url(../img/gzqbg.jpg) left top repeat-x;
+	margin-top: 1px;
+	border: #c1dcf1 solid 1px;
+	border-bottom: none;
+	border-top: none
+}
+
+.topgzq td {
+	height: 28px;
+	color: #FFFFFF;
+	background: url(../img/gzqbgbg.jpg) center center no-repeat;
+	text-align: left;
+	font-weight: normal;
+	padding-left: 10px
+}
+
+.dqwz {
+	background: url(../img/dqwz.jpg) 10px 5px no-repeat;
+	width: 300px;
+	height: 28px;
+	line-height: 28px;
+	padding-left: 35px
+}
+
+.table_menu {
+	background: url(../img/bt_01.gif) left top repeat-x;
+	margin-top: 5px;
+	border: #c6e2f7 solid 1px;
+	border-top: none;
+	border-bottom: none;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	vertical-align: middle
+}
+
+.menu_left {
+	width: 70%;
+	height: 21px;
+	float: left;
+	line-height: 21px;
+	padding-left: 8px;
+	list-style: none;
+	margin-top: 5px;
+}
+
+.menu_left li {
+	float: left;
+	margin: 0 2px;
+	height: 21px;
+	list-style: none;
+	overflow: hidden
+}
+
+.menu_left li a {
+	float: left;
+	background: url(../img/a_bg_01.gif) left top no-repeat;
+	line-height: 21px;
+	height: 21px;
+	padding: 0 0 0 5px;
+	cursor: pointer;
+	color: #245d8a;
+	text-decoration: none
+}
+
+.menu_left li a:hover {
+	float: left;
+	background: url(../img/a_bg.gif) left top no-repeat;
+	line-height: 21px;
+	height: 21px;
+	padding: 0 0 0 5px;
+	cursor: pointer;
+	color: #FF0000;
+	text-decoration: none
+}
+
+.menu_left li a span {
+	float: left;
+	background: url(../img/a_bg_01.gif) no-repeat 100% top;
+	padding: 5px 5px 4px 0;
+	cursor: pointer;
+	color: #245d8a;
+	line-height: 12px
+}
+
+.menu_left li a:hover span {
+	float: left;
+	background: url(../img/a_bg.gif) no-repeat 100% top;
+	padding: 5px 5px 4px 0;
+	cursor: pointer;
+	color: #FF0000;
+	line-height: 12px
+}
+
+.menu_left li a  span  img {
+	border: 0;
+	margin-right: 2px
+}
+
+.menu_right {
+	width: 15%;
+	height: 30px;
+	float: right;
+	line-height: 30px;
+	text-align: right;
+	padding-right: 8px
+}
+
+.menu_right img {
+	margin-top: 4px
+}
+
+.table_input {
+	border: #c6e2f7 solid 1px;
+	border-collapse: collapse;
+	background: #FFFFFF;
+}
+
+.table_input th {
+	height: 22px;
+	border: #c6e2f7 solid 1px;
+	background: #f4f7fa;
+	font-weight: normal;
+	text-align: right;
+	padding: 5px
+}
+
+.table_input td {
+	height: 30px;
+	border: #c6e2f7 solid 1px;
+	background: #fbfcfc;
+	padding: 5px;
+}
+
+.table_input td a {
+	color: #333333;
+	text-decoration: none
+}
+
+.table_input td a:hover {
+	color: #FF9900;
+	text-decoration: none
+}
+
+.table_ss {
+	border: solid 1px #c6e2f7;
+	background: #f9f9f9;
+	height: 100px
+}
+
+.table_ss th {
+	text-align: left
+}
+
+#table_list {
+	border: #c6e2f7 solid 1px;
+	border-collapse: collapse;
+	background: #FFFFFF
+}
+
+#table_list th {
+	height: 25px;
+	border-bottom: #c6e2f7 solid 1px;
+	background: url(img/bt_02.gif) left top repeat-x
+}
+
+#table_list td {
+	height: 25px;
+	border-bottom: #c6e2f7 solid 1px;
+	text-align: center
+}
+
+#table_list td a {
+	color: #333333;
+	text-decoration: none
+}
+
+#table_list td a:hover {
+	color: #FF9900;
+	text-decoration: none
+}
+
+.but_cx {
+	width: 58px;
+	height: 21px;
+	background: url(../img/cxbg.gif) left top no-repeat;
+	border: 0;
+	padding-left: 10px;
+	line-height: 21px;
+	color: #245d8a
+}
+
+td.foot {
+	background: url(../img/bt_03.gif) left bottom repeat-x
+}
+
+td.foot a {
+	background: url(../img/a_bg_01.gif) left top no-repeat;
+	line-height: 21px;
+	height: 21px;
+	padding: 0 0 0 5px;
+	cursor: pointer;
+	color: #245d8a;
+	text-decoration: none
+}
+
+td.foot a:hover {
+	background: url(../img/a_bg.gif) left top no-repeat;
+	line-height: 21px;
+	height: 21px;
+	padding: 0 0 0 5px;
+	cursor: pointer;
+	color: #FF0000;
+	text-decoration: none
+}
+
+td.foot span {
+	background: url(../img/a_bg_01.gif) no-repeat 100% top;
+	padding: 5px 5px 4px 0;
+	cursor: pointer;
+	color: #245d8a;
+	line-height: 12px;
+	height: 12px;
+}
+
+td.foot a:hover span {
+	background: url(../img/a_bg.gif) no-repeat 100% top;
+	padding: 5px 5px 4px 0;
+	cursor: pointer;
+	color: #FF0000;
+	line-height: 12px;
+	height: 12px;
+}
+
+#T_line {
+	border: solid 1px #b5d6e7;
+	border-right: none
+}
+
+#T_line td {
+	padding: 5px;
+	border: solid 1px #b5d6e7;
+	border-top: none;
+	border-left: none;
+	text-align: center
+}
+
+#T_line th {
+	padding: 5px;
+	border-left: 1px solid #fff;
+	border-top: 1px solid #fff;
+	border-bottom: 2px solid #ccc;
+	border-right: 2px solid #ccc;
+	text-align: center;
+	cursor: pointer;
+	background-color: #e8f2fb
+}
+
+.T_h1 {
+	font-weight: bold;
+	color: #0e4a8c
+}
+
+#T_line a {
+	color: #333333;
+	text-decoration: none;
+}
+
+#T_line a:hover {
+	color: #ff7e00;
+	text-decoration: underline
+}
+
+.h1 {
+	color: #245D8A;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/*按钮样式*/
+.btn input {
+	background-color: #0091c0;
+	color: #FFFFFF;
+	text-align: center;
+	margin: 0 2px;
+	padding: 0 5px;
+	height: 24px;
+	line-height: 22px;
+	cursor: pointer;
+	border-left: solid 1px #e5f2fb;
+	border-top: solid 1px #e5f2fb;
+	border-bottom: solid 1px #033d60;
+	border-right: solid 1px #033d60;
+}
+
+* html .btn input,*+html .btn input {
+	padding: 0px
+} /* IE6 IE7 */
+#btn2 input {
+	background-color: #0091c0;
+	padding: 0 5px;
+	height: 20px;
+	line-height: 20px;
+	color: #FFFFFF;
+	text-align: center;
+	cursor: pointer;
+	border-left: solid 1px #e5f2fb;
+	border-top: solid 1px #e5f2fb;
+	border-bottom: solid 1px #033d60;
+	border-right: solid 1px #033d60;
+}
+
+* html #btn2 input,*+html #btn2 input {
+	padding: 0px
+} /* IE6 IE7 */
