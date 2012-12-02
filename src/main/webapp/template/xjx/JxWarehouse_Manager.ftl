@@ -10,7 +10,7 @@
 <@fkMacros.pageHeader />
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
     <tr>
-    	<td align="center" ><div class="dqwz">您现在的位置：jxWarehouse管理</div></td>
+    	<td align="center" ><div class="dqwz">您现在的位置：库位编码维护</div></td>
     </tr>
 </table>
 <@s.form id="jxWarehouseForm" action="jxWarehouse_manager.xhtml"><@s.token />
@@ -57,10 +57,10 @@
 				<@jmesa.htmlColumn property="id" style="text-align: center;" width="3%" title="<input type='checkbox' id='checkAll' name='checkAll'/>" filterable=false sortable=false>
 					<input type="checkbox" name="selectedIds" value="${jxWarehouse.id}" />
 				</@jmesa.htmlColumn>
-				<@jmesa.htmlColumn property="jwCode" title="jwCode" />
-				<@jmesa.htmlColumn property="jwName" title="jwName" />
-				<@jmesa.htmlColumn property="jwUser" title="jwUser" />
-				<@jmesa.htmlColumn property="jwMemo" title="jwMemo" />
+				<@jmesa.htmlColumn property="jwCode" title="库位编码" width="20%"/>
+				<@jmesa.htmlColumn property="jwName" title="库位名称" width="20%"/>
+				<@jmesa.htmlColumn property="usersName" title="库管员" width="25%"/>
+				<@jmesa.htmlColumn property="jwMemo" title="详细描述" />
 		</@jmesa.htmlRow>
 	</@jmesa.htmlTable>
 </@jmesa.tableModel>

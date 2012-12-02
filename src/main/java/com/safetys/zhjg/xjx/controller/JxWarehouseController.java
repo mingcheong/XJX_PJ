@@ -5,18 +5,25 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
+import com.safetys.framework.kernel.model.TreeModel;
+import com.safetys.framework.system.model.FkRoleModel;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.zhjg.xjx.model.JxEmployeeModel;
 import com.safetys.zhjg.xjx.model.JxWarehouseModel;
+import com.safetys.zhjg.xjx.service.IJxEmployeeService;
 import com.safetys.zhjg.xjx.service.IJxWarehouseService;
 
 
@@ -46,6 +53,9 @@ public class JxWarehouseController extends BaseController implements Preparable
 	private JxWarehouseModel jxWarehouseModel;
 	private List<JxWarehouseModel> jxWarehouseModels;
 
+	@Resource(name = "jxEmployeeService")
+	private IJxEmployeeService jxEmployeeService;
+
 
 
 	/**
@@ -55,6 +65,21 @@ public class JxWarehouseController extends BaseController implements Preparable
 	 */
 	public String insert() throws Exception
 	{
+
+		List<JxEmployeeModel> datas = jxEmployeeService.getCollection(new JxEmployeeModel(), false);
+		if (datas != null && datas.size() > 0)
+		{
+			for (JxEmployeeModel element : datas)
+			{
+				treeModel = new TreeModel();
+				treeModel.setId(element.getId());
+				treeModel.setName(element.getJeName());
+				treeModel.setIsParent(false);
+				treeModels.add(treeModel);
+			}
+			datas.clear();
+		}
+		this.request.setAttribute("employeeNodes", gson.toJson(treeModels));
 		this.setParameters(page_forward_showinsert_jxWarehouse);
 		return SUCCESS;
 	}

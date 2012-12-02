@@ -7,9 +7,6 @@ package com.safetys.zhjg.xjx.model;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.servlet.http.HttpServletRequest;
 
@@ -52,7 +49,11 @@ public class JxWarehouseModel extends BaseModel
 	private java.lang.String jwCode;
 	private java.lang.String jwName;
 	private java.lang.String jwMemo;
-	private JxEmployeeModel jwUser;
+
+	// 仓库员枚举
+	private java.lang.String users;
+	// 仓库员名字
+	private java.lang.String usersName;
 
 
 
@@ -95,16 +96,28 @@ public class JxWarehouseModel extends BaseModel
 	}
 
 
-	public void setJwUser(JxEmployeeModel jwUser)
+	@Column(name = "JW_USERS", unique = false, nullable = true, insertable = true, updatable = true, length = 100)
+	public java.lang.String getUsers()
 	{
-		this.jwUser = jwUser;
+		return users;
 	}
 
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JW_USER", nullable = false, insertable = false, updatable = false)
-	public JxEmployeeModel getJwUser()
+	public void setUsers(java.lang.String users)
 	{
-		return jwUser;
+		this.users = users;
+	}
+
+
+	@Column(name = "JW_USERSNAME", unique = false, nullable = true, insertable = true, updatable = true, length = 500)
+	public java.lang.String getUsersName()
+	{
+		return usersName;
+	}
+
+
+	public void setUsersName(java.lang.String usersName)
+	{
+		this.usersName = usersName;
 	}
 }

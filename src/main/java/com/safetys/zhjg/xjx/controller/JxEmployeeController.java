@@ -58,6 +58,15 @@ public class JxEmployeeController extends BaseController implements Preparable
 
 
 
+	public String ajax() throws Exception
+	{
+		this.response.setContentType("text/html;charset=utf-8");
+		this.response.getWriter().print("");
+		this.response.getWriter().close();
+		return NONE;
+	}
+
+
 	/**
 	 * 添加导航
 	 * 

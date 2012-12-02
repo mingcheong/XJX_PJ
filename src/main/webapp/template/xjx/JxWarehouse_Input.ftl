@@ -24,7 +24,7 @@
 -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
-    <td align="center" ><div class="dqwz">您现在的位置：添加jxWarehouseForm </div></td>
+    <td align="center" ><div class="dqwz">您现在的位置：<#if jxWarehouseModel.id == -1>添加<#else>修改</#if>库位编码 </div></td>
   </tr>
 </table>
 <@s.form id="jxWarehouseForm" action="jxWarehouse_save.xhtml"  method="post" enctype="multipart/form-data">
@@ -45,33 +45,32 @@
 </table>
 <table id="inputTab" width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jwCode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>库位编码:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jwCode" name="jxWarehouseModel.jwCode" cssStyle="width:75%"/>
-			<ui:v for="jwCode" rule="require" warn="不允许以空格为开始" empty="jwCode不允许为空" pass="&nbsp;"/>
+			<ui:v for="jwCode" rule="require" warn="不允许以空格为开始" empty="库位编码不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jwName:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>库位名称:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jwName" name="jxWarehouseModel.jwName" cssStyle="width:75%"/>
-			<ui:v for="jwName" rule="require" warn="不允许以空格为开始" empty="jwName不允许为空" pass="&nbsp;"/>
+			<ui:v for="jwName" rule="require" warn="不允许以空格为开始" empty="库位名称不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jwUser:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jwUser" name="jxWarehouseModel.jwUser" cssStyle="width:75%"/>
-			<ui:v for="jwUser" rule="require" warn="不允许以空格为开始" empty="jwUser不允许为空" pass="&nbsp;"/>
+		<th width="15%"><font color="#FF0000">*</font>库&nbsp;管&nbsp;员:&nbsp;</th>
+		<td width="35%" colspan="3">
+			<@s.hidden id="fatherIds" name="jxWarehouseModel.users" />
+			<@s.textfield id="fatherNames" name="jxWarehouseModel.usersName" readonly="true" cssStyle="width:75%"/>&nbsp;
+			<@fkMacros.checkBoxTree '','fatherIds','fatherNames','jxEmployee_ajax.xhtml','${employeeNodes}'/>
+			<ui:v for="fatherNames" rule="require" warn="不允许以空格为开始" empty="库管员不允许为空" pass="&nbsp;"/>			
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jwMemo:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jwMemo" name="jxWarehouseModel.jwMemo" cssStyle="width:75%"/>
-			<ui:v for="jwMemo" rule="require" warn="不允许以空格为开始" empty="jwMemo不允许为空" pass="&nbsp;"/>
+		<th width="15%">详细描述:&nbsp;</th>
+		<td width="35%" colspan="3">
+			<@s.textarea id="jwMemo" name="jxWarehouseModel.jwMemo" cssStyle="width:90%;height:65px;"/>
 		</td>
-	</tr>
+	</tr>		
 </table>
 </@s.form>
 <@fkMacros.pageFooter />
