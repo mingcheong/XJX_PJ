@@ -10,7 +10,7 @@
 <@fkMacros.pageHeader />
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
     <tr>
-    	<td align="center" ><div class="dqwz">您现在的位置：jxSupplier管理</div></td>
+    	<td align="center" ><div class="dqwz">您现在的位置：供应商档案维护</div></td>
     </tr>
 </table>
 <@s.form id="jxSupplierForm" action="jxSupplier_manager.xhtml"><@s.token />
@@ -19,15 +19,19 @@
     <td class="queryTable" align="center">
 		<table width="90%" border="0" cellpadding="0" cellspacing="0" id="queryTable" rules="none" frame="void">
 			<tr>
-				<th width="15%">请放置查询对象</th>
-		        <td>
-		        	<input name="demo" type="text" size="25" id="demo" value="这是一个演示字段" maxlength="20">
-		        </td>
+				<th width="15%">供应商编号:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jeCode" name="jxSupplierModel.jsCode" cssStyle="width:75%"/>
+				</td>
+				<th width="15%">供应商名称:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jeName" name="jxSupplierModel.jsName" cssStyle="width:75%"/>
+				</td>
 		        <td>
 		        	<input type="button" value="查 询" onclick="javascript:onInvokeAction('jxSupplierModel','filter');"/>
 		        </td>
 	     	</tr>
-	    </table>
+	    </table>		    
     </td>
   </tr>
   <tr>
@@ -57,23 +61,11 @@
 				<@jmesa.htmlColumn property="id" style="text-align: center;" width="3%" title="<input type='checkbox' id='checkAll' name='checkAll'/>" filterable=false sortable=false>
 					<input type="checkbox" name="selectedIds" value="${jxSupplier.id}" />
 				</@jmesa.htmlColumn>
-				<@jmesa.htmlColumn property="jsCode" title="jsCode" />
-				<@jmesa.htmlColumn property="jsName" title="jsName" />
-				<@jmesa.htmlColumn property="jsAddr" title="jsAddr" />
-				<@jmesa.htmlColumn property="jsPost" title="jsPost" />
-				<@jmesa.htmlColumn property="jsTele" title="jsTele" />
-				<@jmesa.htmlColumn property="jsFullname" title="jsFullname" />
-				<@jmesa.htmlColumn property="jsBank" title="jsBank" />
-				<@jmesa.htmlColumn property="jsAccount" title="jsAccount" />
-				<@jmesa.htmlColumn property="jsDutyno" title="jsDutyno" />
-				<@jmesa.htmlColumn property="jsContact" title="jsContact" />
-				<@jmesa.htmlColumn property="jsPerson" title="jsPerson" />
-				<@jmesa.htmlColumn property="jsRemark" title="jsRemark" />
-				<@jmesa.htmlColumn property="jsCanuse" title="jsCanuse" />
-				<@jmesa.htmlColumn property="jsCate" title="jsCate" />
-				<@jmesa.htmlColumn property="jsLimit" title="jsLimit" />
-				<@jmesa.htmlColumn property="jsBalance" title="jsBalance" />
-				<@jmesa.htmlColumn property="jsCreatetime" title="jsCreatetime" />
+				<@jmesa.htmlColumn property="jsCode" title="供应商编号" width="15%"/>
+				<@jmesa.htmlColumn property="jsName" title="供应商简称" width="20%"/>
+				<@jmesa.htmlColumn property="jsTele" title="电话" width="15%"/>
+				<@jmesa.htmlColumn property="jsContact" title="联系人" width="15%"/>
+				<@jmesa.htmlColumn property="jsRemark" title="备注" />
 		</@jmesa.htmlRow>
 	</@jmesa.htmlTable>
 </@jmesa.tableModel>

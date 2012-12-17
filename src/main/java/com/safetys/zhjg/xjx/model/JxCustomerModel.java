@@ -43,6 +43,7 @@ public class JxCustomerModel extends BaseModel
 	}
 
 
+
 	private java.lang.String jcCode;
 	private java.lang.String jcClazz;
 	private java.lang.String jcName;
@@ -53,11 +54,11 @@ public class JxCustomerModel extends BaseModel
 	private java.lang.String jcBank;
 	private java.lang.String jcAccount;
 	private java.lang.String jcDuty;
-	private java.lang.Integer jcUser;
 	private java.lang.Boolean jcCanuse;
 	private java.lang.String jcRemark;
-	private JxEmployeeModel jxEmployee;
+	private JxEmployeeModel jcUser;
 	private List<JxSalesModel> jxSaless;
+
 
 
 	@Column(name = "JC_CODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
@@ -190,19 +191,6 @@ public class JxCustomerModel extends BaseModel
 	}
 
 
-	@Column(name = "JC_USER", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJcUser()
-	{
-		return this.jcUser;
-	}
-
-
-	public void setJcUser(java.lang.Integer jcUser)
-	{
-		this.jcUser = jcUser;
-	}
-
-
 	@Column(name = "JC_CANUSE", unique = false, nullable = false, insertable = true, updatable = true, length = 0)
 	public java.lang.Boolean getJcCanuse()
 	{
@@ -229,17 +217,17 @@ public class JxCustomerModel extends BaseModel
 	}
 
 
-	public void setJxEmployee(JxEmployeeModel jxEmployee)
+	public void setJcUser(JxEmployeeModel jcUser)
 	{
-		this.jxEmployee = jxEmployee;
+		this.jcUser = jcUser;
 	}
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JC_USER", nullable = false, insertable = false, updatable = false)
-	public JxEmployeeModel getJxEmployee()
+	@JoinColumn(name = "JC_USER", nullable = false, insertable = true, updatable = true)
+	public JxEmployeeModel getJcUser()
 	{
-		return jxEmployee;
+		return jcUser;
 	}
 
 

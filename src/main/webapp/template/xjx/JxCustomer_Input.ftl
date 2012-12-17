@@ -24,7 +24,7 @@
 -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
-    <td align="center" ><div class="dqwz">您现在的位置：添加jxCustomerForm </div></td>
+    <td align="center" ><div class="dqwz">您现在的位置：<#if jxCustomerModel.id == -1>添加<#else>修改</#if>客户档案 </div></td>
   </tr>
 </table>
 <@s.form id="jxCustomerForm" action="jxCustomer_save.xhtml"  method="post" enctype="multipart/form-data">
@@ -45,96 +45,83 @@
 </table>
 <table id="inputTab" width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcCode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>顾客编号:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcCode" name="jxCustomerModel.jcCode" cssStyle="width:75%"/>
-			<ui:v for="jcCode" rule="require" warn="不允许以空格为开始" empty="jcCode不允许为空" pass="&nbsp;"/>
+			<ui:v for="jcCode" rule="require" warn="不允许以空格为开始" empty="顾客编号不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcClazz:&nbsp;</th>
+		<th width="15%">会员分类:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jcClazz" name="jxCustomerModel.jcClazz" cssStyle="width:75%"/>
-			<ui:v for="jcClazz" rule="require" warn="不允许以空格为开始" empty="jcClazz不允许为空" pass="&nbsp;"/>
+			<@s.textfield id="jcClazz" name="jxCustomerModel.jcClazz" cssStyle="width:25%" maxlength="1"/>&nbsp;ABC分类
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcName:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>顾客简称:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcName" name="jxCustomerModel.jcName" cssStyle="width:75%"/>
-			<ui:v for="jcName" rule="require" warn="不允许以空格为开始" empty="jcName不允许为空" pass="&nbsp;"/>
+			<ui:v for="jcName" rule="require" warn="不允许以空格为开始" empty="顾客简称不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcAddress:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>可使用:&nbsp;</th>
 		<td width="35%">
+			<select name="jxCustomerModel.jcCanuse">
+				<option value="true" <#if jxCustomerModel.jcCanuse>selected="selected"</#if> >是</option>
+				<option value="false" <#if !jxCustomerModel.jcCanuse>selected="selected"</#if> >否</option>
+			</select>	
+		</td>		
+	</tr>
+	<tr>
+		<th width="15%">地址:&nbsp;</th>
+		<td width="35%" colspan="3">
 			<@s.textfield id="jcAddress" name="jxCustomerModel.jcAddress" cssStyle="width:75%"/>
-			<ui:v for="jcAddress" rule="require" warn="不允许以空格为开始" empty="jcAddress不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcPost:&nbsp;</th>
+		<th width="15%">邮编:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcPost" name="jxCustomerModel.jcPost" cssStyle="width:75%"/>
-			<ui:v for="jcPost" rule="require" warn="不允许以空格为开始" empty="jcPost不允许为空" pass="&nbsp;"/>
+			<ui:v for="jcPost" rule="zip" require="false" warn="邮编格式不正确！" empty="地址不允许为空！" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcPhone:&nbsp;</th>
+		<th width="15%">电话:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcPhone" name="jxCustomerModel.jcPhone" cssStyle="width:75%"/>
-			<ui:v for="jcPhone" rule="require" warn="不允许以空格为开始" empty="jcPhone不允许为空" pass="&nbsp;"/>
+			<ui:v for="jcPhone" rule="phone" require="false" warn="电话号码格式不正确！" empty="电话号码不允许为空！" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcFullname:&nbsp;</th>
-		<td width="35%">
+		<th width="15%">顾客全称:&nbsp;</th>
+		<td width="35%" colspan="3">
 			<@s.textfield id="jcFullname" name="jxCustomerModel.jcFullname" cssStyle="width:75%"/>
-			<ui:v for="jcFullname" rule="require" warn="不允许以空格为开始" empty="jcFullname不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcBank:&nbsp;</th>
+		<th width="15%">开户银行:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcBank" name="jxCustomerModel.jcBank" cssStyle="width:75%"/>
-			<ui:v for="jcBank" rule="require" warn="不允许以空格为开始" empty="jcBank不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcAccount:&nbsp;</th>
+		<th width="15%">账号:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcAccount" name="jxCustomerModel.jcAccount" cssStyle="width:75%"/>
-			<ui:v for="jcAccount" rule="require" warn="不允许以空格为开始" empty="jcAccount不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcDuty:&nbsp;</th>
+		<th width="15%">税号:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jcDuty" name="jxCustomerModel.jcDuty" cssStyle="width:75%"/>
-			<ui:v for="jcDuty" rule="require" warn="不允许以空格为开始" empty="jcDuty不允许为空" pass="&nbsp;"/>
+		</td>
+		<th width="15%"><font color="#FF0000">*</font>业务员:&nbsp;</th>
+		<td width="35%">
+			<@s.hidden id="userId" name="jxCustomerModel.jcUser.id" />
+			<@s.textfield id="userName" name="jxCustomerModel.jcUser.jeName" readonly="true" cssStyle="width:75%"/>&nbsp;
+			<@fkMacros.radioTree 'userId','userName','jxEmployee_ajax.xhtml','${employeeNodes}'/>
+			<ui:v for="userName" rule="require" warn="不允许以空格为开始" empty="业务员不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcUser:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jcUser" name="jxCustomerModel.jcUser" cssStyle="width:75%"/>
-			<ui:v for="jcUser" rule="require" warn="不允许以空格为开始" empty="jcUser不允许为空" pass="&nbsp;"/>
+		<th width="15%">其他备注:&nbsp;</th>
+		<td width="35%" colspan="3">
+			<@s.textarea id="jcRemark" name="jxCustomerModel.jcRemark" cssStyle="width:90%;height:65px;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcCanuse:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jcCanuse" name="jxCustomerModel.jcCanuse" cssStyle="width:75%"/>
-			<ui:v for="jcCanuse" rule="require" warn="不允许以空格为开始" empty="jcCanuse不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jcRemark:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jcRemark" name="jxCustomerModel.jcRemark" cssStyle="width:75%"/>
-			<ui:v for="jcRemark" rule="require" warn="不允许以空格为开始" empty="jcRemark不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
+	</tr>	
 </table>
 </@s.form>
 <@fkMacros.pageFooter />

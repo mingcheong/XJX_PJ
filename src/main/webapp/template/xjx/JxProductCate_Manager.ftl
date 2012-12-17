@@ -10,7 +10,7 @@
 <@fkMacros.pageHeader />
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
     <tr>
-    	<td align="center" ><div class="dqwz">您现在的位置：jxProductCate管理</div></td>
+    	<td align="center" ><div class="dqwz">您现在的位置：商品分类维护</div></td>
     </tr>
 </table>
 <@s.form id="jxProductCateForm" action="jxProductCate_manager.xhtml"><@s.token />
@@ -19,15 +19,19 @@
     <td class="queryTable" align="center">
 		<table width="90%" border="0" cellpadding="0" cellspacing="0" id="queryTable" rules="none" frame="void">
 			<tr>
-				<th width="15%">请放置查询对象</th>
-		        <td>
-		        	<input name="demo" type="text" size="25" id="demo" value="这是一个演示字段" maxlength="20">
-		        </td>
+				<th width="15%">商品分类编号:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jpcCode" name="jxProductCateModel.jpcCode" cssStyle="width:75%"/>
+				</td>
+				<th width="15%">商品分类名称:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jpcName" name="jxProductCateModel.jpcName" cssStyle="width:75%"/>
+				</td>
 		        <td>
 		        	<input type="button" value="查 询" onclick="javascript:onInvokeAction('jxProductCateModel','filter');"/>
 		        </td>
 	     	</tr>
-	    </table>
+	    </table>	    
     </td>
   </tr>
   <tr>
@@ -57,10 +61,12 @@
 				<@jmesa.htmlColumn property="id" style="text-align: center;" width="3%" title="<input type='checkbox' id='checkAll' name='checkAll'/>" filterable=false sortable=false>
 					<input type="checkbox" name="selectedIds" value="${jxProductCate.id}" />
 				</@jmesa.htmlColumn>
-				<@jmesa.htmlColumn property="jpcCode" title="jpcCode" />
-				<@jmesa.htmlColumn property="jpcName" title="jpcName" />
-				<@jmesa.htmlColumn property="jpcUse" title="jpcUse" />
-				<@jmesa.htmlColumn property="jpcMemo" title="jpcMemo" />
+				<@jmesa.htmlColumn property="jpcCode" title="商品分类编号" width="15%"/>
+				<@jmesa.htmlColumn property="jpcName" title="商品分类名称" width="20%"/>
+				<@jmesa.htmlColumn property="jpcUse" title="可使用" width="15%" style="text-align: center;" >
+					<#if jxProductCate.jpcUse?if_exists == true>是<#else>否</#if>
+				</@jmesa.htmlColumn>					
+				<@jmesa.htmlColumn property="jpcMemo" title="备注" />
 		</@jmesa.htmlRow>
 	</@jmesa.htmlTable>
 </@jmesa.tableModel>

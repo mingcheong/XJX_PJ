@@ -10,7 +10,7 @@
 <@fkMacros.pageHeader />
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
     <tr>
-    	<td align="center" ><div class="dqwz">您现在的位置：jxCustomer管理</div></td>
+    	<td align="center" ><div class="dqwz">您现在的位置：客户档案维护</div></td>
     </tr>
 </table>
 <@s.form id="jxCustomerForm" action="jxCustomer_manager.xhtml"><@s.token />
@@ -19,15 +19,19 @@
     <td class="queryTable" align="center">
 		<table width="90%" border="0" cellpadding="0" cellspacing="0" id="queryTable" rules="none" frame="void">
 			<tr>
-				<th width="15%">请放置查询对象</th>
-		        <td>
-		        	<input name="demo" type="text" size="25" id="demo" value="这是一个演示字段" maxlength="20">
-		        </td>
+				<th width="15%">顾客编号:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jcCode" name="jxCustomerModel.jcCode" cssStyle="width:75%"/>
+				</td>
+				<th width="15%">顾客名称:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jcName" name="jxCustomerModel.jcName" cssStyle="width:75%"/>
+				</td>
 		        <td>
 		        	<input type="button" value="查 询" onclick="javascript:onInvokeAction('jxCustomerModel','filter');"/>
 		        </td>
 	     	</tr>
-	    </table>
+	    </table>	    
     </td>
   </tr>
   <tr>
@@ -57,19 +61,11 @@
 				<@jmesa.htmlColumn property="id" style="text-align: center;" width="3%" title="<input type='checkbox' id='checkAll' name='checkAll'/>" filterable=false sortable=false>
 					<input type="checkbox" name="selectedIds" value="${jxCustomer.id}" />
 				</@jmesa.htmlColumn>
-				<@jmesa.htmlColumn property="jcCode" title="jcCode" />
-				<@jmesa.htmlColumn property="jcClazz" title="jcClazz" />
-				<@jmesa.htmlColumn property="jcName" title="jcName" />
-				<@jmesa.htmlColumn property="jcAddress" title="jcAddress" />
-				<@jmesa.htmlColumn property="jcPost" title="jcPost" />
-				<@jmesa.htmlColumn property="jcPhone" title="jcPhone" />
-				<@jmesa.htmlColumn property="jcFullname" title="jcFullname" />
-				<@jmesa.htmlColumn property="jcBank" title="jcBank" />
-				<@jmesa.htmlColumn property="jcAccount" title="jcAccount" />
-				<@jmesa.htmlColumn property="jcDuty" title="jcDuty" />
-				<@jmesa.htmlColumn property="jcUser" title="jcUser" />
-				<@jmesa.htmlColumn property="jcCanuse" title="jcCanuse" />
-				<@jmesa.htmlColumn property="jcRemark" title="jcRemark" />
+				<@jmesa.htmlColumn property="jcCode" title="顾客编号" width="15%"/>
+				<@jmesa.htmlColumn property="jcName" title="顾客简称" width="20%"/>
+				<@jmesa.htmlColumn property="jcPhone" title="电话" width="15%"/>
+				<@jmesa.htmlColumn property="jcUser.jeName" title="业务员" width="15%"/>
+				<@jmesa.htmlColumn property="jcRemark" title="备注" />
 		</@jmesa.htmlRow>
 	</@jmesa.htmlTable>
 </@jmesa.tableModel>

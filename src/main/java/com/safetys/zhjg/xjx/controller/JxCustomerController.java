@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import com.opensymphony.xwork2.Preparable;
 import com.safetys.framework.kernel.controller.BaseController;
+import com.safetys.framework.kernel.model.TreeModel;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
@@ -17,7 +18,9 @@ import com.safetys.framework.utils.OperateResult;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.safetys.zhjg.xjx.model.JxCustomerModel;
+import com.safetys.zhjg.xjx.model.JxEmployeeModel;
 import com.safetys.zhjg.xjx.service.IJxCustomerService;
+import com.safetys.zhjg.xjx.service.IJxEmployeeService;
 
 
 
@@ -46,6 +49,9 @@ public class JxCustomerController extends BaseController implements Preparable
 	private JxCustomerModel jxCustomerModel;
 	private List<JxCustomerModel> jxCustomerModels;
 
+	@Resource(name = "jxEmployeeService")
+	private IJxEmployeeService jxEmployeeService;
+
 
 
 	/**
@@ -55,6 +61,21 @@ public class JxCustomerController extends BaseController implements Preparable
 	 */
 	public String insert() throws Exception
 	{
+		List<JxEmployeeModel> datas = jxEmployeeService.getCollection(new JxEmployeeModel(), false);
+		if (datas != null && datas.size() > 0)
+		{
+			for (JxEmployeeModel element : datas)
+			{
+				treeModel = new TreeModel();
+				treeModel.setId(element.getId());
+				treeModel.setName(element.getJeName());
+				treeModel.setIsParent(false);
+				treeModels.add(treeModel);
+			}
+			datas.clear();
+		}
+		jxCustomerModel.setJcCanuse(true);
+		this.request.setAttribute("employeeNodes", gson.toJson(treeModels));
 		this.setParameters(page_forward_showinsert_jxCustomer);
 		return SUCCESS;
 	}
@@ -68,6 +89,20 @@ public class JxCustomerController extends BaseController implements Preparable
 	public String modify() throws Exception
 	{
 		if (AppUtils.isNullOrEmptyString(this.getId())) { throw new ActionException("将要修改的对象编号不可为空！"); }
+		List<JxEmployeeModel> datas = jxEmployeeService.getCollection(new JxEmployeeModel(), false);
+		if (datas != null && datas.size() > 0)
+		{
+			for (JxEmployeeModel element : datas)
+			{
+				treeModel = new TreeModel();
+				treeModel.setId(element.getId());
+				treeModel.setName(element.getJeName());
+				treeModel.setIsParent(false);
+				treeModels.add(treeModel);
+			}
+			datas.clear();
+		}
+		this.request.setAttribute("employeeNodes", gson.toJson(treeModels));
 		jxCustomerModel = jxCustomerService.findById(this.getId());
 		this.setParameters(page_forward_showupdate_jxCustomer);
 		return SUCCESS;

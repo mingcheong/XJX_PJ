@@ -277,7 +277,7 @@ public class JxSupplierModel extends BaseModel
 
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "JS_CREATETIME", unique = false, nullable = true, insertable = true, updatable = true, length = 19)
+	@Column(name = "JS_CREATETIME", unique = false, nullable = true, insertable = true, updatable = false, length = 19)
 	public java.util.Date getJsCreatetime()
 	{
 		return this.jsCreatetime;

@@ -24,7 +24,7 @@
 -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
-    <td align="center" ><div class="dqwz">您现在的位置：添加jxProductCateForm </div></td>
+    <td align="center" ><div class="dqwz">您现在的位置：<#if jxProductCateModel.id == -1>添加<#else>修改</#if>商品分类 </div></td>
   </tr>
 </table>
 <@s.form id="jxProductCateForm" action="jxProductCate_save.xhtml"  method="post" enctype="multipart/form-data">
@@ -45,31 +45,30 @@
 </table>
 <table id="inputTab" width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jpcCode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>商品分类编号:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jpcCode" name="jxProductCateModel.jpcCode" cssStyle="width:75%"/>
-			<ui:v for="jpcCode" rule="require" warn="不允许以空格为开始" empty="jpcCode不允许为空" pass="&nbsp;"/>
+			<ui:v for="jpcCode" rule="require" warn="不允许以空格为开始" empty="商品分类编号不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jpcName:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>商品分类名称:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jpcName" name="jxProductCateModel.jpcName" cssStyle="width:75%"/>
-			<ui:v for="jpcName" rule="require" warn="不允许以空格为开始" empty="jpcName不允许为空" pass="&nbsp;"/>
+			<ui:v for="jpcName" rule="require" warn="不允许以空格为开始" empty="商品分类名称不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jpcUse:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jpcUse" name="jxProductCateModel.jpcUse" cssStyle="width:75%"/>
-			<ui:v for="jpcUse" rule="require" warn="不允许以空格为开始" empty="jpcUse不允许为空" pass="&nbsp;"/>
+		<th width="15%"><font color="#FF0000">*</font>可使用:&nbsp;</th>
+		<td width="35%" colspan="3">
+			<select name="jxProductCateModel.jpcUse">
+				<option value="true" <#if jxProductCateModel.jpcUse>selected="selected"</#if> >是</option>
+				<option value="false" <#if !jxProductCateModel.jpcUse>selected="selected"</#if> >否</option>
+			</select>				
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jpcMemo:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jpcMemo" name="jxProductCateModel.jpcMemo" cssStyle="width:75%"/>
-			<ui:v for="jpcMemo" rule="require" warn="不允许以空格为开始" empty="jpcMemo不允许为空" pass="&nbsp;"/>
+		<th width="15%">备注:&nbsp;</th>
+		<td width="35%" colspan="3">
+			<@s.textarea id="jpcMemo" name="jxProductCateModel.jpcMemo" cssStyle="width:90%;height:65px;"/>
 		</td>
 	</tr>
 </table>

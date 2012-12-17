@@ -55,6 +55,7 @@ public class JxProductCateController extends BaseController implements Preparabl
 	 */
 	public String insert() throws Exception
 	{
+		jxProductCateModel.setJpcUse(true);
 		this.setParameters(page_forward_showinsert_jxProductCate);
 		return SUCCESS;
 	}

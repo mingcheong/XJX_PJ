@@ -24,7 +24,7 @@
 -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
-    <td align="center" ><div class="dqwz">您现在的位置：添加jxGoodsForm </div></td>
+    <td align="center" ><div class="dqwz">您现在的位置：<#if jxCustomerModel.id == -1>添加<#else>修改</#if>商品档案 </div></td>
   </tr>
 </table>
 <@s.form id="jxGoodsForm" action="jxGoods_save.xhtml"  method="post" enctype="multipart/form-data">
@@ -45,87 +45,72 @@
 </table>
 <table id="inputTab" width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgIncode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>商品内部编码:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgIncode" name="jxGoodsModel.jgIncode" cssStyle="width:75%"/>
-			<ui:v for="jgIncode" rule="require" warn="不允许以空格为开始" empty="jgIncode不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgIncode" rule="require" warn="不允许以空格为开始" empty="商品内部编码不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgCode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>商品编码:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgCode" name="jxGoodsModel.jgCode" cssStyle="width:75%"/>
-			<ui:v for="jgCode" rule="require" warn="不允许以空格为开始" empty="jgCode不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgCode" rule="require" warn="不允许以空格为开始" empty="商品编码不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgName:&nbsp;</th>
-		<td width="35%">
+		<th width="15%"><font color="#FF0000">*</font>品名规格:&nbsp;</th>
+		<td width="35%" colspan="3">
 			<@s.textfield id="jgName" name="jxGoodsModel.jgName" cssStyle="width:75%"/>
-			<ui:v for="jgName" rule="require" warn="不允许以空格为开始" empty="jgName不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgName" rule="require" warn="不允许以空格为开始" empty="品名规格不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgDept:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>所属部门:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgDept" name="jxGoodsModel.jgDept" cssStyle="width:75%"/>
-			<ui:v for="jgDept" rule="require" warn="不允许以空格为开始" empty="jgDept不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgDept" rule="require" warn="不允许以空格为开始" empty="所属部门不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgSunit:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>数量单位:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgSunit" name="jxGoodsModel.jgSunit" cssStyle="width:75%"/>
-			<ui:v for="jgSunit" rule="require" warn="不允许以空格为开始" empty="jgSunit不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgSunit" rule="require" warn="不允许以空格为开始" empty="数量单位不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgBunit:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>外包装:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgBunit" name="jxGoodsModel.jgBunit" cssStyle="width:75%"/>
-			<ui:v for="jgBunit" rule="require" warn="不允许以空格为开始" empty="jgBunit不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgBunit" rule="require" warn="不允许以空格为开始" empty="外包装不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgSpec:&nbsp;</th>
+		<th width="15%">包装规格:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgSpec" name="jxGoodsModel.jgSpec" cssStyle="width:75%"/>
-			<ui:v for="jgSpec" rule="require" warn="不允许以空格为开始" empty="jgSpec不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgCate:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>商品分类:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgCate" name="jxGoodsModel.jgCate" cssStyle="width:75%"/>
-			<ui:v for="jgCate" rule="require" warn="不允许以空格为开始" empty="jgCate不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgCate" rule="require" warn="不允许以空格为开始" empty="商品分类不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgOrigin:&nbsp;</th>
+		<th width="15%">产地:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgOrigin" name="jxGoodsModel.jgOrigin" cssStyle="width:75%"/>
-			<ui:v for="jgOrigin" rule="require" warn="不允许以空格为开始" empty="jgOrigin不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgFactory:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jgFactory" name="jxGoodsModel.jgFactory" cssStyle="width:75%"/>
-			<ui:v for="jgFactory" rule="require" warn="不允许以空格为开始" empty="jgFactory不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgRate:&nbsp;</th>
+		<th width="15%">税率:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgRate" name="jxGoodsModel.jgRate" cssStyle="width:75%"/>
-			<ui:v for="jgRate" rule="require" warn="不允许以空格为开始" empty="jgRate不允许为空" pass="&nbsp;"/>
-		</td>
+		</td>		
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgGuided:&nbsp;</th>
+		<th width="15%">制造商:&nbsp;</th>
+		<td width="35%">
+			<@s.textfield id="jgFactory" name="jxGoodsModel.jgFactory" cssStyle="width:75%"/>
+		</td>
+		<th width="15%">指导价:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgGuided" name="jxGoodsModel.jgGuided" cssStyle="width:75%"/>
-			<ui:v for="jgGuided" rule="require" warn="不允许以空格为开始" empty="jgGuided不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
