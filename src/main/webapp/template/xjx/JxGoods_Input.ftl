@@ -7,7 +7,41 @@
  @version 1.0
  @since 1.0
  -->
-<@fkMacros.pageHeader />
+<@core.pageHeader />
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery('#cc').combogrid({
+			panelWidth:450,
+			value:'006',
+
+			idField:'code',
+			textField:'name',
+			url:'http://localhost:8080/XJX_PJ/resources/javascript/global/datagrid_data.json',
+			columns:[[
+				{field:'code',title:'Code',width:60},
+				{field:'name',title:'Name',width:100},
+				{field:'addr',title:'Address',width:120},
+				{field:'col4',title:'Col41',width:100}
+			]]
+		});
+	});
+	function reload(){
+		jQuery('#cc').combogrid('grid').datagrid('reload');
+	}
+	function setValue(){
+		jQuery('#cc').combogrid('setValue', '002');
+	}
+	function getValue(){
+		var val = jQuery('#cc').combogrid('getValue');
+		alert(val);
+	}
+	function disable(){
+		jQuery('#cc').combogrid('disable');
+	}
+	function enable(){
+		jQuery('#cc').combogrid('enable');
+	}
+</script>
 <@fkMacros.formValidator 'jxGoodsForm'/>
 <#-- 验证参考 for 对应着你要验证的属性的ID,rule指的是验证规则，require表示是否必填。
 	必填验证方式
@@ -24,7 +58,7 @@
 -->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
-    <td align="center" ><div class="dqwz">您现在的位置：<#if jxCustomerModel.id == -1>添加<#else>修改</#if>商品档案 </div></td>
+    <td align="center" ><div class="dqwz">您现在的位置：<#if jxGoodsModel.id == -1>添加<#else>修改</#if>商品档案 </div></td>
   </tr>
 </table>
 <@s.form id="jxGoodsForm" action="jxGoods_save.xhtml"  method="post" enctype="multipart/form-data">
@@ -69,113 +103,111 @@
 			<@s.textfield id="jgDept" name="jxGoodsModel.jgDept" cssStyle="width:75%"/>
 			<ui:v for="jgDept" rule="require" warn="不允许以空格为开始" empty="所属部门不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
 		<th width="15%"><font color="#FF0000">*</font>数量单位:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgSunit" name="jxGoodsModel.jgSunit" cssStyle="width:75%"/>
 			<ui:v for="jgSunit" rule="require" warn="不允许以空格为开始" empty="数量单位不允许为空" pass="&nbsp;"/>
-		</td>
+		</td>		
+	</tr>
+	<tr>
 		<th width="15%"><font color="#FF0000">*</font>外包装:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgBunit" name="jxGoodsModel.jgBunit" cssStyle="width:75%"/>
 			<ui:v for="jgBunit" rule="require" warn="不允许以空格为开始" empty="外包装不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
 		<th width="15%">包装规格:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgSpec" name="jxGoodsModel.jgSpec" cssStyle="width:75%"/>
-		</td>
+		</td>		
+	</tr>
+	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品分类:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgCate" name="jxGoodsModel.jgCate" cssStyle="width:75%"/>
 			<ui:v for="jgCate" rule="require" warn="不允许以空格为开始" empty="商品分类不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
 		<th width="15%">产地:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgOrigin" name="jxGoodsModel.jgOrigin" cssStyle="width:75%"/>
-		</td>
-		<th width="15%">税率:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jgRate" name="jxGoodsModel.jgRate" cssStyle="width:75%"/>
 		</td>		
 	</tr>
 	<tr>
+		<th width="15%">税率:&nbsp;</th>
+		<td width="35%">
+			<@s.textfield id="jgRate" name="jxGoodsModel.jgRate" cssStyle="width:75%"/>
+		</td>	
 		<th width="15%">制造商:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgFactory" name="jxGoodsModel.jgFactory" cssStyle="width:75%"/>
-		</td>
+		</td>			
+	</tr>
+	<tr>
 		<th width="15%">指导价:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgGuided" name="jxGoodsModel.jgGuided" cssStyle="width:75%"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgShelf:&nbsp;</th>
+		<th width="15%">保质（修）期:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgShelf" name="jxGoodsModel.jgShelf" cssStyle="width:75%"/>
-			<ui:v for="jgShelf" rule="require" warn="不允许以空格为开始" empty="jgShelf不允许为空" pass="&nbsp;"/>
-		</td>
+		</td>		
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgPtype:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>进货类型:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgPtype" name="jxGoodsModel.jgPtype" cssStyle="width:75%"/>
-			<ui:v for="jgPtype" rule="require" warn="不允许以空格为开始" empty="jgPtype不允许为空" pass="&nbsp;"/>
+			<ui:v for="jgPtype" rule="require" warn="不允许以空格为开始" empty="进货类型不允许为空" pass="&nbsp;"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgPcycle:&nbsp;</th>
+		<th width="15%">进货周期:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgPcycle" name="jxGoodsModel.jgPcycle" cssStyle="width:75%"/>
-			<ui:v for="jgPcycle" rule="require" warn="不允许以空格为开始" empty="jgPcycle不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgStype:&nbsp;</th>
+		<th width="15%">付款类型:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgStype" name="jxGoodsModel.jgStype" cssStyle="width:75%"/>
-			<ui:v for="jgStype" rule="require" warn="不允许以空格为开始" empty="jgStype不允许为空" pass="&nbsp;"/>
+			<!--<@s.textfield id="jgStype" name="jxGoodsModel.jgStype" cssStyle="width:75%"/>->
+			<select id="cc" name="dept" style="width:250px;"></select>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgSeway:&nbsp;</th>
+		<th width="15%">结算方式:&nbsp;</th>
 		<td width="35%">
 			<@s.textfield id="jgSeway" name="jxGoodsModel.jgSeway" cssStyle="width:75%"/>
-			<ui:v for="jgSeway" rule="require" warn="不允许以空格为开始" empty="jgSeway不允许为空" pass="&nbsp;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgCansell:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jgCansell" name="jxGoodsModel.jgCansell" cssStyle="width:75%"/>
-			<ui:v for="jgCansell" rule="require" warn="不允许以空格为开始" empty="jgCansell不允许为空" pass="&nbsp;"/>
+		<td colspan="4">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
+			<tr>
+				<th width="15%"><font color="#FF0000">*</font>可销售:&nbsp;</th>
+				<td width="18%">
+					<select name="jxGoodsModel.jgCansell">
+						<option value="true" <#if jxGoodsModel.jgCansell>selected="selected"</#if> >是</option>
+						<option value="false" <#if !jxGoodsModel.jgCansell>selected="selected"</#if> >否</option>
+					</select>	
+				</td>
+				<th width="15%"><font color="#FF0000">*</font>是否备用:&nbsp;</th>
+				<td width="18%">
+					<select name="jxGoodsModel.jgSpare">
+						<option value="true" <#if jxGoodsModel.jgSpare>selected="selected"</#if> >是</option>
+						<option value="false" <#if !jxGoodsModel.jgSpare>selected="selected"</#if> >否</option>
+					</select>	
+				</td>
+				<th width="15%"><font color="#FF0000">*</font>须整数卖:&nbsp;</th>
+				<td width="18%">
+					<select name="jxGoodsModel.jgIntsell">
+						<option value="true" <#if jxGoodsModel.jgIntsell>selected="selected"</#if> >是</option>
+						<option value="false" <#if !jxGoodsModel.jgIntsell>selected="selected"</#if> >否</option>
+					</select>						
+				</td>			
+			</tr>
+		</table>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgSpare:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jgSpare" name="jxGoodsModel.jgSpare" cssStyle="width:75%"/>
-			<ui:v for="jgSpare" rule="require" warn="不允许以空格为开始" empty="jgSpare不允许为空" pass="&nbsp;"/>
+		<th width="15%">备注:&nbsp;</th>
+		<td width="35%" colspan="3">
+			<@s.textarea id="jgRemark" name="jxGoodsModel.jgRemark" cssStyle="width:90%;height:65px;"/>	
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgIntsell:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jgIntsell" name="jxGoodsModel.jgIntsell" cssStyle="width:75%"/>
-			<ui:v for="jgIntsell" rule="require" warn="不允许以空格为开始" empty="jgIntsell不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jgRemark:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jgRemark" name="jxGoodsModel.jgRemark" cssStyle="width:75%"/>
-			<ui:v for="jgRemark" rule="require" warn="不允许以空格为开始" empty="jgRemark不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
+	</tr>		
 </table>
 </@s.form>
 <@fkMacros.pageFooter />

@@ -32,7 +32,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/xjx?useUnicode=true&amp;characterEncoding=utf-8" />
 		<!-- 用户名 -->
-		<property name="user" value="xjx" />
+		<property name="user" value="root" />
 		<!-- 密码 -->
 		<property name="password" value="root" />
 		<!-- 当连接池中的连接耗尽的时候c3p0一次同时获取的连接数 -->

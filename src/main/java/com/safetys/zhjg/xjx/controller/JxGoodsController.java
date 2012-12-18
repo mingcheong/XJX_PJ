@@ -55,6 +55,9 @@ public class JxGoodsController extends BaseController implements Preparable
 	 */
 	public String insert() throws Exception
 	{
+		jxGoodsModel.setJgCansell(true);
+		jxGoodsModel.setJgSpare(true);
+		jxGoodsModel.setJgIntsell(false);
 		this.setParameters(page_forward_showinsert_jxGoods);
 		return SUCCESS;
 	}
