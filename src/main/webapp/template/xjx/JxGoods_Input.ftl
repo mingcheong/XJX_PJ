@@ -1,29 +1,23 @@
-<!--
- Copyright 2012 [SAFETYS], Inc. All rights reserved. 
- WebSite: http://www.safetys.cn/
- 此文件通过快速开发平台自动生成
- @author Stone 
- @email wsgajl@163.com
- @version 1.0
- @since 1.0
- -->
-<@core.pageHeader />
+ <@fkMacros.pageHeader />
 <script type="text/javascript">
 	jQuery(function(){
 		jQuery('#cc').combogrid({
-			panelWidth:450,
-			value:'006',
-
+			panelWidth:200,
+			value:'30',
 			idField:'code',
 			textField:'name',
-			url:'http://localhost:8080/XJX_PJ/resources/javascript/global/datagrid_data.json',
+			url:'jxSettlementType_ajax.xhtml',
 			columns:[[
-				{field:'code',title:'Code',width:60},
-				{field:'name',title:'Name',width:100},
-				{field:'addr',title:'Address',width:120},
-				{field:'col4',title:'Col41',width:100}
+				{field:'code',title:'编码',width:80},
+				{field:'name',title:'名称',width:100}
 			]]
 		});
+		jQuery('#jxGoodsForm').submit(function(){
+		jQuery(this).form('validate');
+			//alert(jQuery('#cc').combogrid('getValue'));
+			return false;
+		});
+		
 	});
 	function reload(){
 		jQuery('#cc').combogrid('grid').datagrid('reload');
@@ -32,7 +26,7 @@
 		jQuery('#cc').combogrid('setValue', '002');
 	}
 	function getValue(){
-		var val = jQuery('#cc').combogrid('getValue');
+		var val = jQuery('#cc').val();
 		alert(val);
 	}
 	function disable(){
@@ -42,33 +36,19 @@
 		jQuery('#cc').combogrid('enable');
 	}
 </script>
-<@fkMacros.formValidator 'jxGoodsForm'/>
-<#-- 验证参考 for 对应着你要验证的属性的ID,rule指的是验证规则，require表示是否必填。
-	必填验证方式
-	<ui:v for="邮编" rule="zip" require="true" warn="邮编格式不正确！" empty="地址不允许为空！" pass="&nbsp;"/>
-	<ui:v for="邮件" rule="email" require="true" warn="邮件格式不正确！" empty="地址不允许为空！" pass="&nbsp;"/>
-	<ui:v for="电话号码" rule="phone" require="true" warn="电话号码格式不正确！" empty="电话号码不允许为空！" pass="&nbsp;"/>
-	<ui:v for="手机" rule="mobile" require="true" warn="手机格式不正确！" empty="手机不允许为空！" pass="&nbsp;"/>
-	<ui:v for="URL" rule="url" require="true" warn="地址格式不正确！" empty="地址不允许为空！" pass="&nbsp;"/>
-	<ui:v for="IP" rule="ip" require="true" warn="IP格式不正确！" empty="IP不允许为空！" pass="&nbsp;"/>
-	<ui:v for="帐号" rule="username" require="true" warn="帐号格式不正确！" empty="帐号不允许为空！" pass="&nbsp;"/>
-	<ui:v for="数字" rule="integer" require="true" warn="数字格式不正确！" empty="数字不允许为空！" pass="&nbsp;"/>
-	选填的验证方式
-	<ui:v for="邮编" rule="zip" require="false" warn="邮编格式不正确！" empty="&nbsp;" pass="&nbsp;"/>
--->
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
     <td align="center" ><div class="dqwz">您现在的位置：<#if jxGoodsModel.id == -1>添加<#else>修改</#if>商品档案 </div></td>
   </tr>
 </table>
-<@s.form id="jxGoodsForm" action="jxGoods_save.xhtml"  method="post" enctype="multipart/form-data">
+<@s.form id="jxGoodsForm" action="jxGoods_save.xhtml"  method="post">
 <s:token /><@s.hidden name="jxGoodsModel.id" />
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_menu" height="30" align="center">
   <tr>
     <td align="center"  >
 	<div >
 	  <div class="menu_left">
-		<ul>
+		<ul><input type="submit" name="aa" value="提交">
 			<@util.menu_save '保 存'> obj="jxGoodsForm" </@util.menu_save>
 			<@util.menu_back '返 回'/>
 		</ul>
@@ -81,7 +61,7 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品内部编码:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgIncode" name="jxGoodsModel.jgIncode" cssStyle="width:75%"/>
+			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" cssStyle="width:75%" data-options="required:true"/>
 			<ui:v for="jgIncode" rule="require" warn="不允许以空格为开始" empty="商品内部编码不允许为空" pass="&nbsp;"/>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>商品编码:&nbsp;</th>
@@ -166,7 +146,7 @@
 		<th width="15%">付款类型:&nbsp;</th>
 		<td width="35%">
 			<!--<@s.textfield id="jgStype" name="jxGoodsModel.jgStype" cssStyle="width:75%"/>->
-			<select id="cc" name="dept" style="width:250px;"></select>
+			<select id="cc" name="dept" style="width:250px;" data-options="required:true"></select>
 		</td>
 		<th width="15%">结算方式:&nbsp;</th>
 		<td width="35%">
@@ -209,5 +189,12 @@
 		</td>
 	</tr>		
 </table>
+	<div style="margin:10px 0;">
+		<a href="#" class="easyui-linkbutton" onclick="reload()">Reload</a>
+		<a href="#" class="easyui-linkbutton" onclick="setValue()">SetValue</a>
+		<a href="#" class="easyui-linkbutton" onclick="getValue()">GetValue</a>
+		<a href="#" class="easyui-linkbutton" onclick="disable()">Disable</a>
+		<a href="#" class="easyui-linkbutton" onclick="enable()">Enable</a>
+	</div>
 </@s.form>
 <@fkMacros.pageFooter />

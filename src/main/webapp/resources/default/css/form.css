@@ -1,0 +1,32 @@
+.table_input {
+	border: #c6e2f7 solid 1px;
+	border-collapse: collapse;
+	background: #FFFFFF;
+}
+
+.table_input th {
+	height: 30px;
+	border: #c6e2f7 solid 1px;
+	background: #f4f7fa;
+	font-weight: normal;
+	text-align: right;
+	padding: 5px;
+	font-weight: bold;
+}
+
+.table_input td {
+	height: 30px;
+	border: #c6e2f7 solid 1px;
+	background: #fbfcfc;
+	padding: 5px;
+}
+
+.table_input td a {
+	color: #333333;
+	text-decoration: none
+}
+
+.table_input td a:hover {
+	color: #FF9900;
+	text-decoration: none
+}

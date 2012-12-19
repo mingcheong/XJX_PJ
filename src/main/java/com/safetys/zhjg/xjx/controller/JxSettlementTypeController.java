@@ -5,17 +5,23 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
 import com.safetys.zhjg.xjx.service.IJxSettlementTypeService;
 
@@ -46,6 +52,35 @@ public class JxSettlementTypeController extends BaseController implements Prepar
 	private JxSettlementTypeModel jxSettlementTypeModel;
 	private List<JxSettlementTypeModel> jxSettlementTypeModels;
 
+
+
+	/**
+	 * 以JSON方式返回客户结算方式类型
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String ajax() throws Exception
+	{
+		jxSettlementTypeModels = jxSettlementTypeService.getCollection(jxSettlementTypeModel);
+		if (jxSettlementTypeModels == null || jxSettlementTypeModels.isEmpty())
+			return null;
+
+		JSONArray jr = new JSONArray();
+		JSONObject json = null;
+		for (JxSettlementTypeModel settlementType : jxSettlementTypeModels)
+		{
+			json = new JSONObject();
+			json.put("code", settlementType.getJsCode());
+			json.put("name", settlementType.getJsName());
+			jr.put(json);
+		}
+
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxSettlementTypeModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
 
 
 	/**

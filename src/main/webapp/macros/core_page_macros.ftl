@@ -16,12 +16,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<@title />
+			<link href="${resourcePath}/default/css/form.css" rel="stylesheet" type="text/css" />
 			<link href="${resourcePath}/themes/default/easyui.css" rel="stylesheet" type="text/css" />
 			<link href="${resourcePath}/themes/icon.css" rel="stylesheet" type="text/css" />
 			<script src="${resourcePath}/javascript/global/jquery-1.8.0.min.js" type="text/javascript"></script>
 			<script src="${resourcePath}/javascript/global/jquery.easyui.min.js" type="text/javascript"></script>
 			<script src="${resourcePath}/javascript/global/easyui-lang-zh_CN.js" type="text/javascript"></script>
-			<#if treeType?if_exists=="true"><@pageBody /></#if>
+			<#if hasBody?if_exists=="true"><@pageBody /></#if>
 </#macro>
 
 <#-- 页面头内容开始标记-->
