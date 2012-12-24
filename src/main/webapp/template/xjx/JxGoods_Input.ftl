@@ -34,6 +34,18 @@
 				{field:'name',title:'单位名称',width:100}
 			]]
 		});
+
+		jQuery('#jgCate').combogrid({
+			panelWidth:300,
+			idField:'code',
+			textField:'name',
+			url:'jxProductCate_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'分类编码',width:80},
+				{field:'name',title:'分类名称',width:120},
+				{field:'canUse',title:'可使用',width:60}
+			]]
+		});			
 		
 						
 		
@@ -90,7 +102,7 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品内部编码:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" data-options="required:true" style="width:200px;"/>
+			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" data-options="required:true" style="width:200px;" missingMessage="商品内部编码不允许为空"//>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>商品编码:&nbsp;</th>
 		<td width="35%">
@@ -126,32 +138,31 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品分类:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgCate" name="jxGoodsModel.jgCate" cssStyle="width:75%"/>
-			<ui:v for="jgCate" rule="require" warn="不允许以空格为开始" empty="商品分类不允许为空" pass="&nbsp;"/>
+			<select id="jgCate" name="jxGoodsModel.jgCate" data-options="required:true" style="width:300px;"></select>
 		</td>
 		<th width="15%">产地:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgOrigin" name="jxGoodsModel.jgOrigin" cssStyle="width:75%"/>
+			<input class="easyui-validatebox" type="text" id="jgOrigin" name="jxGoodsModel.jgOrigin" style="width:200px;" validType="length[0,50]" invalidMessage="产地不能超过25个汉字">
 		</td>		
 	</tr>
 	<tr>
 		<th width="15%">税率:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgRate" name="jxGoodsModel.jgRate" cssStyle="width:75%"/>
+			<input class="easyui-numberbox" type="text" id="jgRate" name="jxGoodsModel.jgRate" style="width:100px;" data-options="min:0,max:100"/>
 		</td>	
 		<th width="15%">制造商:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgFactory" name="jxGoodsModel.jgFactory" cssStyle="width:75%"/>
+			<input class="easyui-validatebox" type="text" id="jgFactory" name="jxGoodsModel.jgFactory" style="width:300px;" validType="length[0,200]" invalidMessage="制造商不能超过100个汉字">
 		</td>			
 	</tr>
 	<tr>
 		<th width="15%">指导价:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgGuided" name="jxGoodsModel.jgGuided" cssStyle="width:75%"/>
+			<input class="easyui-numberbox" type="text" id="jgGuided" name="jxGoodsModel.jgGuided" style="width:100px;" data-options="precision:2"/>
 		</td>
 		<th width="15%">保质（修）期:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgShelf" name="jxGoodsModel.jgShelf" cssStyle="width:75%"/>
+			<input class="easyui-numberbox" type="text" id="jgShelf" name="jxGoodsModel.jgShelf" style="width:100px;"/>
 		</td>		
 	</tr>
 	<tr>
