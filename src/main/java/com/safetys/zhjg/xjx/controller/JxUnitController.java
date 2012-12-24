@@ -14,8 +14,14 @@ import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
+import com.safetys.framework.utils.Struts2Utils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
 import com.safetys.zhjg.xjx.model.JxUnitModel;
 import com.safetys.zhjg.xjx.service.IJxUnitService;
 
@@ -46,6 +52,35 @@ public class JxUnitController extends BaseController implements Preparable
 	private JxUnitModel jxUnitModel;
 	private List<JxUnitModel> jxUnitModels;
 
+
+
+	/**
+	 * 以JSON方式返回包装单位列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxUnitModels = jxUnitService.getCollection(jxUnitModel);
+		if (jxUnitModels == null || jxUnitModels.isEmpty())
+			return null;
+
+		JSONArray jr = new JSONArray();
+		JSONObject json = null;
+		for (JxUnitModel unit : jxUnitModels)
+		{
+			json = new JSONObject();
+			json.put("code", unit.getJuCode());
+			json.put("name", unit.getJuName());
+			jr.put(json);
+		}
+
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxUnitModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
 
 
 	/**

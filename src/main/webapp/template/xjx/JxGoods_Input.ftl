@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	jQuery(function(){
 		jQuery('#cc').combogrid({
-			panelWidth:200,
+			panelWidth:250,
 			value:'30',
 			idField:'code',
 			textField:'name',
@@ -12,6 +12,35 @@
 				{field:'name',title:'名称',width:100}
 			]]
 		});
+		
+		jQuery('#jgDept').combogrid({
+			panelWidth:250,
+			idField:'code',
+			textField:'name',
+			url:'jxDept_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'部门编码',width:80},
+				{field:'name',title:'部门名称',width:100}
+			]]
+		});	
+		
+		jQuery('#jgSunit').add('#jgBunit').combogrid({
+			panelWidth:250,
+			idField:'code',
+			textField:'name',
+			url:'jxUnit_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'单位编码',width:80},
+				{field:'name',title:'单位名称',width:100}
+			]]
+		});
+		
+						
+		
+			jQuery('#jxGoodsForm').form('load',{
+				'jxGoodsModel.jgIncode':'name2'
+			});		
+		
 		jQuery('#jxGoodsForm').submit(function(){
 		jQuery(this).form('validate');
 			//alert(jQuery('#cc').combogrid('getValue'));
@@ -61,43 +90,37 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品内部编码:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" cssStyle="width:75%" data-options="required:true"/>
-			<ui:v for="jgIncode" rule="require" warn="不允许以空格为开始" empty="商品内部编码不允许为空" pass="&nbsp;"/>
+			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" data-options="required:true" style="width:200px;"/>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>商品编码:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgCode" name="jxGoodsModel.jgCode" cssStyle="width:75%"/>
-			<ui:v for="jgCode" rule="require" warn="不允许以空格为开始" empty="商品编码不允许为空" pass="&nbsp;"/>
+			<input class="easyui-validatebox" type="text" id="jgCode" name="jxGoodsModel.jgCode" data-options="required:true" style="width:200px;"/>
 		</td>
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>品名规格:&nbsp;</th>
 		<td width="35%" colspan="3">
-			<@s.textfield id="jgName" name="jxGoodsModel.jgName" cssStyle="width:75%"/>
-			<ui:v for="jgName" rule="require" warn="不允许以空格为开始" empty="品名规格不允许为空" pass="&nbsp;"/>
+			<input class="easyui-validatebox" type="text" id="jgName" name="jxGoodsModel.jgName" data-options="required:true" style="width:500px;"/>
 		</td>
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>所属部门:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgDept" name="jxGoodsModel.jgDept" cssStyle="width:75%"/>
-			<ui:v for="jgDept" rule="require" warn="不允许以空格为开始" empty="所属部门不允许为空" pass="&nbsp;"/>
+			<select id="jgDept" name="jxGoodsModel.jgDept" data-options="required:true" style="width:250px;"></select>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>数量单位:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgSunit" name="jxGoodsModel.jgSunit" cssStyle="width:75%"/>
-			<ui:v for="jgSunit" rule="require" warn="不允许以空格为开始" empty="数量单位不允许为空" pass="&nbsp;"/>
+			<select id="jgSunit" name="jxGoodsModel.jgSunit" data-options="required:true" style="width:250px;"></select>
 		</td>		
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>外包装:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgBunit" name="jxGoodsModel.jgBunit" cssStyle="width:75%"/>
-			<ui:v for="jgBunit" rule="require" warn="不允许以空格为开始" empty="外包装不允许为空" pass="&nbsp;"/>
+			<select id="jgBunit" name="jxGoodsModel.jgBunit" data-options="required:true" style="width:250px;"></select>
 		</td>
 		<th width="15%">包装规格:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgSpec" name="jxGoodsModel.jgSpec" cssStyle="width:75%"/>
+			<input class="easyui-validatebox" type="text" id="jgSpec" name="jxGoodsModel.jgSpec" style="width:200px;"/>
 		</td>		
 	</tr>
 	<tr>

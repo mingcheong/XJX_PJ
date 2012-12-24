@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -20,7 +22,9 @@ import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.kernel.model.TreeModel;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxDeptModel;
+import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
 import com.safetys.zhjg.xjx.service.IJxDeptService;
 
 
@@ -78,6 +82,35 @@ public class JxDeptController extends BaseController implements Preparable
 		this.response.getWriter().print(gson.toJson(treeModels));
 		this.response.getWriter().close();
 		return NONE;
+	}
+
+
+	/**
+	 * 以JSON方式返回部门列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxDeptModels = jxDeptService.getCollection(jxDeptModel);
+		if (jxDeptModels == null || jxDeptModels.isEmpty())
+			return null;
+
+		JSONArray jr = new JSONArray();
+		JSONObject json = null;
+		for (JxDeptModel dept : jxDeptModels)
+		{
+			json = new JSONObject();
+			json.put("code", dept.getJdCode());
+			json.put("name", dept.getJdName());
+			jr.put(json);
+		}
+
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxDeptModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
 	}
 
 
