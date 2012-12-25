@@ -5,17 +5,23 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxPuchaseTypeModel;
 import com.safetys.zhjg.xjx.service.IJxPuchaseTypeService;
 
@@ -46,6 +52,36 @@ public class JxPuchaseTypeController extends BaseController implements Preparabl
 	private JxPuchaseTypeModel jxPuchaseTypeModel;
 	private List<JxPuchaseTypeModel> jxPuchaseTypeModels;
 
+
+
+	/**
+	 * 以JSON方式返回进货类型列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxPuchaseTypeModels = jxPuchaseTypeService.getCollection(jxPuchaseTypeModel);
+		if (jxPuchaseTypeModels == null || jxPuchaseTypeModels.isEmpty())
+			return null;
+
+		JSONArray jr = new JSONArray();
+		JSONObject json = null;
+		for (JxPuchaseTypeModel puchaseType : jxPuchaseTypeModels)
+		{
+			json = new JSONObject();
+			json.put("code", puchaseType.getJpCode());
+			json.put("name", puchaseType.getJpName());
+			json.put("canUse", puchaseType.getJpCanuse() ? "是" : "否");
+			jr.put(json);
+		}
+
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxPuchaseTypeModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
 
 
 	/**

@@ -1,9 +1,9 @@
  <@fkMacros.pageHeader />
 <script type="text/javascript">
 	jQuery(function(){
-		jQuery('#cc').combogrid({
-			panelWidth:250,
-			value:'30',
+	
+		jQuery('#jgStype').add('#jgSeway').combogrid({
+			panelWidth:200,
 			idField:'code',
 			textField:'name',
 			url:'jxSettlementType_ajax.xhtml',
@@ -45,7 +45,20 @@
 				{field:'name',title:'分类名称',width:120},
 				{field:'canUse',title:'可使用',width:60}
 			]]
-		});			
+		});	
+
+		jQuery('#jgPtype').combogrid({
+			panelWidth:200,
+			idField:'code',
+			textField:'name',
+			url:'jxPuchaseType_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'进货编码',width:80},
+				{field:'name',title:'进货名称',width:100}
+			]]
+		});				
+		
+			
 		
 						
 		
@@ -56,27 +69,13 @@
 		jQuery('#jxGoodsForm').submit(function(){
 		jQuery(this).form('validate');
 			//alert(jQuery('#cc').combogrid('getValue'));
-			return false;
+			return true;
 		});
 		
 	});
-	function reload(){
-		jQuery('#cc').combogrid('grid').datagrid('reload');
-	}
-	function setValue(){
-		jQuery('#cc').combogrid('setValue', '002');
-	}
-	function getValue(){
-		var val = jQuery('#cc').val();
-		alert(val);
-	}
-	function disable(){
-		jQuery('#cc').combogrid('disable');
-	}
-	function enable(){
-		jQuery('#cc').combogrid('enable');
-	}
+
 </script>
+<@fkMacros.formValidator 'jxEmployeeForm'/>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
     <td align="center" ><div class="dqwz">您现在的位置：<#if jxGoodsModel.id == -1>添加<#else>修改</#if>商品档案 </div></td>
@@ -118,7 +117,7 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>所属部门:&nbsp;</th>
 		<td width="35%">
-			<select id="jgDept" name="jxGoodsModel.jgDept" data-options="required:true" style="width:250px;"></select>
+			<select id="jgDept" name="jxGoodsModel.jgDept.jdCode" data-options="required:true" style="width:250px;"></select>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>数量单位:&nbsp;</th>
 		<td width="35%">
@@ -162,29 +161,27 @@
 		</td>
 		<th width="15%">保质（修）期:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-numberbox" type="text" id="jgShelf" name="jxGoodsModel.jgShelf" style="width:100px;"/>
+			<input class="easyui-numberbox" type="text" id="jgShelf" name="jxGoodsModel.jgShelf" style="width:100px;"/>&nbsp;天
 		</td>		
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>进货类型:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgPtype" name="jxGoodsModel.jgPtype" cssStyle="width:75%"/>
-			<ui:v for="jgPtype" rule="require" warn="不允许以空格为开始" empty="进货类型不允许为空" pass="&nbsp;"/>
+			<select id="jgPtype" name="jxGoodsModel.jgPtype" data-options="required:true" style="width:200px;" missingMessage="进货类型不允许为空"></select>
 		</td>
 		<th width="15%">进货周期:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgPcycle" name="jxGoodsModel.jgPcycle" cssStyle="width:75%"/>
+			<input class="easyui-numberbox" type="text" id="jgPcycle" name="jxGoodsModel.jgPcycle" style="width:100px;" data-options="min:1,max:999"/>&nbsp;天
 		</td>
 	</tr>
 	<tr>
 		<th width="15%">付款类型:&nbsp;</th>
 		<td width="35%">
-			<!--<@s.textfield id="jgStype" name="jxGoodsModel.jgStype" cssStyle="width:75%"/>->
-			<select id="cc" name="dept" style="width:250px;" data-options="required:true"></select>
+			<select id="jgStype" name="jxGoodsModel.jgStype" style="width:200px;"></select>
 		</td>
 		<th width="15%">结算方式:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jgSeway" name="jxGoodsModel.jgSeway" cssStyle="width:75%"/>
+			<select id="jgSeway" name="jxGoodsModel.jgSeway" style="width:200px;"></select>
 		</td>
 	</tr>
 	<tr>
@@ -223,12 +220,5 @@
 		</td>
 	</tr>		
 </table>
-	<div style="margin:10px 0;">
-		<a href="#" class="easyui-linkbutton" onclick="reload()">Reload</a>
-		<a href="#" class="easyui-linkbutton" onclick="setValue()">SetValue</a>
-		<a href="#" class="easyui-linkbutton" onclick="getValue()">GetValue</a>
-		<a href="#" class="easyui-linkbutton" onclick="disable()">Disable</a>
-		<a href="#" class="easyui-linkbutton" onclick="enable()">Enable</a>
-	</div>
 </@s.form>
 <@fkMacros.pageFooter />
