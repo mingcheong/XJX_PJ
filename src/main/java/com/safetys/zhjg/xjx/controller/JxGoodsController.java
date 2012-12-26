@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -147,15 +148,56 @@ public class JxGoodsController extends BaseController implements Preparable
 	public String save() throws Exception
 	{
 		OperateResult or = null;
-		JxDeptModel jgDept = jxDeptService.findUnique("jdCode", jxGoodsModel.getJgDept().getJdCode());
-		JxUnitModel jgSunit = jxUnitService.findUnique("juCode", jxGoodsModel.getJgSunit().getJuCode());
-		JxUnitModel jgBunit = jxUnitService.findUnique("juCode", jxGoodsModel.getJgBunit().getJuCode());
-		JxProductCateModel jgCate = jxProductCateService.findUnique("jpcCode", jxGoodsModel.getJgCate().getJpcCode());
-		JxPuchaseTypeModel jgPtype = jxPuchaseTypeService.findUnique("jpCode", jxGoodsModel.getJgPtype().getJpCode());
-		JxSettlementTypeModel jgStype = jxSettlementTypeService.findUnique("jsCode", jxGoodsModel.getJgStype().getJsCode());
-		JxSettlementTypeModel jgSeway = jxSettlementTypeService.findUnique("jsCode", jxGoodsModel.getJgSeway().getJsCode());
+
+		JxDeptModel jgDept = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgDept().getJdCode()))
+		{
+			jgDept = jxDeptService.findUnique("jdCode", jxGoodsModel.getJgDept().getJdCode());
+		}
+
+		JxUnitModel jgSunit = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgSunit().getJuCode()))
+		{
+			jgSunit = jxUnitService.findUnique("juCode", jxGoodsModel.getJgSunit().getJuCode());
+		}
+
+		JxUnitModel jgBunit = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgBunit().getJuCode()))
+		{
+			jgBunit = jxUnitService.findUnique("juCode", jxGoodsModel.getJgBunit().getJuCode());
+		}
+
+		JxProductCateModel jgCate = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgCate().getJpcCode()))
+		{
+			jgCate = jxProductCateService.findUnique("jpcCode", jxGoodsModel.getJgCate().getJpcCode());
+		}
+
+		JxPuchaseTypeModel jgPtype = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgPtype().getJpCode()))
+		{
+			jgPtype = jxPuchaseTypeService.findUnique("jpCode", jxGoodsModel.getJgPtype().getJpCode());
+		}
+
+		JxSettlementTypeModel jgStype = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgStype().getJsCode()))
+		{
+			jgStype = jxSettlementTypeService.findUnique("jsCode", jxGoodsModel.getJgStype().getJsCode());
+		}
+
+		JxSettlementTypeModel jgSeway = null;
+		if (StringUtils.isNotEmpty(jxGoodsModel.getJgSeway().getJsCode()))
+		{
+			jgSeway = jxSettlementTypeService.findUnique("jsCode", jxGoodsModel.getJgSeway().getJsCode());
+		}
 		jxGoodsModel.setJgDept(jgDept);
-		
+		jxGoodsModel.setJgSunit(jgSunit);
+		jxGoodsModel.setJgBunit(jgBunit);
+		jxGoodsModel.setJgCate(jgCate);
+		jxGoodsModel.setJgPtype(jgPtype);
+		jxGoodsModel.setJgStype(jgStype);
+		jxGoodsModel.setJgSeway(jgSeway);
+
 		or = jxGoodsService.save(jxGoodsModel);
 		this.setJxGoodsModel(null);
 		this.setParameters(or.getMessage(), action_forward_managers_jxGoods);

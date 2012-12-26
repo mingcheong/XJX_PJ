@@ -118,7 +118,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_SUNIT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_SUNIT", nullable = false, insertable = true, updatable = true)
 	public JxUnitModel getJgSunit()
 	{
 		return this.jgSunit;
@@ -132,7 +132,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_BUNIT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_BUNIT", nullable = false, insertable = true, updatable = true)
 	public JxUnitModel getJgBunit()
 	{
 		return this.jgBunit;
@@ -237,7 +237,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_SEWAY", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_SEWAY", nullable = true, insertable = true, updatable = true)
 	public JxSettlementTypeModel getJgSeway()
 	{
 		return this.jgSeway;
@@ -309,7 +309,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_DEPT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_DEPT", nullable = false, insertable = true, updatable = true)
 	public JxDeptModel getJgDept()
 	{
 		return jgDept;
@@ -323,7 +323,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_STYPE", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_STYPE", nullable = true, insertable = true, updatable = true)
 	public JxSettlementTypeModel getJgStype()
 	{
 		return jgStype;
@@ -337,7 +337,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_CATE", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_CATE", nullable = false, insertable = true, updatable = true)
 	public JxProductCateModel getJgCate()
 	{
 		return jgCate;
@@ -351,7 +351,7 @@ public class JxGoodsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JG_PTYPE", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JG_PTYPE", nullable = false, insertable = true, updatable = true)
 	public JxPuchaseTypeModel getJgPtype()
 	{
 		return jgPtype;

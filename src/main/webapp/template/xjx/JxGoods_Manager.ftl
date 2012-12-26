@@ -10,7 +10,7 @@
 <@fkMacros.pageHeader />
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
     <tr>
-    	<td align="center" ><div class="dqwz">您现在的位置：jxGoods管理</div></td>
+    	<td align="center" ><div class="dqwz">您现在的位置：商品档案维护</div></td>
     </tr>
 </table>
 <@s.form id="jxGoodsForm" action="jxGoods_manager.xhtml"><@s.token />
@@ -19,15 +19,19 @@
     <td class="queryTable" align="center">
 		<table width="90%" border="0" cellpadding="0" cellspacing="0" id="queryTable" rules="none" frame="void">
 			<tr>
-				<th width="15%">请放置查询对象</th>
-		        <td>
-		        	<input name="demo" type="text" size="25" id="demo" value="这是一个演示字段" maxlength="20">
-		        </td>
+				<th width="15%">商品编码:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jgCode" name="jxGoodsModel.jgCode" cssStyle="width:75%"/>
+				</td>
+				<th width="15%">品名规格:&nbsp;</th>
+				<td width="35%">
+					<@s.textfield id="jgName" name="jxGoodsModel.jgName" cssStyle="width:75%"/>
+				</td>
 		        <td>
 		        	<input type="button" value="查 询" onclick="javascript:onInvokeAction('jxGoodsModel','filter');"/>
 		        </td>
 	     	</tr>
-	    </table>
+	    </table>	    
     </td>
   </tr>
   <tr>
@@ -57,27 +61,20 @@
 				<@jmesa.htmlColumn property="id" style="text-align: center;" width="3%" title="<input type='checkbox' id='checkAll' name='checkAll'/>" filterable=false sortable=false>
 					<input type="checkbox" name="selectedIds" value="${jxGoods.id}" />
 				</@jmesa.htmlColumn>
-				<@jmesa.htmlColumn property="jgIncode" title="jgIncode" />
-				<@jmesa.htmlColumn property="jgCode" title="jgCode" />
-				<@jmesa.htmlColumn property="jgName" title="jgName" />
-				<@jmesa.htmlColumn property="jgDept" title="jgDept" />
-				<@jmesa.htmlColumn property="jgSunit" title="jgSunit" />
-				<@jmesa.htmlColumn property="jgBunit" title="jgBunit" />
-				<@jmesa.htmlColumn property="jgSpec" title="jgSpec" />
-				<@jmesa.htmlColumn property="jgCate" title="jgCate" />
-				<@jmesa.htmlColumn property="jgOrigin" title="jgOrigin" />
-				<@jmesa.htmlColumn property="jgFactory" title="jgFactory" />
-				<@jmesa.htmlColumn property="jgRate" title="jgRate" />
-				<@jmesa.htmlColumn property="jgGuided" title="jgGuided" />
-				<@jmesa.htmlColumn property="jgShelf" title="jgShelf" />
-				<@jmesa.htmlColumn property="jgPtype" title="jgPtype" />
-				<@jmesa.htmlColumn property="jgPcycle" title="jgPcycle" />
-				<@jmesa.htmlColumn property="jgStype" title="jgStype" />
-				<@jmesa.htmlColumn property="jgSeway" title="jgSeway" />
-				<@jmesa.htmlColumn property="jgCansell" title="jgCansell" />
-				<@jmesa.htmlColumn property="jgSpare" title="jgSpare" />
-				<@jmesa.htmlColumn property="jgIntsell" title="jgIntsell" />
-				<@jmesa.htmlColumn property="jgRemark" title="jgRemark" />
+				<@jmesa.htmlColumn property="jgIncode" title="内部编码" width="20%"/>
+				<@jmesa.htmlColumn property="jgCode" title="商品编码" width="20%"/>
+				<@jmesa.htmlColumn property="jgName" title="品名规格" width="20%"/>
+				<@jmesa.htmlColumn property="jgSunit.juName" title="数量单位" width="15%" style="text-align:center"/>
+				<@jmesa.htmlColumn property="jgCate.jpcName" title="商品分类" width="20%" style="text-align:center"/>
+				<@jmesa.htmlColumn property="jgCansell" title="可销售" width="10%" style="text-align:center">
+					<#if jxGoods.jgCansell?if_exists == true>是<#else>否</#if>
+				</@jmesa.htmlColumn>				
+				<@jmesa.htmlColumn property="jgSpare" title="是否备用" width="10%" style="text-align:center">
+					<#if jxGoods.jgSpare?if_exists == true>是<#else>否</#if>
+				</@jmesa.htmlColumn>					
+				<@jmesa.htmlColumn property="jgIntsell" title="须整数卖" width="10%" style="text-align:center">
+					<#if jxGoods.jgIntsell?if_exists == true>是<#else>否</#if>
+				</@jmesa.htmlColumn>				
 		</@jmesa.htmlRow>
 	</@jmesa.htmlTable>
 </@jmesa.tableModel>

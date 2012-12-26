@@ -58,18 +58,35 @@
 			]]
 		});				
 		
-		jQuery('#jxGoodsForm').form('load',{
-			'jxGoodsModel.jgIncode':'name2'
-		});		
-		
 		jQuery('#saveBtn').click(function(){
 			if(jQuery('#jxGoodsForm').form('validate')){
 				jQuery('#jxGoodsForm').submit();
 			}
 		});
 		
-	});
-
+		<#if jxGoodsModel.id != -1>
+		jQuery('#jxGoodsForm').form('load',{
+			'jxGoodsModel.jgIncode':'${jxGoodsModel.jgIncode}',
+			'jxGoodsModel.jgCode':'${jxGoodsModel.jgCode}',
+			'jxGoodsModel.jgName':'${jxGoodsModel.jgName}',
+			'jxGoodsModel.jgDept.jdCode':'${jxGoodsModel.jgDept.jdCode}',
+			'jxGoodsModel.jgSunit.juCode':'${jxGoodsModel.jgSunit.juCode}',
+			'jxGoodsModel.jgBunit.juCode':'${jxGoodsModel.jgBunit.juCode}',
+			'jxGoodsModel.jgSpec':'${jxGoodsModel.jgSpec}',
+			'jxGoodsModel.jgCate.jpcCode':'${jxGoodsModel.jgCate.jpcCode}',
+			'jxGoodsModel.jgOrigin':'${jxGoodsModel.jgOrigin}',
+			'jxGoodsModel.jgRate':'${jxGoodsModel.jgRate}',
+			'jxGoodsModel.jgFactory':'${jxGoodsModel.jgFactory}',
+			'jxGoodsModel.jgGuided':'${jxGoodsModel.jgGuided}',
+			'jxGoodsModel.jgShelf':'${jxGoodsModel.jgShelf}',
+			'jxGoodsModel.jgPtype.jpCode':'${jxGoodsModel.jgPtype.jpCode}',
+			'jxGoodsModel.jgPcycle':'${jxGoodsModel.jgPcycle}',
+			'jxGoodsModel.jgStype.jsCode':'${jxGoodsModel.jgStype.jsCode}',
+			'jxGoodsModel.jgSeway.jsCode':'${jxGoodsModel.jgSeway.jsCode}'
+		});		
+		</#if>		
+		
+});
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
