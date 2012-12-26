@@ -5,19 +5,32 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.zhjg.xjx.model.JxDeptModel;
 import com.safetys.zhjg.xjx.model.JxGoodsModel;
+import com.safetys.zhjg.xjx.model.JxProductCateModel;
+import com.safetys.zhjg.xjx.model.JxPuchaseTypeModel;
+import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
+import com.safetys.zhjg.xjx.model.JxUnitModel;
+import com.safetys.zhjg.xjx.service.IJxDeptService;
 import com.safetys.zhjg.xjx.service.IJxGoodsService;
+import com.safetys.zhjg.xjx.service.IJxProductCateService;
+import com.safetys.zhjg.xjx.service.IJxPuchaseTypeService;
+import com.safetys.zhjg.xjx.service.IJxSettlementTypeService;
+import com.safetys.zhjg.xjx.service.IJxUnitService;
 
 
 
@@ -41,8 +54,43 @@ public class JxGoodsController extends BaseController implements Preparable
 	private static final String page_forward_showdetail_jxGoods = "/template/xjx/JxGoods_Detail.ftl";
 	private static final String page_forward_tomanagers_jxGoods = "/template/xjx/JxGoods_Manager.ftl";
 	private static final String action_forward_managers_jxGoods = "jxGoods_manager.xhtml";
+
+	/**
+	 * 商品代码业务操作类
+	 */
 	@Resource(name = "jxGoodsService")
 	private IJxGoodsService jxGoodsService;
+
+	/**
+	 * 部门业务操作类
+	 */
+	@Resource(name = "jxDeptService")
+	private IJxDeptService jxDeptService;
+
+	/**
+	 * 计量单位业务操作类
+	 */
+	@Resource(name = "jxUnitService")
+	private IJxUnitService jxUnitService;
+
+	/**
+	 * 进货类型业务操作类
+	 */
+	@Resource(name = "jxPuchaseTypeService")
+	private IJxPuchaseTypeService jxPuchaseTypeService;
+
+	/**
+	 * 付款类型业务操作类
+	 */
+	@Resource(name = "jxSettlementTypeService")
+	private IJxSettlementTypeService jxSettlementTypeService;
+
+	/**
+	 * 商品分类业务操作类
+	 */
+	@Resource(name = "jxProductCateService")
+	private IJxProductCateService jxProductCateService;
+
 	private JxGoodsModel jxGoodsModel;
 	private List<JxGoodsModel> jxGoodsModels;
 
@@ -99,6 +147,15 @@ public class JxGoodsController extends BaseController implements Preparable
 	public String save() throws Exception
 	{
 		OperateResult or = null;
+		JxDeptModel jgDept = jxDeptService.findUnique("jdCode", jxGoodsModel.getJgDept().getJdCode());
+		JxUnitModel jgSunit = jxUnitService.findUnique("juCode", jxGoodsModel.getJgSunit().getJuCode());
+		JxUnitModel jgBunit = jxUnitService.findUnique("juCode", jxGoodsModel.getJgBunit().getJuCode());
+		JxProductCateModel jgCate = jxProductCateService.findUnique("jpcCode", jxGoodsModel.getJgCate().getJpcCode());
+		JxPuchaseTypeModel jgPtype = jxPuchaseTypeService.findUnique("jpCode", jxGoodsModel.getJgPtype().getJpCode());
+		JxSettlementTypeModel jgStype = jxSettlementTypeService.findUnique("jsCode", jxGoodsModel.getJgStype().getJsCode());
+		JxSettlementTypeModel jgSeway = jxSettlementTypeService.findUnique("jsCode", jxGoodsModel.getJgSeway().getJsCode());
+		jxGoodsModel.setJgDept(jgDept);
+		
 		or = jxGoodsService.save(jxGoodsModel);
 		this.setJxGoodsModel(null);
 		this.setParameters(or.getMessage(), action_forward_managers_jxGoods);

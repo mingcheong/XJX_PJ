@@ -5,23 +5,23 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
-import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
-import com.safetys.framework.exception.ActionException;
-import com.safetys.framework.jmesa.facade.TableFacade;
-import com.safetys.framework.jmesa.limit.ExportType;
-import com.safetys.framework.jmesa.limit.Limit;
-import com.safetys.framework.utils.AppUtils;
-import com.safetys.framework.utils.OperateResult;
-import com.safetys.framework.utils.Struts2Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
+import com.opensymphony.xwork2.Preparable;
+import com.safetys.framework.exception.ActionException;
+import com.safetys.framework.jmesa.facade.TableFacade;
+import com.safetys.framework.jmesa.limit.ExportType;
+import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
+import com.safetys.framework.utils.AppUtils;
+import com.safetys.framework.utils.OperateResult;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxUnitModel;
 import com.safetys.zhjg.xjx.service.IJxUnitService;
 
@@ -71,6 +71,7 @@ public class JxUnitController extends BaseController implements Preparable
 		for (JxUnitModel unit : jxUnitModels)
 		{
 			json = new JSONObject();
+			json.put("id", unit.getId());
 			json.put("code", unit.getJuCode());
 			json.put("name", unit.getJuName());
 			jr.put(json);

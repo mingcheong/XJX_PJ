@@ -58,24 +58,19 @@
 			]]
 		});				
 		
-			
+		jQuery('#jxGoodsForm').form('load',{
+			'jxGoodsModel.jgIncode':'name2'
+		});		
 		
-						
-		
-			jQuery('#jxGoodsForm').form('load',{
-				'jxGoodsModel.jgIncode':'name2'
-			});		
-		
-		jQuery('#jxGoodsForm').submit(function(){
-		jQuery(this).form('validate');
-			//alert(jQuery('#cc').combogrid('getValue'));
-			return true;
+		jQuery('#saveBtn').click(function(){
+			if(jQuery('#jxGoodsForm').form('validate')){
+				jQuery('#jxGoodsForm').submit();
+			}
 		});
 		
 	});
 
 </script>
-<@fkMacros.formValidator 'jxEmployeeForm'/>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
     <td align="center" ><div class="dqwz">您现在的位置：<#if jxGoodsModel.id == -1>添加<#else>修改</#if>商品档案 </div></td>
@@ -88,8 +83,8 @@
     <td align="center"  >
 	<div >
 	  <div class="menu_left">
-		<ul><input type="submit" name="aa" value="提交">
-			<@util.menu_save '保 存'> obj="jxGoodsForm" </@util.menu_save>
+		<ul>
+			<li><a href="javascript:void(0);" id="saveBtn" title="保 存"><span><img src="${resourcePath}/default/img/tool_save.png">保 存</span></a></li>
 			<@util.menu_back '返 回'/>
 		</ul>
 	  </div>
@@ -101,33 +96,33 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品内部编码:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" data-options="required:true" style="width:200px;" missingMessage="商品内部编码不允许为空"//>
+			<input class="easyui-validatebox" type="text" id="jgIncode" name="jxGoodsModel.jgIncode" data-options="required:true" style="width:200px;" missingMessage="商品内部编码不允许为空"/>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>商品编码:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-validatebox" type="text" id="jgCode" name="jxGoodsModel.jgCode" data-options="required:true" style="width:200px;"/>
+			<input class="easyui-validatebox" type="text" id="jgCode" name="jxGoodsModel.jgCode" data-options="required:true" style="width:200px;" missingMessage="商品编码不允许为空"/>
 		</td>
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>品名规格:&nbsp;</th>
 		<td width="35%" colspan="3">
-			<input class="easyui-validatebox" type="text" id="jgName" name="jxGoodsModel.jgName" data-options="required:true" style="width:500px;"/>
+			<input class="easyui-validatebox" type="text" id="jgName" name="jxGoodsModel.jgName" data-options="required:true" style="width:500px;" missingMessage="品名规格不允许为空"/>
 		</td>
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>所属部门:&nbsp;</th>
 		<td width="35%">
-			<select id="jgDept" name="jxGoodsModel.jgDept.jdCode" data-options="required:true" style="width:250px;"></select>
+			<select id="jgDept" name="jxGoodsModel.jgDept.jdCode" data-options="required:true" style="width:250px;" missingMessage="所属部门不允许为空"></select>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>数量单位:&nbsp;</th>
 		<td width="35%">
-			<select id="jgSunit" name="jxGoodsModel.jgSunit" data-options="required:true" style="width:250px;"></select>
+			<select id="jgSunit" name="jxGoodsModel.jgSunit.juCode" data-options="required:true" style="width:250px;" missingMessage="数量单位不允许为空"></select>
 		</td>		
 	</tr>
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>外包装:&nbsp;</th>
 		<td width="35%">
-			<select id="jgBunit" name="jxGoodsModel.jgBunit" data-options="required:true" style="width:250px;"></select>
+			<select id="jgBunit" name="jxGoodsModel.jgBunit.juCode" data-options="required:true" style="width:250px;" missingMessage="外包装不允许为空"></select>
 		</td>
 		<th width="15%">包装规格:&nbsp;</th>
 		<td width="35%">
@@ -137,7 +132,7 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>商品分类:&nbsp;</th>
 		<td width="35%">
-			<select id="jgCate" name="jxGoodsModel.jgCate" data-options="required:true" style="width:300px;"></select>
+			<select id="jgCate" name="jxGoodsModel.jgCate.jpcCode" data-options="required:true" style="width:300px;" missingMessage="商品分类不允许为空"></select>
 		</td>
 		<th width="15%">产地:&nbsp;</th>
 		<td width="35%">
@@ -167,7 +162,7 @@
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>进货类型:&nbsp;</th>
 		<td width="35%">
-			<select id="jgPtype" name="jxGoodsModel.jgPtype" data-options="required:true" style="width:200px;" missingMessage="进货类型不允许为空"></select>
+			<select id="jgPtype" name="jxGoodsModel.jgPtype.jpCode" data-options="required:true" style="width:200px;" missingMessage="进货类型不允许为空"></select>
 		</td>
 		<th width="15%">进货周期:&nbsp;</th>
 		<td width="35%">
@@ -177,11 +172,11 @@
 	<tr>
 		<th width="15%">付款类型:&nbsp;</th>
 		<td width="35%">
-			<select id="jgStype" name="jxGoodsModel.jgStype" style="width:200px;"></select>
+			<select id="jgStype" name="jxGoodsModel.jgStype.jsCode" style="width:200px;"></select>
 		</td>
 		<th width="15%">结算方式:&nbsp;</th>
 		<td width="35%">
-			<select id="jgSeway" name="jxGoodsModel.jgSeway" style="width:200px;"></select>
+			<select id="jgSeway" name="jxGoodsModel.jgSeway.jsCode" style="width:200px;"></select>
 		</td>
 	</tr>
 	<tr>

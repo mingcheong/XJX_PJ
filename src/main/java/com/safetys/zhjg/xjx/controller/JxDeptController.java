@@ -24,7 +24,6 @@ import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
 import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxDeptModel;
-import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
 import com.safetys.zhjg.xjx.service.IJxDeptService;
 
 
@@ -102,6 +101,7 @@ public class JxDeptController extends BaseController implements Preparable
 		for (JxDeptModel dept : jxDeptModels)
 		{
 			json = new JSONObject();
+			json.put("id", dept.getId());
 			json.put("code", dept.getJdCode());
 			json.put("name", dept.getJdName());
 			jr.put(json);

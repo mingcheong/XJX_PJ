@@ -71,6 +71,7 @@ public class JxProductCateController extends BaseController implements Preparabl
 		for (JxProductCateModel productCate : jxProductCateModels)
 		{
 			json = new JSONObject();
+			json.put("id", productCate.getId());
 			json.put("code", productCate.getJpcCode());
 			json.put("name", productCate.getJpcName());
 			json.put("canUse", productCate.getJpcUse() ? "是" : "否");

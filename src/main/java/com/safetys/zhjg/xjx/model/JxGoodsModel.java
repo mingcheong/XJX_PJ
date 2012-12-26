@@ -65,7 +65,6 @@ public class JxGoodsModel extends BaseModel
 	private java.lang.Float jgGuided;
 	private java.lang.Integer jgShelf;
 	private java.lang.Integer jgPcycle;
-	private java.lang.Integer jgSeway;
 	private java.lang.Boolean jgCansell;
 	private java.lang.Boolean jgSpare;
 	private java.lang.Boolean jgIntsell;
@@ -74,6 +73,7 @@ public class JxGoodsModel extends BaseModel
 	private JxSettlementTypeModel jgStype;
 	private JxProductCateModel jgCate;
 	private JxPuchaseTypeModel jgPtype;
+	private JxSettlementTypeModel jgSeway;
 	private List<JxInventoryModel> jxInventorys;
 
 
@@ -236,14 +236,15 @@ public class JxGoodsModel extends BaseModel
 	}
 
 
-	@Column(name = "JG_SEWAY", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJgSeway()
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JG_SEWAY", nullable = false, insertable = false, updatable = false)
+	public JxSettlementTypeModel getJgSeway()
 	{
 		return this.jgSeway;
 	}
 
 
-	public void setJgSeway(java.lang.Integer jgSeway)
+	public void setJgSeway(JxSettlementTypeModel jgSeway)
 	{
 		this.jgSeway = jgSeway;
 	}
