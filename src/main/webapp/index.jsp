@@ -2,7 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@ taglib prefix="c" uri="/WEB-INF/tld/c.tld"%><%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>滁州市公共安全监管平台!</title>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>新江厦副食品批发管理系统</title>
 <script src="resources/javascript/global/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script>jQuery.noConflict();</script></head><body>
 <style type="text/css">
@@ -74,8 +74,8 @@ img {
 		<td colspan="2"><img src="resources/default/images/login_05.jpg" width="1000" height="137"></td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center" style="line-height: 1.8">滁州市安全生产监督管理局<br>
-		<a href="http://www.safetys.cn" target="_blank" style="color: #236ac8">技术支持：安生科技</a>联系电话：0574-87364008</td>
+		<td colspan="2" align="center" style="line-height: 1.8">宁波市新江厦股份有限公司<br>
+		<a href="#" target="_blank" style="color: #236ac8">技术支持：创艺科技</a>联系电话：15657877962</td>
 	</tr>
 </table></body></html>
 <script language="javascript">
