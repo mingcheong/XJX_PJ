@@ -5,17 +5,23 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxSupplierModel;
 import com.safetys.zhjg.xjx.service.IJxSupplierService;
 
@@ -46,6 +52,36 @@ public class JxSupplierController extends BaseController implements Preparable
 	private JxSupplierModel jxSupplierModel;
 	private List<JxSupplierModel> jxSupplierModels;
 
+
+
+	/**
+	 * 以JSON方式返回供应商列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxSupplierModels = jxSupplierService.getCollection(jxSupplierModel);
+		if (jxSupplierModels == null || jxSupplierModels.isEmpty())
+			return null;
+
+		JSONArray jr = new JSONArray();
+		JSONObject json = null;
+		for (JxSupplierModel supplier : jxSupplierModels)
+		{
+			json = new JSONObject();
+			json.put("id", supplier.getId());
+			json.put("code", supplier.getJsCode());
+			json.put("name", supplier.getJsName());
+			jr.put(json);
+		}
+
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxSupplierModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
 
 
 	/**

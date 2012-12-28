@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -20,6 +22,7 @@ import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.kernel.model.TreeModel;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxDeptModel;
 import com.safetys.zhjg.xjx.model.JxEmployeeModel;
 import com.safetys.zhjg.xjx.service.IJxDeptService;
@@ -64,6 +67,36 @@ public class JxEmployeeController extends BaseController implements Preparable
 		this.response.getWriter().print("");
 		this.response.getWriter().close();
 		return NONE;
+	}
+
+
+	/**
+	 * 以JSON方式返回员工列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxEmployeeModels = jxEmployeeService.getCollection(jxEmployeeModel);
+		if (jxEmployeeModels == null || jxEmployeeModels.isEmpty())
+			return null;
+
+		JSONArray jr = new JSONArray();
+		JSONObject json = null;
+		for (JxEmployeeModel employee : jxEmployeeModels)
+		{
+			json = new JSONObject();
+			json.put("id", employee.getId());
+			json.put("code", employee.getJeCode());
+			json.put("name", employee.getJeName());
+			jr.put(json);
+		}
+
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxEmployeeModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
 	}
 
 

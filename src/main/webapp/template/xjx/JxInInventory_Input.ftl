@@ -1,4 +1,43 @@
  <@fkMacros.pageHeader />
+ <script type="text/javascript">
+	jQuery(function(){
+		
+		jQuery('#jiDept').combogrid({
+			panelWidth:250,
+			idField:'code',
+			textField:'name',
+			url:'jxDept_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'部门编码',width:80},
+				{field:'name',title:'部门名称',width:100}
+			]]
+		});	
+		
+		jQuery('#jiSupplier').combogrid({
+			panelWidth:250,
+			idField:'code',
+			textField:'name',
+			url:'jxSupplier_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'供应商编码',width:90},
+				{field:'name',title:'供应商名称',width:150}
+			]]
+		});	
+		
+		jQuery('#jiUser').combogrid({
+			panelWidth:250,
+			idField:'code',
+			textField:'name',
+			url:'jxEmployee_jsonList.xhtml',
+			columns:[[
+				{field:'code',title:'员工编号',width:90},
+				{field:'name',title:'员工名称',width:150}
+			]]
+		});				
+		
+		
+});
+</script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="topgzq" height="28" align="center">
   <tr>
     <td align="center" ><div class="dqwz">您现在的位置：进货入库单录入 </div></td>
@@ -25,47 +64,35 @@
 		<td width="35%">
 			<input class="easyui-validatebox" type="text" id="jiCode" name="jxInInventoryModel.jiCode" data-options="required:true" style="width:200px;" missingMessage="进货单号不允许为空"/>
 		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jiLastCode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>上一单号:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jiLastCode" name="jxInInventoryModel.jiLastCode" cssStyle="width:75%"/>
-			<ui:v for="jiLastCode" rule="require" warn="不允许以空格为开始" empty="jiLastCode不允许为空" pass="&nbsp;"/>
+			<input class="easyui-validatebox" type="text" id="jiLastCode" name="jxInInventoryModel.jiLastCode" data-options="required:true" style="width:200px;" missingMessage="上一单号不允许为空"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jiOcode:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>原始单号:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jiOcode" name="jxInInventoryModel.jiOcode" cssStyle="width:75%"/>
-			<ui:v for="jiOcode" rule="require" warn="不允许以空格为开始" empty="jiOcode不允许为空" pass="&nbsp;"/>
+			<input class="easyui-validatebox" type="text" id="jiOcode" name="jxInInventoryModel.jiOcode" data-options="required:true" style="width:200px;" missingMessage="原始单号不允许为空"/>
+		</td>
+		<th width="15%">备用:&nbsp;</th>
+		<td width="35%">
+			<input class="easyui-validatebox" type="text" id="jiCodemark" name="jxInInventoryModel.jiCodemark" style="width:200px;"/>
 		</td>
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jiCodemark:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>进货部门:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jiCodemark" name="jxInInventoryModel.jiCodemark" cssStyle="width:75%"/>
-			<ui:v for="jiCodemark" rule="require" warn="不允许以空格为开始" empty="jiCodemark不允许为空" pass="&nbsp;"/>
+			<select id="jiDept" name="jxInInventoryModel.jiDept.jdCode" data-options="required:true" style="width:250px;" missingMessage="进货部门不允许为空"></select>
 		</td>
+		<th width="15%"><font color="#FF0000">*</font>进货员:&nbsp;</th>
+		<td width="35%">
+			<select id="jiUser" name="jxInInventoryModel.jiUser.jsCode" data-options="required:true" style="width:250px;" missingMessage="进货员不允许为空"></select>
+		</td>		
 	</tr>
 	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jiDept:&nbsp;</th>
+		<th width="15%"><font color="#FF0000">*</font>供应商:&nbsp;</th>
 		<td width="35%">
-			<@s.textfield id="jiDept" name="jxInInventoryModel.jiDept" cssStyle="width:75%"/>
-			<ui:v for="jiDept" rule="require" warn="不允许以空格为开始" empty="jiDept不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jiSupplier:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jiSupplier" name="jxInInventoryModel.jiSupplier" cssStyle="width:75%"/>
-			<ui:v for="jiSupplier" rule="require" warn="不允许以空格为开始" empty="jiSupplier不允许为空" pass="&nbsp;"/>
-		</td>
-	</tr>
-	<tr>
-		<th width="15%"><font color="#FF0000">*</font>jiUser:&nbsp;</th>
-		<td width="35%">
-			<@s.textfield id="jiUser" name="jxInInventoryModel.jiUser" cssStyle="width:75%"/>
-			<ui:v for="jiUser" rule="require" warn="不允许以空格为开始" empty="jiUser不允许为空" pass="&nbsp;"/>
+			<select id="jiSupplier" name="jxInInventoryModel.jiSupplier.jsCode" data-options="required:true" style="width:250px;" missingMessage="供应商不允许为空"></select>
 		</td>
 	</tr>
 	<tr>
