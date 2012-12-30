@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -18,9 +20,9 @@ import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
 import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.kernel.model.TreeModel;
-import com.safetys.framework.system.model.FkRoleModel;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxEmployeeModel;
 import com.safetys.zhjg.xjx.model.JxWarehouseModel;
 import com.safetys.zhjg.xjx.service.IJxEmployeeService;
@@ -56,6 +58,35 @@ public class JxWarehouseController extends BaseController implements Preparable
 	@Resource(name = "jxEmployeeService")
 	private IJxEmployeeService jxEmployeeService;
 
+
+
+	/**
+	 * 以JSON方式返回仓库列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxWarehouseModels = jxWarehouseService.getCollection(jxWarehouseModel);
+		JSONArray jr = new JSONArray();
+		if (jxWarehouseModels != null && !jxWarehouseModels.isEmpty())
+		{
+			JSONObject json = null;
+			for (JxWarehouseModel warehouse : jxWarehouseModels)
+			{
+				json = new JSONObject();
+				json.put("id", warehouse.getId());
+				json.put("code", warehouse.getJwCode());
+				json.put("name", warehouse.getJwName());
+				jr.put(json);
+			}
+		}
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxWarehouseModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
 
 
 	/**

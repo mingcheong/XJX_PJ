@@ -49,9 +49,6 @@ public class JxInInventoryDetailsModel extends BaseModel
 
 
 
-	private java.lang.String jidBarcode;
-	private java.lang.String jidCode;
-	private java.lang.String jidName;
 	private java.lang.Float jidQuantity;
 	private java.lang.Float jidCost;
 	private java.lang.Float jidAmount;
@@ -60,46 +57,9 @@ public class JxInInventoryDetailsModel extends BaseModel
 	private java.lang.Float jidRate;
 	private JxInInventoryModel jidInInventory;
 	private JxUnitModel jidUnit;
+	private JxUnitModel jidBUnit;
+	private JxGoodsModel goodsModel;
 
-
-
-	@Column(name = "JID_BARCODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJidBarcode()
-	{
-		return this.jidBarcode;
-	}
-
-
-	public void setJidBarcode(java.lang.String jidBarcode)
-	{
-		this.jidBarcode = jidBarcode;
-	}
-
-
-	@Column(name = "JID_CODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJidCode()
-	{
-		return this.jidCode;
-	}
-
-
-	public void setJidCode(java.lang.String jidCode)
-	{
-		this.jidCode = jidCode;
-	}
-
-
-	@Column(name = "JID_NAME", unique = false, nullable = false, insertable = true, updatable = true, length = 50)
-	public java.lang.String getJidName()
-	{
-		return this.jidName;
-	}
-
-
-	public void setJidName(java.lang.String jidName)
-	{
-		this.jidName = jidName;
-	}
 
 
 	@Column(name = "JID_QUANTITY", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
@@ -187,7 +147,7 @@ public class JxInInventoryDetailsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JID_IN_INVENTORY", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JID_IN_INVENTORY", nullable = false, insertable = true, updatable = true)
 	public JxInInventoryModel getJidInInventory()
 	{
 		return jidInInventory;
@@ -201,9 +161,38 @@ public class JxInInventoryDetailsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JID_UNIT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JID_UNIT", nullable = false, insertable = true, updatable = true)
 	public JxUnitModel getJidUnit()
 	{
 		return jidUnit;
 	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JID_BUNIT", nullable = false, insertable = true, updatable = true)
+	public JxUnitModel getJidBUnit()
+	{
+		return jidBUnit;
+	}
+
+
+	public void setJidBUnit(JxUnitModel jidBUnit)
+	{
+		this.jidBUnit = jidBUnit;
+	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JID_GOODS", nullable = false, insertable = true, updatable = true)
+	public JxGoodsModel getGoodsModel()
+	{
+		return goodsModel;
+	}
+
+
+	public void setGoodsModel(JxGoodsModel goodsModel)
+	{
+		this.goodsModel = goodsModel;
+	}
+
 }

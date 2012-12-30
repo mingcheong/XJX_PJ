@@ -63,20 +63,19 @@ public class JxSupplierController extends BaseController implements Preparable
 	public String jsonList() throws Exception
 	{
 		jxSupplierModels = jxSupplierService.getCollection(jxSupplierModel);
-		if (jxSupplierModels == null || jxSupplierModels.isEmpty())
-			return null;
-
 		JSONArray jr = new JSONArray();
-		JSONObject json = null;
-		for (JxSupplierModel supplier : jxSupplierModels)
+		if (jxSupplierModels != null && !jxSupplierModels.isEmpty())
 		{
-			json = new JSONObject();
-			json.put("id", supplier.getId());
-			json.put("code", supplier.getJsCode());
-			json.put("name", supplier.getJsName());
-			jr.put(json);
+			JSONObject json = null;
+			for (JxSupplierModel supplier : jxSupplierModels)
+			{
+				json = new JSONObject();
+				json.put("id", supplier.getId());
+				json.put("code", supplier.getJsCode());
+				json.put("name", supplier.getJsName());
+				jr.put(json);
+			}
 		}
-
 		JSONObject jo = new JSONObject();
 		jo.put("total", jxSupplierModels.size());
 		jo.put("rows", jr);
