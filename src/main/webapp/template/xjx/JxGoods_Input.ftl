@@ -143,7 +143,7 @@
 		</td>
 		<th width="15%">包装规格:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-validatebox" type="text" id="jgSpec" name="jxGoodsModel.jgSpec" style="width:200px;"/>
+			<input class="easyui-numberbox" type="text" id="jgSpec" name="jxGoodsModel.jgSpec" style="width:60px;" data-options="min:1"/>
 		</td>		
 	</tr>
 	<tr>

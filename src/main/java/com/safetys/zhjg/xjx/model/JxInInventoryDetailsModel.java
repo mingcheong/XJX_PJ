@@ -52,12 +52,12 @@ public class JxInInventoryDetailsModel extends BaseModel
 	private java.lang.Float jidQuantity;
 	private java.lang.Float jidCost;
 	private java.lang.Float jidAmount;
+	private java.lang.Float jidWAmount;
 	private java.lang.Float jidNum;
 	private java.lang.String jidOverflow;
 	private java.lang.Float jidRate;
 	private JxInInventoryModel jidInInventory;
 	private JxUnitModel jidUnit;
-	private JxUnitModel jidBUnit;
 	private JxGoodsModel goodsModel;
 
 
@@ -98,6 +98,19 @@ public class JxInInventoryDetailsModel extends BaseModel
 	public void setJidAmount(java.lang.Float jidAmount)
 	{
 		this.jidAmount = jidAmount;
+	}
+
+
+	@Column(name = "JID_WAMOUNT", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
+	public java.lang.Float getJidWAmount()
+	{
+		return jidWAmount;
+	}
+
+
+	public void setJidWAmount(java.lang.Float jidWAmount)
+	{
+		this.jidWAmount = jidWAmount;
 	}
 
 
@@ -165,20 +178,6 @@ public class JxInInventoryDetailsModel extends BaseModel
 	public JxUnitModel getJidUnit()
 	{
 		return jidUnit;
-	}
-
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JID_BUNIT", nullable = false, insertable = true, updatable = true)
-	public JxUnitModel getJidBUnit()
-	{
-		return jidBUnit;
-	}
-
-
-	public void setJidBUnit(JxUnitModel jidBUnit)
-	{
-		this.jidBUnit = jidBUnit;
 	}
 
 

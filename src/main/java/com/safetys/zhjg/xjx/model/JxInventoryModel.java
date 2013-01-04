@@ -49,27 +49,13 @@ public class JxInventoryModel extends BaseModel
 
 
 
-	private java.lang.Integer jiWarehouse;
 	private java.lang.Float jiCursum;
 	private java.lang.Float jiTotalsum;
 	private java.lang.Float jiWastesum;
 	private java.lang.Float jiSparesum;
 	private JxGoodsModel jiGoods;
-	private JxWarehouseModel jxWarehouse;
+	private JxWarehouseModel jiWarehouse;
 
-
-
-	@Column(name = "JI_WAREHOUSE", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJiWarehouse()
-	{
-		return this.jiWarehouse;
-	}
-
-
-	public void setJiWarehouse(java.lang.Integer jiWarehouse)
-	{
-		this.jiWarehouse = jiWarehouse;
-	}
 
 
 	@Column(name = "JI_CURSUM", unique = false, nullable = false, insertable = true, updatable = true, length = 12)
@@ -131,23 +117,23 @@ public class JxInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JI_GOODS", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JI_GOODS", nullable = false, insertable = true, updatable = true)
 	public JxGoodsModel getJiGoods()
 	{
 		return jiGoods;
 	}
 
 
-	public void setJxWarehouse(JxWarehouseModel jxWarehouse)
+	public void setJiWarehouse(JxWarehouseModel jiWarehouse)
 	{
-		this.jxWarehouse = jxWarehouse;
+		this.jiWarehouse = jiWarehouse;
 	}
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JI_WAREHOUSE", nullable = false, insertable = false, updatable = false)
-	public JxWarehouseModel getJxWarehouse()
+	@JoinColumn(name = "JI_WAREHOUSE", nullable = false, insertable = true, updatable = true)
+	public JxWarehouseModel getJiWarehouse()
 	{
-		return jxWarehouse;
+		return jiWarehouse;
 	}
 }

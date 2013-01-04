@@ -53,6 +53,8 @@ public class JxBackInventoryModel extends BaseModel
 		super(request, tableId);
 	}
 
+
+
 	private java.lang.String jbCode;
 	private java.lang.String jbLastCode;
 	private java.lang.String jbOcode;
@@ -65,6 +67,7 @@ public class JxBackInventoryModel extends BaseModel
 	private JxSupplierModel jbSupplier;
 	private JxWarehouseModel jbWarehouse;
 	private List<JxBackInventoryDetailsModel> jxBackInventoryDetailss;
+
 
 
 	@Column(name = "JB_CODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
@@ -120,7 +123,7 @@ public class JxBackInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JB_USER", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JB_USER", nullable = false, insertable = true, updatable = true)
 	public JxEmployeeModel getJbUser()
 	{
 		return this.jbUser;
@@ -148,7 +151,7 @@ public class JxBackInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JB_CHECKUSER", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JB_CHECKUSER", nullable = false, insertable = true, updatable = true)
 	public JxEmployeeModel getJbCheckuser()
 	{
 		return this.jbCheckuser;
@@ -181,7 +184,7 @@ public class JxBackInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JB_DEPT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JB_DEPT", nullable = false, insertable = true, updatable = true)
 	public JxDeptModel getJbDept()
 	{
 		return jbDept;
@@ -195,7 +198,7 @@ public class JxBackInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JB_SUPPLIER", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JB_SUPPLIER", nullable = false, insertable = true, updatable = true)
 	public JxSupplierModel getJbSupplier()
 	{
 		return jbSupplier;
@@ -209,7 +212,7 @@ public class JxBackInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JB_WAREHOUSE", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JB_WAREHOUSE", nullable = false, insertable = true, updatable = true)
 	public JxWarehouseModel getJbWarehouse()
 	{
 		return jbWarehouse;

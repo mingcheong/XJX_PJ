@@ -250,7 +250,7 @@ public class JxSupplierModel extends BaseModel
 	}
 
 
-	@Column(name = "JS_LIMIT", unique = false, nullable = true, insertable = true, updatable = true, length = 2)
+	@Column(name = "JS_LIMIT", unique = false, nullable = true, insertable = true, updatable = true, length = 4)
 	public java.lang.Float getJsLimit()
 	{
 		return this.jsLimit;
@@ -263,7 +263,7 @@ public class JxSupplierModel extends BaseModel
 	}
 
 
-	@Column(name = "JS_BALANCE", unique = false, nullable = true, insertable = true, updatable = true, length = 2)
+	@Column(name = "JS_BALANCE", unique = false, nullable = true, insertable = true, updatable = true, length = 4)
 	public java.lang.Float getJsBalance()
 	{
 		return this.jsBalance;

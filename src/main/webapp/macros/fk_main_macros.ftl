@@ -37,36 +37,20 @@
 </#macro>
 
 <#-- 页面头文件EasyUI -->
-<#macro easyuiHeader script>
+<#macro uiHeader>
 <@taglibs />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<head>
 		<@title />
-			<link href="${resourcePath}/default/css/css.css" rel="stylesheet" type="text/css" />
-			<link href="${resourcePath}/default/css/data.css" rel="stylesheet" type="text/css" />
-			<link href="${resourcePath}/datepicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
-			<link href="${resourcePath}/jmesa/css/jmesa.css" rel="stylesheet" type="text/css" />
+			<link href="${resourcePath}/default/css/form.css" rel="stylesheet" type="text/css" />
 			<link href="${resourcePath}/themes/default/easyui.css" rel="stylesheet" type="text/css" />
 			<link href="${resourcePath}/themes/icon.css" rel="stylesheet" type="text/css" />
 			<script src="${resourcePath}/javascript/global/jquery-1.8.0.min.js" type="text/javascript"></script>
 			<script src="${resourcePath}/javascript/global/jquery.easyui.min.js" type="text/javascript"></script>
 			<script src="${resourcePath}/javascript/global/easyui-lang-zh_CN.js" type="text/javascript"></script>
-			<script src="${resourcePath}/javascript/global/jquery.form.js" type="text/javascript"></script>
-			<script src="${resourcePath}/datepicker/WdatePicker.js" type="text/javascript"></script>
-			<script src="${resourcePath}/javascript/global/public.js" type="text/javascript"></script>
-			<script src="${resourcePath}/javascript/global/common.js" type="text/javascript"></script>
-			<script src="${resourcePath}/jmesa/js/jmesa.min.js" type="text/javascript"></script>
-			<script src="${resourcePath}/jmesa/js/jquery.jmesa.min.js" type="text/javascript"></script>
-			<script>
-				jQuery.noConflict();
-				$(function(){
-					${script}();	
-				
-				});
-				
-			</script>
 	</head><@loading /><body>
 </#macro>
 

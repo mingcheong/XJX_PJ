@@ -12,6 +12,7 @@ public class DateConverter extends DefaultTypeConverter {
 	private static final DateFormat[] ACCEPT_DATE_FORMATS = { 
 			new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), 
 			new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+			new SimpleDateFormat("yyyy-MM-dd"),
 	        new SimpleDateFormat("yyyy/MM/dd HH:mm:ss") };
 
 	@Override

@@ -9,6 +9,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -20,6 +22,7 @@ import com.safetys.framework.jmesa.limit.Limit;
 import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxDeptModel;
 import com.safetys.zhjg.xjx.model.JxGoodsModel;
 import com.safetys.zhjg.xjx.model.JxProductCateModel;
@@ -94,7 +97,74 @@ public class JxGoodsController extends BaseController implements Preparable
 
 	private JxGoodsModel jxGoodsModel;
 	private List<JxGoodsModel> jxGoodsModels;
+	
 
+
+
+	/**
+	 * 以JSON方式返回供应商列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxGoodsModels = jxGoodsService.getCollection(jxGoodsModel);
+		JSONArray jr = new JSONArray();
+		if (jxGoodsModels != null && !jxGoodsModels.isEmpty())
+		{
+			JSONObject json = null;
+			for (JxGoodsModel goods : jxGoodsModels)
+			{
+				json = new JSONObject();
+				json.put("id", goods.getId());
+				json.put("code", goods.getJgCode());
+				json.put("name", goods.getJgName());
+				jr.put(json);
+			}
+		}
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxGoodsModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
+
+
+	public String getGoods() throws Exception
+	{
+
+		if (jxGoodsModel == null || StringUtils.isEmpty(jxGoodsModel.getJgCode()))
+			return null;
+		jxGoodsModel = jxGoodsService.findByCode(jxGoodsModel.getJgCode().trim());
+		JSONObject json = new JSONObject();
+		if (jxGoodsModel != null)
+		{
+			json.put("id", jxGoodsModel.getId());
+			json.put("incode", jxGoodsModel.getJgIncode());
+			json.put("code", jxGoodsModel.getJgCode());
+			json.put("name", jxGoodsModel.getJgName());
+			json.put("rate", jxGoodsModel.getJgRate());
+			json.put("spec", jxGoodsModel.getJgSpec());
+			
+			JSONObject bUnit= new JSONObject();
+			bUnit.put("id", jxGoodsModel.getJgBunit().getId());
+			bUnit.put("juCode", jxGoodsModel.getJgBunit().getJuCode());
+			bUnit.put("juName", jxGoodsModel.getJgBunit().getJuName());
+			json.put("bUnit", bUnit);
+			
+			JSONObject sUnit= new JSONObject();
+			sUnit.put("id", jxGoodsModel.getJgSunit().getId());
+			sUnit.put("juCode", jxGoodsModel.getJgSunit().getJuCode());
+			sUnit.put("juName", jxGoodsModel.getJgSunit().getJuName());
+			json.put("sUnit", sUnit);
+			
+		}
+		else
+		{
+			json.put("error", "无此商品,请先设置!");
+		}
+		return Struts2Utils.renderJson(json.toString());
+	}
 
 
 	/**

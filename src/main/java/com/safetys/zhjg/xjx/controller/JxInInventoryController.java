@@ -5,17 +5,22 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 import com.safetys.zhjg.xjx.model.JxInInventoryModel;
 import com.safetys.zhjg.xjx.service.IJxInInventoryService;
 
@@ -40,11 +45,14 @@ public class JxInInventoryController extends BaseController implements Preparabl
 	private static final String page_forward_showupdate_jxInInventory = "/template/xjx/JxInInventory_Input.ftl";
 	private static final String page_forward_showdetail_jxInInventory = "/template/xjx/JxInInventory_Detail.ftl";
 	private static final String page_forward_tomanagers_jxInInventory = "/template/xjx/JxInInventory_Manager.ftl";
-	private static final String action_forward_managers_jxInInventory = "jxInInventory_manager.xhtml";
+	private static final String action_forward_insert_jxInInventory = "jxInInventory_insert.xhtml";
 	@Resource(name = "jxInInventoryService")
 	private IJxInInventoryService jxInInventoryService;
 	private JxInInventoryModel jxInInventoryModel;
 	private List<JxInInventoryModel> jxInInventoryModels;
+
+	// 进货明细数据
+	private String jsonData;
 
 
 
@@ -55,6 +63,7 @@ public class JxInInventoryController extends BaseController implements Preparabl
 	 */
 	public String insert() throws Exception
 	{
+		jxInInventoryModel.setJiDate(this.getCuurentDate());
 		this.setParameters(page_forward_showinsert_jxInInventory);
 		return SUCCESS;
 	}
@@ -96,26 +105,16 @@ public class JxInInventoryController extends BaseController implements Preparabl
 	public String save() throws Exception
 	{
 		OperateResult or = null;
-		or = jxInInventoryService.save(jxInInventoryModel);
-		this.setJxInInventoryModel(null);
-		this.setParameters(or.getMessage(), action_forward_managers_jxInInventory);
+		if (StringUtils.isNotEmpty(jsonData))
+		{
+			JSONArray array = new JSONArray(jsonData);
+			or = jxInInventoryService.save(jxInInventoryModel, array);
+			this.setJxInInventoryModel(null);
+			this.setParameters(or.getMessage(), action_forward_insert_jxInInventory);
+		}
 		return SUCCESS;
 	}
 
-
-	/**
-	 * 删除数据
-	 * 
-	 * @throws ActionException
-	 */
-	public String remove() throws Exception
-	{
-		OperateResult or = null;
-		if (AppUtils.isNullOrEmptyString(this.getSelectedIds())) { throw new ActionException("将要删除的对象编号不可为空！"); }
-		or = jxInInventoryService.remove(this.getSelectedIds());
-		this.setParameters(or.getMessage(), action_forward_managers_jxInInventory);
-		return SUCCESS;
-	}
 
 
 	/**
@@ -198,5 +197,11 @@ public class JxInInventoryController extends BaseController implements Preparabl
 	public void setJxInInventoryModels(List<JxInInventoryModel> jxInInventoryModels)
 	{
 		this.jxInInventoryModels = jxInInventoryModels;
+	}
+
+
+	public void setJsonData(String jsonData)
+	{
+		this.jsonData = jsonData;
 	}
 }

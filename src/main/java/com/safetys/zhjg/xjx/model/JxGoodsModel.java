@@ -58,7 +58,7 @@ public class JxGoodsModel extends BaseModel
 	private java.lang.String jgName;
 	private JxUnitModel jgSunit;
 	private JxUnitModel jgBunit;
-	private java.lang.String jgSpec;
+	private java.lang.Integer jgSpec;
 	private java.lang.String jgOrigin;
 	private java.lang.String jgFactory;
 	private java.lang.Integer jgRate;
@@ -145,14 +145,14 @@ public class JxGoodsModel extends BaseModel
 	}
 
 
-	@Column(name = "JG_SPEC", unique = false, nullable = true, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJgSpec()
+	@Column(name = "JG_SPEC", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
+	public java.lang.Integer getJgSpec()
 	{
 		return this.jgSpec;
 	}
 
 
-	public void setJgSpec(java.lang.String jgSpec)
+	public void setJgSpec(java.lang.Integer jgSpec)
 	{
 		this.jgSpec = jgSpec;
 	}
@@ -197,7 +197,7 @@ public class JxGoodsModel extends BaseModel
 	}
 
 
-	@Column(name = "JG_GUIDED", unique = false, nullable = true, insertable = true, updatable = true, length = 2)
+	@Column(name = "JG_GUIDED", unique = false, nullable = true, insertable = true, updatable = true, length = 4)
 	public java.lang.Float getJgGuided()
 	{
 		return this.jgGuided;

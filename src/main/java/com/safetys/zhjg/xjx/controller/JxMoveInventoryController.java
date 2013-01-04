@@ -40,7 +40,7 @@ public class JxMoveInventoryController extends BaseController implements Prepara
 	private static final String page_forward_showupdate_jxMoveInventory = "/template/xjx/JxMoveInventory_Input.ftl";
 	private static final String page_forward_showdetail_jxMoveInventory = "/template/xjx/JxMoveInventory_Detail.ftl";
 	private static final String page_forward_tomanagers_jxMoveInventory = "/template/xjx/JxMoveInventory_Manager.ftl";
-	private static final String action_forward_managers_jxMoveInventory = "jxMoveInventory_manager.xhtml";
+	private static final String action_forward_managers_jxMoveInventory = "jxMoveInventory_insert.xhtml";
 	@Resource(name = "jxMoveInventoryService")
 	private IJxMoveInventoryService jxMoveInventoryService;
 	private JxMoveInventoryModel jxMoveInventoryModel;

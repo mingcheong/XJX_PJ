@@ -49,70 +49,17 @@ public class JxBackInventoryDetailsModel extends BaseModel
 
 
 
-	private java.lang.String jbdBarcode;
-	private java.lang.String jbdCode;
-	private java.lang.String jbdName;
-	private java.lang.Integer jbdUnit;
 	private java.lang.Float jbdQuantity;
 	private java.lang.Float jbdCost;
 	private java.lang.Float jbdAmount;
+	private java.lang.Float jbdWAmount;
 	private java.lang.Float jbdNum;
 	private java.lang.String jbdOverflow;
 	private java.lang.Float jbdRate;
 	private JxBackInventoryModel jbdBackInventory;
+	private JxUnitModel jbdUnit;
+	private JxGoodsModel goodsModel;
 
-
-
-	@Column(name = "JBD_BARCODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJbdBarcode()
-	{
-		return this.jbdBarcode;
-	}
-
-
-	public void setJbdBarcode(java.lang.String jbdBarcode)
-	{
-		this.jbdBarcode = jbdBarcode;
-	}
-
-
-	@Column(name = "JBD_CODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJbdCode()
-	{
-		return this.jbdCode;
-	}
-
-
-	public void setJbdCode(java.lang.String jbdCode)
-	{
-		this.jbdCode = jbdCode;
-	}
-
-
-	@Column(name = "JBD_NAME", unique = false, nullable = false, insertable = true, updatable = true, length = 50)
-	public java.lang.String getJbdName()
-	{
-		return this.jbdName;
-	}
-
-
-	public void setJbdName(java.lang.String jbdName)
-	{
-		this.jbdName = jbdName;
-	}
-
-
-	@Column(name = "JBD_UNIT", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJbdUnit()
-	{
-		return this.jbdUnit;
-	}
-
-
-	public void setJbdUnit(java.lang.Integer jbdUnit)
-	{
-		this.jbdUnit = jbdUnit;
-	}
 
 
 	@Column(name = "JBD_QUANTITY", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
@@ -151,6 +98,19 @@ public class JxBackInventoryDetailsModel extends BaseModel
 	public void setJbdAmount(java.lang.Float jbdAmount)
 	{
 		this.jbdAmount = jbdAmount;
+	}
+
+
+	@Column(name = "JBD_WAMOUNT", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
+	public java.lang.Float getJbdWAmount()
+	{
+		return jbdWAmount;
+	}
+
+
+	public void setJbdWAmount(java.lang.Float jbdWAmount)
+	{
+		this.jbdWAmount = jbdWAmount;
 	}
 
 
@@ -200,9 +160,37 @@ public class JxBackInventoryDetailsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JBD_BACK_INVENTORY", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JBD_BACK_INVENTORY", nullable = false, insertable = true, updatable = true)
 	public JxBackInventoryModel getJbdBackInventory()
 	{
 		return jbdBackInventory;
+	}
+
+
+	public void setJbdUnit(JxUnitModel jbdUnit)
+	{
+		this.jbdUnit = jbdUnit;
+	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JBD_UNIT", nullable = false, insertable = true, updatable = true)
+	public JxUnitModel getJbdUnit()
+	{
+		return jbdUnit;
+	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JBD_GOODS", nullable = false, insertable = true, updatable = true)
+	public JxGoodsModel getGoodsModel()
+	{
+		return goodsModel;
+	}
+
+
+	public void setGoodsModel(JxGoodsModel goodsModel)
+	{
+		this.goodsModel = goodsModel;
 	}
 }

@@ -14,6 +14,9 @@ import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
+
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import com.safetys.zhjg.xjx.model.JxBackInventoryModel;
@@ -40,11 +43,14 @@ public class JxBackInventoryController extends BaseController implements Prepara
 	private static final String page_forward_showupdate_jxBackInventory = "/template/xjx/JxBackInventory_Input.ftl";
 	private static final String page_forward_showdetail_jxBackInventory = "/template/xjx/JxBackInventory_Detail.ftl";
 	private static final String page_forward_tomanagers_jxBackInventory = "/template/xjx/JxBackInventory_Manager.ftl";
-	private static final String action_forward_managers_jxBackInventory = "jxBackInventory_manager.xhtml";
+	private static final String action_forward_insert_jxBackInventory = "jxBackInventory_insert.xhtml";
 	@Resource(name = "jxBackInventoryService")
 	private IJxBackInventoryService jxBackInventoryService;
 	private JxBackInventoryModel jxBackInventoryModel;
 	private List<JxBackInventoryModel> jxBackInventoryModels;
+
+	// 退货明细数据
+	private String jsonData;
 
 
 
@@ -55,6 +61,7 @@ public class JxBackInventoryController extends BaseController implements Prepara
 	 */
 	public String insert() throws Exception
 	{
+		jxBackInventoryModel.setJbDate(this.getCuurentDate());
 		this.setParameters(page_forward_showinsert_jxBackInventory);
 		return SUCCESS;
 	}
@@ -94,26 +101,15 @@ public class JxBackInventoryController extends BaseController implements Prepara
 	 * @throws ActionException
 	 */
 	public String save() throws Exception
-	{
+	{	
 		OperateResult or = null;
-		or = jxBackInventoryService.save(jxBackInventoryModel);
-		this.setJxBackInventoryModel(null);
-		this.setParameters(or.getMessage(), action_forward_managers_jxBackInventory);
-		return SUCCESS;
-	}
-
-
-	/**
-	 * 删除数据
-	 * 
-	 * @throws ActionException
-	 */
-	public String remove() throws Exception
-	{
-		OperateResult or = null;
-		if (AppUtils.isNullOrEmptyString(this.getSelectedIds())) { throw new ActionException("将要删除的对象编号不可为空！"); }
-		or = jxBackInventoryService.remove(this.getSelectedIds());
-		this.setParameters(or.getMessage(), action_forward_managers_jxBackInventory);
+		if (StringUtils.isNotEmpty(jsonData))
+		{
+			JSONArray array = new JSONArray(jsonData);
+			or = jxBackInventoryService.save(jxBackInventoryModel, array);
+			this.setJxBackInventoryModel(null);
+			this.setParameters(or.getMessage(), action_forward_insert_jxBackInventory);
+		}
 		return SUCCESS;
 	}
 
@@ -198,5 +194,11 @@ public class JxBackInventoryController extends BaseController implements Prepara
 	public void setJxBackInventoryModels(List<JxBackInventoryModel> jxBackInventoryModels)
 	{
 		this.jxBackInventoryModels = jxBackInventoryModels;
+	}
+
+
+	public void setJsonData(String jsonData)
+	{
+		this.jsonData = jsonData;
 	}
 }
