@@ -23,8 +23,9 @@ import com.safetys.framework.kernel.service.impl.BaseServiceImpl;
 import com.safetys.framework.system.dao.IFkUserDao;
 import com.safetys.framework.system.model.FkUserModel;
 import com.safetys.framework.system.service.IFkUserService;
-import com.safetys.framework.utils.AppUtils;
-import com.safetys.zhjg.company.model.CompanyTrainModel;
+
+
+
 
 /**
  * 此文件通过快速开发平台自动生成
@@ -36,24 +37,32 @@ import com.safetys.zhjg.company.model.CompanyTrainModel;
  */
 @Service("fkUserService")
 @Transactional(propagation = Propagation.REQUIRED)
-public class FkUserServiceImpl extends BaseServiceImpl<FkUserModel, Long> implements IFkUserService {
+public class FkUserServiceImpl extends BaseServiceImpl<FkUserModel, Long> implements IFkUserService
+{
 
 	@Resource(name = "fkUserDao")
 	protected IFkUserDao fkUserDao;
 
+
+
 	@Autowired
-	public FkUserServiceImpl(@Qualifier("fkUserDao") IFkUserDao fkUserDao) {
+	public FkUserServiceImpl(@Qualifier("fkUserDao")
+	IFkUserDao fkUserDao)
+	{
 		super(fkUserDao);
 	}
 
+
 	@SuppressWarnings("rawtypes")
-	public String datasToXml(List<FkUserModel> datas) throws ServicesException {
+	public String datasToXml(List<FkUserModel> datas) throws ServicesException
+	{
 		if (datas == null || datas.size() <= 0) { return ""; }
 		FkUserModel model = null;
 		final Document document = DocumentHelper.createDocument();
 		final Element nodesElement = document.addElement(NODES);
 		final Iterator iterator = datas.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext())
+		{
 			model = (FkUserModel) iterator.next();
 			final Element nodeElement = nodesElement.addElement(NODE);
 			nodeElement.addAttribute(ID, String.valueOf(model.getId()));
@@ -61,10 +70,12 @@ public class FkUserServiceImpl extends BaseServiceImpl<FkUserModel, Long> implem
 		}
 		return document.asXML();
 	}
-	public List<FkUserModel> getUsersOrderByOrganId(FkUserModel fkUserModel) throws ServicesException {
+
+
+	public List<FkUserModel> getUsersOrderByOrganId(FkUserModel fkUserModel) throws ServicesException
+	{
 		String jpql = "select o from fkUserModel o where 1=1 and o.deleted=false order by o.fkOrganize.id desc";
-		
-		
+
 		return this.getCollection(jpql, fkUserModel);
 	}
 }

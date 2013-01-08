@@ -25,12 +25,15 @@ import com.safetys.framework.utils.OperateResult;
 import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxDeptModel;
 import com.safetys.zhjg.xjx.model.JxGoodsModel;
+import com.safetys.zhjg.xjx.model.JxInventoryModel;
 import com.safetys.zhjg.xjx.model.JxProductCateModel;
 import com.safetys.zhjg.xjx.model.JxPuchaseTypeModel;
 import com.safetys.zhjg.xjx.model.JxSettlementTypeModel;
 import com.safetys.zhjg.xjx.model.JxUnitModel;
+import com.safetys.zhjg.xjx.model.JxWarehouseModel;
 import com.safetys.zhjg.xjx.service.IJxDeptService;
 import com.safetys.zhjg.xjx.service.IJxGoodsService;
+import com.safetys.zhjg.xjx.service.IJxInventoryService;
 import com.safetys.zhjg.xjx.service.IJxProductCateService;
 import com.safetys.zhjg.xjx.service.IJxPuchaseTypeService;
 import com.safetys.zhjg.xjx.service.IJxSettlementTypeService;
@@ -95,9 +98,17 @@ public class JxGoodsController extends BaseController implements Preparable
 	@Resource(name = "jxProductCateService")
 	private IJxProductCateService jxProductCateService;
 
+	/**
+	 * 库存业务操作类
+	 */
+	@Resource(name = "jxInventoryService")
+	private IJxInventoryService jxInventoryService;
+
 	private JxGoodsModel jxGoodsModel;
+
+	private JxWarehouseModel warehouseModel;
+
 	private List<JxGoodsModel> jxGoodsModels;
-	
 
 
 
@@ -145,19 +156,32 @@ public class JxGoodsController extends BaseController implements Preparable
 			json.put("name", jxGoodsModel.getJgName());
 			json.put("rate", jxGoodsModel.getJgRate());
 			json.put("spec", jxGoodsModel.getJgSpec());
-			
-			JSONObject bUnit= new JSONObject();
+
+			JSONObject bUnit = new JSONObject();
 			bUnit.put("id", jxGoodsModel.getJgBunit().getId());
 			bUnit.put("juCode", jxGoodsModel.getJgBunit().getJuCode());
 			bUnit.put("juName", jxGoodsModel.getJgBunit().getJuName());
 			json.put("bUnit", bUnit);
-			
-			JSONObject sUnit= new JSONObject();
+
+			JSONObject sUnit = new JSONObject();
 			sUnit.put("id", jxGoodsModel.getJgSunit().getId());
 			sUnit.put("juCode", jxGoodsModel.getJgSunit().getJuCode());
 			sUnit.put("juName", jxGoodsModel.getJgSunit().getJuName());
 			json.put("sUnit", sUnit);
-			
+
+			JxInventoryModel inventoryModel = jxInventoryService.findStore(warehouseModel, jxGoodsModel);
+			if (inventoryModel != null)
+			{
+				JSONObject inventory = new JSONObject();
+				inventory.put("curSum", inventoryModel.getJiCursum());
+				inventory.put("totalSum", inventoryModel.getJiTotalsum());
+				inventory.put("spareSum", inventoryModel.getJiSparesum());
+				inventory.put("wasteSum", inventoryModel.getJiWastesum());
+				json.put("inventory", inventory);
+			}else{
+				json.put("error", "此商品没有库存量!");
+			}
+
 		}
 		else
 		{
@@ -371,5 +395,17 @@ public class JxGoodsController extends BaseController implements Preparable
 	public void setJxGoodsModels(List<JxGoodsModel> jxGoodsModels)
 	{
 		this.jxGoodsModels = jxGoodsModels;
+	}
+
+
+	public JxWarehouseModel getWarehouseModel()
+	{
+		return warehouseModel;
+	}
+
+
+	public void setWarehouseModel(JxWarehouseModel warehouseModel)
+	{
+		this.warehouseModel = warehouseModel;
 	}
 }

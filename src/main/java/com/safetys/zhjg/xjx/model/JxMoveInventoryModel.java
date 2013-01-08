@@ -97,7 +97,7 @@ public class JxMoveInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JM_IWAREHOUSE", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JM_IWAREHOUSE", nullable = false, insertable = true, updatable = true)
 	public JxWarehouseModel getJmIwarehouse()
 	{
 		return this.jmIwarehouse;
@@ -111,7 +111,7 @@ public class JxMoveInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JM_OWAREHOUSE", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JM_OWAREHOUSE", nullable = false, insertable = true, updatable = true)
 	public JxWarehouseModel getJmOwarehouse()
 	{
 		return this.jmOwarehouse;
@@ -125,7 +125,7 @@ public class JxMoveInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JM_USER", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JM_USER", nullable = false, insertable = true, updatable = true)
 	public JxEmployeeModel getJmUser()
 	{
 		return this.jmUser;
@@ -172,7 +172,7 @@ public class JxMoveInventoryModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JM_DEPT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JM_DEPT", nullable = false, insertable = true, updatable = true)
 	public JxDeptModel getJmDept()
 	{
 		return jmDept;

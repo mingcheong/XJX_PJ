@@ -180,11 +180,11 @@ public class JxInInventoryServiceImpl extends BaseServiceImpl<JxInInventoryModel
 				or = jxInInventoryDetailsService.save(jdm);
 				if (StringUtils.isNotEmpty(entity.getJiCodemark()))
 				{
-					or = jxInventoryService.save(jiWarehouse, goodsModel, 0f, 0f, jdm.getJidQuantity());
+					or = jxInventoryService.inStore(jiWarehouse, goodsModel, 0f, 0f, jdm.getJidQuantity());
 				}
 				else
 				{
-					or = jxInventoryService.save(jiWarehouse, goodsModel, jdm.getJidQuantity(), 0f, 0f);
+					or = jxInventoryService.inStore(jiWarehouse, goodsModel, jdm.getJidQuantity(), 0f, 0f);
 				}
 			}
 		}

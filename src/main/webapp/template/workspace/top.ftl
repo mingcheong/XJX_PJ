@@ -61,7 +61,7 @@ function switchTag(parentId, resourceUrl, isAutoChange){
 }
 
 function goIndex(){
-	window.parent.mainFrame.location.href = "baseStatistic_company_charts.xhtml";
+	window.parent.mainFrame.location.href = "workspace_content.xhtml";
 	window.parent.leftFrame.location.href = "workspace_left.xhtml";		
 }
 function modify_pwd(){
@@ -69,7 +69,8 @@ function modify_pwd(){
 }
 
 function reset(){
-	window.parent.location.href = "dispatch_exits.xhtml";
+	if(window.confirm("您确认现在退出系统吗？"))
+		window.parent.location.href = "dispatch_exits.xhtml";
 }
 </script>
 </html>

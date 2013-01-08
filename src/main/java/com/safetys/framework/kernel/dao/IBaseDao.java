@@ -207,7 +207,7 @@ public interface IBaseDao<Entity extends BaseModel, pk extends Serializable>
 	 * @return 集合
 	 * @throws DaoException
 	 */
-	public List<Entity> find(String jpql, Map<String, ?> parameters) throws DaoException;
+	public List<?> find(String jpql, Map<String, ?> parameters) throws DaoException;
 
 
 	/**
@@ -220,7 +220,7 @@ public interface IBaseDao<Entity extends BaseModel, pk extends Serializable>
 	 * @return 集合
 	 * @throws DaoException
 	 */
-	public List<Entity> find(String jpql, Object... values) throws DaoException;
+	public List<?> find(String jpql, Object... values) throws DaoException;
 
 
 	/**
@@ -242,7 +242,7 @@ public interface IBaseDao<Entity extends BaseModel, pk extends Serializable>
 	 * @return 集合
 	 * @throws DaoException
 	 */
-	public List<Entity> findAll() throws DaoException;
+	public List<?> findAll() throws DaoException;
 
 
 	/**
@@ -255,7 +255,7 @@ public interface IBaseDao<Entity extends BaseModel, pk extends Serializable>
 	 * @return 实体集合
 	 * @throws DaoException
 	 */
-	public List<Entity> find(String propertyName, Object value) throws DaoException;
+	public List<?> find(String propertyName, Object value) throws DaoException;
 
 
 	/**

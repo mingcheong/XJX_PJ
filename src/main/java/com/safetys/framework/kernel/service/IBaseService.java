@@ -271,7 +271,7 @@ public interface IBaseService<Entity extends BaseModel, PK extends Serializable>
 	 * @return 集合
 	 * @throws ServicesException
 	 */
-	public List<Entity> findAll() throws ServicesException;
+	public List<?> findAll() throws ServicesException;
 
 
 	/**
@@ -284,7 +284,7 @@ public interface IBaseService<Entity extends BaseModel, PK extends Serializable>
 	 * @return 实体集合
 	 * @throws ServicesException
 	 */
-	public List<Entity> find(String propertyName, Object value) throws ServicesException;
+	public List<?> find(String propertyName, Object value) throws ServicesException;
 
 
 	/**

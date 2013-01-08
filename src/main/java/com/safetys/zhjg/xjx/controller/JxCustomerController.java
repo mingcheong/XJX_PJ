@@ -5,18 +5,24 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
-import com.safetys.framework.kernel.model.TreeModel;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
+import com.safetys.framework.kernel.model.TreeModel;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxCustomerModel;
 import com.safetys.zhjg.xjx.model.JxEmployeeModel;
 import com.safetys.zhjg.xjx.service.IJxCustomerService;
@@ -52,6 +58,35 @@ public class JxCustomerController extends BaseController implements Preparable
 	@Resource(name = "jxEmployeeService")
 	private IJxEmployeeService jxEmployeeService;
 
+
+
+	/**
+	 * 以JSON方式返回客户列表
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String jsonList() throws Exception
+	{
+		jxCustomerModels = jxCustomerService.getCollection(jxCustomerModel);
+		JSONArray jr = new JSONArray();
+		if (jxCustomerModels != null && !jxCustomerModels.isEmpty())
+		{
+			JSONObject json = null;
+			for (JxCustomerModel customer : jxCustomerModels)
+			{
+				json = new JSONObject();
+				json.put("id", customer.getId());
+				json.put("code", customer.getJcCode());
+				json.put("name", customer.getJcName());
+				jr.put(json);
+			}
+		}
+		JSONObject jo = new JSONObject();
+		jo.put("total", jxCustomerModels.size());
+		jo.put("rows", jr);
+		return Struts2Utils.renderJson(jo.toString());
+	}
 
 
 	/**

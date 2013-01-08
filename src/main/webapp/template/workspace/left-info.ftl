@@ -36,10 +36,6 @@ font-family:Arial, Helvetica, sans-serif;color:#5494af;font-size:13;
 		<div class="bt1">快捷通道</div>
 		<table width="187" border="0" cellpadding="0" cellspacing="0" align="center" class="kjtd">
 		  <tr>
-		    <td width="43" style="text-align:center"><img src="${resourcePath}/default/images/wlt.gif"></td>
-		    <td width="143"><a href="fkOrganize_chart.xhtml" target="mainFrame">组织架构图</a></td>
-		  </tr>
-		  <tr>
 		    <td width="43" style="text-align:center"><img src="${resourcePath}/default/images/txl.gif"></td>
 		    <td width="143"><a href="fkUser_contact.xhtml" target="mainFrame">通讯录</a></td>
 		  </tr>

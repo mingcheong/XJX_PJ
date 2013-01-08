@@ -49,10 +49,6 @@ public class JxSalesDetailsModel extends BaseModel
 
 
 
-	private java.lang.String jsdBarcode;
-	private java.lang.String jsdCode;
-	private java.lang.String jsdName;
-	private java.lang.Integer jsdUnit;
 	private java.lang.Float jsdQuantity;
 	private java.lang.Float jsdCost;
 	private java.lang.Float jsdAmount;
@@ -66,60 +62,9 @@ public class JxSalesDetailsModel extends BaseModel
 	private java.lang.Float jsdSamount;
 	private java.lang.String jsdCustitem;
 	private JxSalesModel jsdSales;
-	private JxUnitModel jxUnit;
+	private JxUnitModel jsdUnit;
+	private JxGoodsModel goodsModel;
 
-
-
-	@Column(name = "JSD_BARCODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJsdBarcode()
-	{
-		return this.jsdBarcode;
-	}
-
-
-	public void setJsdBarcode(java.lang.String jsdBarcode)
-	{
-		this.jsdBarcode = jsdBarcode;
-	}
-
-
-	@Column(name = "JSD_CODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJsdCode()
-	{
-		return this.jsdCode;
-	}
-
-
-	public void setJsdCode(java.lang.String jsdCode)
-	{
-		this.jsdCode = jsdCode;
-	}
-
-
-	@Column(name = "JSD_NAME", unique = false, nullable = false, insertable = true, updatable = true, length = 50)
-	public java.lang.String getJsdName()
-	{
-		return this.jsdName;
-	}
-
-
-	public void setJsdName(java.lang.String jsdName)
-	{
-		this.jsdName = jsdName;
-	}
-
-
-	@Column(name = "JSD_UNIT", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJsdUnit()
-	{
-		return this.jsdUnit;
-	}
-
-
-	public void setJsdUnit(java.lang.Integer jsdUnit)
-	{
-		this.jsdUnit = jsdUnit;
-	}
 
 
 	@Column(name = "JSD_QUANTITY", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
@@ -285,23 +230,37 @@ public class JxSalesDetailsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JSD_SALES", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JSD_SALES", nullable = false, insertable = true, updatable = true)
 	public JxSalesModel getJsdSales()
 	{
 		return jsdSales;
 	}
 
 
-	public void setJxUnit(JxUnitModel jxUnit)
+	public void setJsdUnit(JxUnitModel jsdUnit)
 	{
-		this.jxUnit = jxUnit;
+		this.jsdUnit = jsdUnit;
 	}
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JSD_UNIT", nullable = false, insertable = false, updatable = false)
-	public JxUnitModel getJxUnit()
+	@JoinColumn(name = "JSD_UNIT", nullable = false, insertable = true, updatable = true)
+	public JxUnitModel getJsdUnit()
 	{
-		return jxUnit;
+		return jsdUnit;
+	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JSD_GOODS", nullable = false, insertable = true, updatable = true)
+	public JxGoodsModel getGoodsModel()
+	{
+		return goodsModel;
+	}
+
+
+	public void setGoodsModel(JxGoodsModel goodsModel)
+	{
+		this.goodsModel = goodsModel;
 	}
 }

@@ -184,11 +184,11 @@ public class JxBackInventoryServiceImpl extends BaseServiceImpl<JxBackInventoryM
 				or = jxBackInventoryDetailsService.save(jbdm);
 				if (StringUtils.isNotEmpty(entity.getJbCodemark()))
 				{
-					or = jxInventoryService.save(jbWarehouse, goodsModel, 0f, 0f, jbdm.getJbdQuantity());
+					or = jxInventoryService.inStore(jbWarehouse, goodsModel, 0f, 0f, jbdm.getJbdQuantity());
 				}
 				else
 				{
-					or = jxInventoryService.save(jbWarehouse, goodsModel, jbdm.getJbdQuantity(), 0f, 0f);
+					or = jxInventoryService.inStore(jbWarehouse, goodsModel, jbdm.getJbdQuantity(), 0f, 0f);
 				}
 			}
 		}

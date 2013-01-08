@@ -378,9 +378,9 @@ public class BaseDaoImpl<Entity extends BaseModel, PK extends Serializable> impl
 	 * @return 集合
 	 * @throws DaoException
 	 */
-	public List<Entity> find(String jpql, Map<String, ?> parameters) throws DaoException
+	public List<?> find(String jpql, Map<String, ?> parameters) throws DaoException
 	{
-		TypedQuery<Entity> query = entityManager.createQuery(jpql, this.prototype);
+		Query  query = entityManager.createQuery(jpql);
 		for (Parameter<?> sqlParam : query.getParameters())
 		{
 			query.setParameter(sqlParam.getName(), parameters.get(sqlParam.getName()));
@@ -399,7 +399,7 @@ public class BaseDaoImpl<Entity extends BaseModel, PK extends Serializable> impl
 	 * @return 集合
 	 * @throws DaoException
 	 */
-	public List<Entity> find(String jpql, Object... values) throws DaoException
+	public List<?> find(String jpql, Object... values) throws DaoException
 	{
 		Query query = entityManager.createQuery(jpql);
 		setQueryParams(query, values);
@@ -432,7 +432,7 @@ public class BaseDaoImpl<Entity extends BaseModel, PK extends Serializable> impl
 	 * @return 集合
 	 * @throws DaoException
 	 */
-	public List<Entity> findAll() throws DaoException
+	public List<?> findAll() throws DaoException
 	{
 		String jpql = "SELECT o FROM " + this.entityName + " AS o";
 		TypedQuery<Entity> query = entityManager.createQuery(jpql, this.prototype);
@@ -450,7 +450,7 @@ public class BaseDaoImpl<Entity extends BaseModel, PK extends Serializable> impl
 	 * @return 实体集合
 	 * @throws DaoException
 	 */
-	public List<Entity> find(String propertyName, Object value) throws DaoException
+	public List<?> find(String propertyName, Object value) throws DaoException
 	{
 		String jpql = "from " + this.entityName + " as a where a." + propertyName + "=?";
 		return find(jpql, value);

@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head><title>新江厦副食品批发管理系统</title>
 <script src="resources/javascript/global/jquery-1.7.1.min.js" type="text/javascript"></script>
-<script>jQuery.noConflict();</script></head><body>
+<script>jQuery.noConflict();</script></head><body onload="windowMax()">
 <style type="text/css">
 body {
 	background-image: url(resources/default/images/login_bg.jpg);
@@ -79,6 +79,20 @@ img {
 	</tr>
 </table></body></html>
 <script language="javascript">
+function windowMax(){
+		var hig=768;
+		var wid=1024;
+		//只有IE支持screen属性
+		if(screen){
+			hig=screen.availHeight;   
+			wid=screen.availWidth;
+		}
+		
+		try{
+			window.moveTo(0,0);
+			window.resizeTo(wid,hig);
+		}catch(e){}
+}
 if(window.top != window){//当登陆页被框架包含时，用top跳转到登陆页
 	window.top.location.href = "index.jsp";
 }

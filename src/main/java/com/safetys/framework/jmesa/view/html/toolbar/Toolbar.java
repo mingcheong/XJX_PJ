@@ -15,15 +15,20 @@
  */
 package com.safetys.framework.jmesa.view.html.toolbar;
 
-import java.util.ArrayList;
-import java.util.List;
-import com.safetys.framework.jmesa.limit.ExportType;
-import com.safetys.framework.jmesa.view.AbstractContextSupport;
-import com.safetys.framework.jmesa.view.html.HtmlBuilder;
-import com.safetys.framework.jmesa.limit.Limit;
-import com.safetys.framework.jmesa.limit.RowSelect;
 import static com.safetys.framework.jmesa.view.html.HtmlConstants.TOOLBAR_MAX_PAGE_NUMBERS;
 import static com.safetys.framework.jmesa.view.html.HtmlUtils.totalPages;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.safetys.framework.jmesa.limit.ExportType;
+import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.jmesa.limit.RowSelect;
+import com.safetys.framework.jmesa.view.AbstractContextSupport;
+import com.safetys.framework.jmesa.view.html.HtmlBuilder;
+
+
+
 
 /**
  * The main logic to create toolbars.
@@ -31,36 +36,50 @@ import static com.safetys.framework.jmesa.view.html.HtmlUtils.totalPages;
  * @since 2.2
  * @author Jeff Johnston
  */
-public abstract class Toolbar extends AbstractContextSupport {
+public abstract class Toolbar extends AbstractContextSupport
+{
 	private ToolbarItemFactory toolbarItemFactory;
 	private List<ToolbarItem> toolbarItems = new ArrayList<ToolbarItem>();
 
-	private ToolbarItemFactory getToolbarItemFactory() {
-		if (toolbarItemFactory == null) {
+
+
+	private ToolbarItemFactory getToolbarItemFactory()
+	{
+		if (toolbarItemFactory == null)
+		{
 			this.toolbarItemFactory = new ToolbarItemFactory(getWebContext(), getCoreContext());
 		}
 
 		return toolbarItemFactory;
 	}
 
-	protected boolean hasToolbarItems() {
+
+	protected boolean hasToolbarItems()
+	{
 		return toolbarItems != null && toolbarItems.size() > 0;
 	}
 
-	public List<ToolbarItem> getToolbarItems() {
+
+	public List<ToolbarItem> getToolbarItems()
+	{
 		return toolbarItems;
 	}
 
-	public void addToolbarItem(ToolbarItem item) {
+
+	public void addToolbarItem(ToolbarItem item)
+	{
 		toolbarItems.add(item);
 	}
 
-	public ToolbarItem addToolbarItem(ToolbarItemType type) {
+
+	public ToolbarItem addToolbarItem(ToolbarItemType type)
+	{
 		ToolbarItem item = null;
 
 		ToolbarItemFactory factory = getToolbarItemFactory();
 
-		switch (type) {
+		switch (type)
+		{
 			case PAGE_NUMBER_ITEMS:
 				addPageNumberItems();
 				break;
@@ -102,19 +121,23 @@ public abstract class Toolbar extends AbstractContextSupport {
 				break;
 		}
 
-		if (item != null) {
+		if (item != null)
+		{
 			toolbarItems.add(item);
 		}
 
 		return item;
 	}
 
-	public List<ToolbarItem> addExportToolbarItems(ExportType... exportTypes) {
+
+	public List<ToolbarItem> addExportToolbarItems(ExportType... exportTypes)
+	{
 		List<ToolbarItem> items = new ArrayList<ToolbarItem>();
 
 		if (exportTypes == null || exportTypes.length == 0) { return items; }
 
-		for (int i = 0; i < exportTypes.length; i++) {
+		for (int i = 0; i < exportTypes.length; i++)
+		{
 			ExportType exportType = exportTypes[i];
 			items.add(addExportToolbarItem(exportType));
 		}
@@ -122,7 +145,9 @@ public abstract class Toolbar extends AbstractContextSupport {
 		return items;
 	}
 
-	public ToolbarItem addExportToolbarItem(ExportType exportType) {
+
+	public ToolbarItem addExportToolbarItem(ExportType exportType)
+	{
 		ToolbarExport export = new ToolbarExport(exportType);
 		ToolbarItemFactory factory = getToolbarItemFactory();
 		ToolbarItem item = factory.createExportItem(export);
@@ -130,7 +155,9 @@ public abstract class Toolbar extends AbstractContextSupport {
 		return item;
 	}
 
-	private void addPageNumberItems() {
+
+	private void addPageNumberItems()
+	{
 		ToolbarItemFactory factory = getToolbarItemFactory();
 
 		Limit limit = getCoreContext().getLimit();
@@ -143,37 +170,50 @@ public abstract class Toolbar extends AbstractContextSupport {
 		int centerPage = maxPages / 2 + 1;
 		int startEndPages = maxPages / 2;
 
-		if (totalPages > maxPages) {
+		if (totalPages > maxPages)
+		{
 			int start;
 			int end;
 
-			if (page <= centerPage) { // the start of the pages
+			if (page <= centerPage)
+			{ // the start of the pages
 				start = 1;
 				end = maxPages;
-			} else if (page >= totalPages - startEndPages) { // the last few
-				                                             // pages
+			}
+			else if (page >= totalPages - startEndPages)
+			{ // the last few
+			  // pages
 				start = totalPages - (maxPages - 1);
 				end = totalPages;
-			} else { // center everything else
+			}
+			else
+			{ // center everything else
 				start = page - startEndPages;
 				end = page + startEndPages;
 			}
 
-			for (int i = start; i <= end; i++) {
+			for (int i = start; i <= end; i++)
+			{
 				addToolbarItem(factory.createPageNumberItem(i));
 			}
-		} else {
-			for (int i = 1; i <= totalPages; i++) {
+		}
+		else
+		{
+			for (int i = 1; i <= totalPages; i++)
+			{
 				addToolbarItem(factory.createPageNumberItem(i));
 			}
 		}
 	}
 
-	public String render() {
+
+	public String render()
+	{
 		HtmlBuilder html = new HtmlBuilder();
 		html.table(2).border("0").cellpadding("0").cellspacing("1").close();
 		html.tr(3).close();
-		for (ToolbarItem item : toolbarItems) {
+		for (ToolbarItem item : toolbarItems)
+		{
 			html.td(4).close();
 			html.append(item.getToolbarItemRenderer().render());
 			html.tdEnd();

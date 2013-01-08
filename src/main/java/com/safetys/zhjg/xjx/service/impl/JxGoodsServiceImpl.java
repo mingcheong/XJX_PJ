@@ -65,9 +65,9 @@ public class JxGoodsServiceImpl extends BaseServiceImpl<JxGoodsModel, Long> impl
 		{
 			try
 			{
-				List<JxGoodsModel> goodsList = jxGoodsDao.find("from jxGoodsModel a where a.jgIncode = ? or a.jgCode = ?", new Object[] { code, code });
+				List<?> goodsList = jxGoodsDao.find("from jxGoodsModel a where a.jgIncode = ? or a.jgCode = ?", new Object[] { code, code });
 				if (goodsList != null && !goodsList.isEmpty())
-					goods = goodsList.get(0);
+					goods = (JxGoodsModel) goodsList.get(0);
 			}
 			catch (DaoException e)
 			{

@@ -155,8 +155,11 @@ jQuery(function(){
 				
 				var iwarehouse = jQuery('#jmIwarehouse').combogrid('getValue');
 				var owarehouse = jQuery('#jmOwarehouse').combogrid('getValue');
-				if(iwarehouse == owarehouse)
+				if(iwarehouse == owarehouse){
 					alert("调出仓库和调入仓库不能相同!");
+					return;
+				}
+					
 				
 				var rows = jQuery('#detailGrid').datagrid('getRows');
 				if(rows.length == 0){
@@ -183,7 +186,16 @@ jQuery(function(){
 						jsonArr.push(jo);
 					}
 					jQuery("#jsonData").val('[' + jsonArr.join(',') + ']');				
-					jQuery('#jxMoveInventoryForm').submit();
+					jQuery('#jxMoveInventoryForm').ajaxSubmit(function(obj) { 
+						if(obj != undefined){
+							if(obj.msg != undefined){
+								alert(obj.msg);
+								window.location.reload();
+							}else{
+								alert(obj.error);
+							}
+						}
+					}); 			
 				}
 			}
 		});	
@@ -222,11 +234,11 @@ jQuery(function(){
 	<tr>
 		<th width="15%"><font color="#FF0000">*</font>调出仓库:&nbsp;</th>
 		<td width="35%">
-			<select id="jmIwarehouse" name="jxMoveInventoryModel.jmIwarehouse.jwCode" data-options="required:true" style="width:250px;" missingMessage="调出仓库不允许为空"></select>
+			<select id="jmOwarehouse" name="jxMoveInventoryModel.jmOwarehouse.jwCode" data-options="required:true" style="width:250px;" missingMessage="调出仓库不允许为空"></select>
 		</td>
 		<th width="15%"><font color="#FF0000">*</font>调入仓库:&nbsp;</th>
 		<td width="35%">
-			<select id="jmOwarehouse" name="jxMoveInventoryModel.jmOwarehouse.jwCode" data-options="required:true" style="width:250px;" missingMessage="调入仓库不允许为空"></select>
+			<select id="jmIwarehouse" name="jxMoveInventoryModel.jmIwarehouse.jwCode" data-options="required:true" style="width:250px;" missingMessage="调入仓库不允许为空"></select>
 		</td>		
 	</tr>		
 	<tr>
@@ -236,7 +248,7 @@ jQuery(function(){
 		</td>	
 		<th width="15%"><font color="#FF0000">*</font>调拨日期:&nbsp;</th>
 		<td width="35%">
-			<input class="easyui-validatebox Wdate" type="text" id="jmDate" name="jxMoveInventoryModel.jmDate" value="${jxMoveInventoryModel.jmDatee?date}" data-options="required:true" style="width:200px;" missingMessage="调拨日期不允许为空" onFocus="WdatePicker({minDate:'1900-01-01',dateFmt:'yyyy-MM-dd',errDealMode:1})"/>
+			<input class="easyui-validatebox Wdate" type="text" id="jmDate" name="jxMoveInventoryModel.jmDate" value="${jxMoveInventoryModel.jmDate?date}" data-options="required:true" style="width:200px;" missingMessage="调拨日期不允许为空" onFocus="WdatePicker({minDate:'1900-01-01',dateFmt:'yyyy-MM-dd',errDealMode:1})"/>
 		</td>			
 	</tr>
 	<tr>

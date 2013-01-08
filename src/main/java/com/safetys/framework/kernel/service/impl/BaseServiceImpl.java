@@ -24,7 +24,7 @@ import com.safetys.framework.utils.OperateResult;
  * @param <Entity>
  * @param <pk>
  */
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class, RuntimeException.class })
 public class BaseServiceImpl<Entity extends BaseModel, pk extends Serializable> implements IBaseService<Entity, pk>
 {
 
@@ -272,7 +272,7 @@ public class BaseServiceImpl<Entity extends BaseModel, pk extends Serializable> 
 	}
 
 
-	public List<Entity> findAll() throws ServicesException
+	public List<?> findAll() throws ServicesException
 	{
 		try
 		{
@@ -285,7 +285,7 @@ public class BaseServiceImpl<Entity extends BaseModel, pk extends Serializable> 
 	}
 
 
-	public List<Entity> find(String propertyName, Object value) throws ServicesException
+	public List<?> find(String propertyName, Object value) throws ServicesException
 	{
 		try
 		{

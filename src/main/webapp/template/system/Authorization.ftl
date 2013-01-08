@@ -22,15 +22,15 @@
 	</td>
   </tr>
 </table>
-<table  width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
-	<tr>
-		<th width="35%" style='height: 500px;'>
-			 <div style='height: 100%; overflow-x: no; overflow-y: auto; word-break: break-all;'><table id="typeList" width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
+<table  width="100%" style='height:100%;' border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
+	<tr style="vertical-align:top">
+		<th width="35%" style='height: 450px;'>
+			 <div style='overflow-x: no; overflow-y: auto; word-break: break-all;'><table id="typeList" width="100%" border="0" cellpadding="0" cellspacing="0" class="table_input" align="center">
 				<#list fkRoleModels?if_exists as item>
 				<tr><td><input name="id" value="${item.id}" type="radio" onclick="selectedRadio('${item.id}');">&nbsp;${item.roleName}</td></tr>
 				</#list></table></div>
 		</th>
-		<td width="65%" style='height: 500px;'><ul id="simpleTree" class="ztree" style="width:98%;height:100%"></ul></td>
+		<td width="65%" style='height: 450px;'><ul id="simpleTree" class="ztree" style="width:98%;height:100%"></ul></td>
 	</tr>
 </table>
 </@s.form>

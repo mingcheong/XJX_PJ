@@ -44,36 +44,20 @@ public class JxSalesModel extends BaseModel
 
 
 
-	private java.lang.Integer jsDept;
 	private java.lang.String jsOcode;
 	private java.lang.String jsNum;
 	private java.lang.String jsLastCode;
-	private java.lang.Integer jsWarehouse;
-	private java.lang.Integer jsUser;
 	private java.util.Date jsDate;
 	private java.lang.Float jsRate;
 	private java.lang.String jsDelivery;
 	private java.lang.String jsRemark;
-	private JxDeptModel jxDept;
+	private JxDeptModel jsDept;
 	private JxSettlementTypeModel jsSettlement;
 	private JxCustomerModel jsCustomer;
-	private JxWarehouseModel jxWarehouse;
-	private JxEmployeeModel jxEmployee;
+	private JxWarehouseModel jsWarehouse;
+	private JxEmployeeModel jsUser;
 	private List<JxSalesDetailsModel> jxSalesDetailss;
 
-
-
-	@Column(name = "JS_DEPT", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJsDept()
-	{
-		return this.jsDept;
-	}
-
-
-	public void setJsDept(java.lang.Integer jsDept)
-	{
-		this.jsDept = jsDept;
-	}
 
 
 	@Column(name = "JS_OCODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
@@ -112,32 +96,6 @@ public class JxSalesModel extends BaseModel
 	public void setJsLastCode(java.lang.String jsLastCode)
 	{
 		this.jsLastCode = jsLastCode;
-	}
-
-
-	@Column(name = "JS_WAREHOUSE", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJsWarehouse()
-	{
-		return this.jsWarehouse;
-	}
-
-
-	public void setJsWarehouse(java.lang.Integer jsWarehouse)
-	{
-		this.jsWarehouse = jsWarehouse;
-	}
-
-
-	@Column(name = "JS_USER", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJsUser()
-	{
-		return this.jsUser;
-	}
-
-
-	public void setJsUser(java.lang.Integer jsUser)
-	{
-		this.jsUser = jsUser;
 	}
 
 
@@ -194,17 +152,17 @@ public class JxSalesModel extends BaseModel
 	}
 
 
-	public void setJxDept(JxDeptModel jxDept)
+	public void setJsDept(JxDeptModel jsDept)
 	{
-		this.jxDept = jxDept;
+		this.jsDept = jsDept;
 	}
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JS_DEPT", nullable = false, insertable = false, updatable = false)
-	public JxDeptModel getJxDept()
+	@JoinColumn(name = "JS_DEPT", nullable = false, insertable = true, updatable = true)
+	public JxDeptModel getJsDept()
 	{
-		return jxDept;
+		return jsDept;
 	}
 
 
@@ -215,7 +173,7 @@ public class JxSalesModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JS_SETTLEMENT", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JS_SETTLEMENT", nullable = false, insertable = true, updatable = true)
 	public JxSettlementTypeModel getJsSettlement()
 	{
 		return jsSettlement;
@@ -229,38 +187,38 @@ public class JxSalesModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JS_CUSTOMER", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JS_CUSTOMER", nullable = false, insertable = true, updatable = true)
 	public JxCustomerModel getJsCustomer()
 	{
 		return jsCustomer;
 	}
 
 
-	public void setJxWarehouse(JxWarehouseModel jxWarehouse)
+	public void setJsWarehouse(JxWarehouseModel jsWarehouse)
 	{
-		this.jxWarehouse = jxWarehouse;
+		this.jsWarehouse = jsWarehouse;
 	}
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JS_WAREHOUSE", nullable = false, insertable = false, updatable = false)
-	public JxWarehouseModel getJxWarehouse()
+	@JoinColumn(name = "JS_WAREHOUSE", nullable = false, insertable = true, updatable = true)
+	public JxWarehouseModel getJsWarehouse()
 	{
-		return jxWarehouse;
+		return jsWarehouse;
 	}
 
 
-	public void setJxEmployee(JxEmployeeModel jxEmployee)
+	public void setJsUser(JxEmployeeModel jsUser)
 	{
-		this.jxEmployee = jxEmployee;
+		this.jsUser = jsUser;
 	}
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JS_USER", nullable = false, insertable = false, updatable = false)
-	public JxEmployeeModel getJxEmployee()
+	@JoinColumn(name = "JS_USER", nullable = false, insertable = true, updatable = true)
+	public JxEmployeeModel getJsUser()
 	{
-		return jxEmployee;
+		return jsUser;
 	}
 
 

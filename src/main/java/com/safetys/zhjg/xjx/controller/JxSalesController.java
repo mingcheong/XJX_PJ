@@ -5,18 +5,25 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
-import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxSalesModel;
+import com.safetys.zhjg.xjx.service.IJxGoodsService;
 import com.safetys.zhjg.xjx.service.IJxSalesService;
 
 
@@ -40,11 +47,17 @@ public class JxSalesController extends BaseController implements Preparable
 	private static final String page_forward_showupdate_jxSales = "/template/xjx/JxSales_Input.ftl";
 	private static final String page_forward_showdetail_jxSales = "/template/xjx/JxSales_Detail.ftl";
 	private static final String page_forward_tomanagers_jxSales = "/template/xjx/JxSales_Manager.ftl";
-	private static final String action_forward_managers_jxSales = "jxSales_manager.xhtml";
 	@Resource(name = "jxSalesService")
 	private IJxSalesService jxSalesService;
 	private JxSalesModel jxSalesModel;
 	private List<JxSalesModel> jxSalesModels;
+	// 移库明细数据
+	private String jsonData;
+	/**
+	 * 商品代码业务操作类
+	 */
+	@Resource(name = "jxGoodsService")
+	private IJxGoodsService jxGoodsService;
 
 
 
@@ -55,6 +68,7 @@ public class JxSalesController extends BaseController implements Preparable
 	 */
 	public String insert() throws Exception
 	{
+		jxSalesModel.setJsDate(getCuurentDate());
 		this.setParameters(page_forward_showinsert_jxSales);
 		return SUCCESS;
 	}
@@ -95,26 +109,22 @@ public class JxSalesController extends BaseController implements Preparable
 	 */
 	public String save() throws Exception
 	{
-		OperateResult or = null;
-		or = jxSalesService.save(jxSalesModel);
-		this.setJxSalesModel(null);
-		this.setParameters(or.getMessage(), action_forward_managers_jxSales);
-		return SUCCESS;
-	}
-
-
-	/**
-	 * 删除数据
-	 * 
-	 * @throws ActionException
-	 */
-	public String remove() throws Exception
-	{
-		OperateResult or = null;
-		if (AppUtils.isNullOrEmptyString(this.getSelectedIds())) { throw new ActionException("将要删除的对象编号不可为空！"); }
-		or = jxSalesService.remove(this.getSelectedIds());
-		this.setParameters(or.getMessage(), action_forward_managers_jxSales);
-		return SUCCESS;
+		JSONObject jo = new JSONObject();
+		if (StringUtils.isNotEmpty(jsonData))
+		{
+			JSONArray array = new JSONArray(jsonData);
+			try
+			{
+				jxSalesService.save(jxSalesModel, array);
+				jo.put("msg", "出库成功！");
+			}
+			catch (Exception e)
+			{
+				jo.put("error", e.getMessage());
+			}
+			this.setJxSalesModel(null);
+		}
+		return Struts2Utils.renderJson(jo.toString());
 	}
 
 
@@ -198,5 +208,11 @@ public class JxSalesController extends BaseController implements Preparable
 	public void setJxSalesModels(List<JxSalesModel> jxSalesModels)
 	{
 		this.jxSalesModels = jxSalesModels;
+	}
+
+
+	public void setJsonData(String jsonData)
+	{
+		this.jsonData = jsonData;
 	}
 }

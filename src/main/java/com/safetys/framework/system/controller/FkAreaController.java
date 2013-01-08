@@ -19,7 +19,9 @@ import com.safetys.framework.system.model.FkAreaModel;
 import com.safetys.framework.system.service.IFkAreaService;
 import com.safetys.framework.utils.AppUtils;
 import com.safetys.framework.utils.OperateResult;
-import com.safetys.zhjg.statistic.util.ImpAreaXml;
+
+
+
 
 /**
  * 此文件通过快速开发平台自动生成
@@ -31,7 +33,8 @@ import com.safetys.zhjg.statistic.util.ImpAreaXml;
  */
 @Scope("prototype")
 @Controller("fkAreaController")
-public class FkAreaController extends BaseController implements Preparable {
+public class FkAreaController extends BaseController implements Preparable
+{
 
 	private static final long serialVersionUID = 1L;
 	private static final String page_forward_showinsert_fkArea = "/template/system/FkArea_Input.ftl";
@@ -45,56 +48,70 @@ public class FkAreaController extends BaseController implements Preparable {
 	private FkAreaModel fkAreaModel;
 	private String areaCode;
 	private List<FkAreaModel> fkAreaModels;
-	
-//	public String loadXml()throws Exception{
-//		ImpAreaXml imp = new ImpAreaXml();
-//		fkAreaModels = imp.readXML("D://项目包//滁州//city.xml");
-//		fkAreaModel = new FkAreaModel();
-//		fkAreaModel.setAreaCode("000000");
-//		fkAreaModel.setAreaName("中华人民共和国");
-//		fkAreaModel.setHasChildren(true);
-//		fkAreaModel.setFatherId(0L);
-//		fkAreaService.save(fkAreaModel);
-//		fkAreaService.saveByXml(fkAreaModels,fkAreaModel);
-//		return NONE;
-//	}
+
+
+
+	// public String loadXml()throws Exception{
+	// ImpAreaXml imp = new ImpAreaXml();
+	// fkAreaModels = imp.readXML("D://项目包//滁州//city.xml");
+	// fkAreaModel = new FkAreaModel();
+	// fkAreaModel.setAreaCode("000000");
+	// fkAreaModel.setAreaName("中华人民共和国");
+	// fkAreaModel.setHasChildren(true);
+	// fkAreaModel.setFatherId(0L);
+	// fkAreaService.save(fkAreaModel);
+	// fkAreaService.saveByXml(fkAreaModels,fkAreaModel);
+	// return NONE;
+	// }
 
 	/**
 	 * 生成XML
 	 * 
 	 * @throws Exception
 	 */
-	public String builderXml() throws Exception {
+	public String builderXml() throws Exception
+	{
 		this.response.setContentType("text/html;charset=utf-8");
-		if (!AppUtils.isNullOrEmptyString(areaCode)) {
+		if (!AppUtils.isNullOrEmptyString(areaCode))
+		{
 			fkAreaModel = fkAreaService.getCollection("select o from fkAreaModel o where o.areaCode='" + areaCode + "'", false).get(0);
 			fkAreaModels = fkAreaService.getCollection("select o from fkAreaModel o where o.fatherId=" + fkAreaModel.getId(), new String[] { "id" }, false);
-			if (fkAreaService.datasToXml(fkAreaModel, fkAreaModels)) {
+			if (fkAreaService.datasToXml(fkAreaModel, fkAreaModels))
+			{
 				this.response.getWriter().print("生成成功！");
 				this.response.getWriter().close();
 			}
-		} else {
+		}
+		else
+		{
 			this.response.getWriter().print("生成失败！");
 			this.response.getWriter().close();
 		}
 		return NONE;
 	}
 
+
 	/**
 	 * 异步加载下级资源
 	 * 
 	 * @throws Exception
 	 */
-	public String ajax() throws Exception {
+	public String ajax() throws Exception
+	{
 		this.response.setContentType("text/html;charset=utf-8");
-		if (AppUtils.isNullOrEmptyString(this.getId())) {
+		if (AppUtils.isNullOrEmptyString(this.getId()))
+		{
 			fkAreaModel.setFatherId(0l);
-		} else {
+		}
+		else
+		{
 			fkAreaModel.setFatherId(this.getId());
 		}
-		fkAreaModels = fkAreaService.getCollection(fkAreaModel,new String[]{"id"}, false);
-		if (fkAreaModels != null && fkAreaModels.size() > 0) {
-			for (FkAreaModel element : fkAreaModels) {
+		fkAreaModels = fkAreaService.getCollection(fkAreaModel, new String[] { "id" }, false);
+		if (fkAreaModels != null && fkAreaModels.size() > 0)
+		{
+			for (FkAreaModel element : fkAreaModels)
+			{
 				treeModel = new TreeModel();
 				treeModel.setId(element.getId());
 				treeModel.setpId(element.getFatherId());
@@ -108,16 +125,20 @@ public class FkAreaController extends BaseController implements Preparable {
 		return NONE;
 	}
 
+
 	/**
 	 * 管理导航
 	 * 
 	 * @throws Exception
 	 */
-	public String navigation() throws Exception {
+	public String navigation() throws Exception
+	{
 		fkAreaModel.setFatherId(0l);
 		fkAreaModels = fkAreaService.getCollection(fkAreaModel, false);
-		if (fkAreaModels != null && fkAreaModels.size() > 0) {
-			for (FkAreaModel element : fkAreaModels) {
+		if (fkAreaModels != null && fkAreaModels.size() > 0)
+		{
+			for (FkAreaModel element : fkAreaModels)
+			{
 				treeModel = new TreeModel();
 				treeModel.setId(element.getId());
 				treeModel.setpId(element.getFatherId());
@@ -131,13 +152,16 @@ public class FkAreaController extends BaseController implements Preparable {
 		return SUCCESS;
 	}
 
+
 	/**
 	 * 添加导航
 	 * 
 	 * @throws ActionException
 	 */
-	public String insert() throws Exception {
-		if (!AppUtils.isNullOrEmptyString(this.getId()) && this.getId() > -1) {
+	public String insert() throws Exception
+	{
+		if (!AppUtils.isNullOrEmptyString(this.getId()) && this.getId() > -1)
+		{
 			FkAreaModel model = fkAreaService.findById(this.getId());
 			fkAreaModel.setFatherId(this.getId());
 			this.request.setAttribute("areaName", model.getAreaName());
@@ -146,12 +170,14 @@ public class FkAreaController extends BaseController implements Preparable {
 		return SUCCESS;
 	}
 
+
 	/**
 	 * 修改导航
 	 * 
 	 * @throws ActionException
 	 */
-	public String modify() throws Exception {
+	public String modify() throws Exception
+	{
 		if (AppUtils.isNullOrEmptyString(this.getId())) { throw new ActionException("将要修改的对象编号不可为空！"); }
 		fkAreaModel = fkAreaService.findById(this.getId());
 		this.request.setAttribute("areaName", fkAreaModel.getAreaName());
@@ -159,28 +185,33 @@ public class FkAreaController extends BaseController implements Preparable {
 		return SUCCESS;
 	}
 
+
 	/**
 	 * 显示详情
 	 * 
 	 * @throws ActionException
 	 */
-	public String detail() throws Exception {
+	public String detail() throws Exception
+	{
 		if (AppUtils.isNullOrEmptyString(this.getId())) { throw new ActionException("将要修改的对象编号不可为空！"); }
 		fkAreaModel = fkAreaService.findById(this.getId());
 		this.setParameters(page_forward_showdetail_fkArea);
 		return SUCCESS;
 	}
 
+
 	/**
 	 * 保存到数据
 	 * 
 	 * @throws ActionException
 	 */
-	public String save() throws Exception {
+	public String save() throws Exception
+	{
 		OperateResult or = null;
 		or = fkAreaService.save(fkAreaModel);
 		FkAreaModel model = fkAreaService.findById(fkAreaModel.getFatherId());
-		if (model != null && !model.getHasChildren()) {
+		if (model != null && !model.getHasChildren())
+		{
 			model.setHasChildren(true);
 			fkAreaService.save(model);
 		}
@@ -188,12 +219,14 @@ public class FkAreaController extends BaseController implements Preparable {
 		return SUCCESS;
 	}
 
+
 	/**
 	 * 删除数据
 	 * 
 	 * @throws ActionException
 	 */
-	public String remove() throws Exception {
+	public String remove() throws Exception
+	{
 		OperateResult or = null;
 		if (AppUtils.isNullOrEmptyString(this.getSelectedIds())) { throw new ActionException("将要删除的对象编号不可为空！"); }
 		or = fkAreaService.remove(this.getSelectedIds());
@@ -201,16 +234,19 @@ public class FkAreaController extends BaseController implements Preparable {
 		return SUCCESS;
 	}
 
+
 	/**
 	 * 管理及列表
 	 * 
 	 * @throws ActionException
 	 */
-	public String manager() throws Exception {
+	public String manager() throws Exception
+	{
 		fkAreaModels = fkAreaService.getCollection(fkAreaModel);
 		this.setParameters(page_forward_tomanagers_fkArea);
 		return SUCCESS;
 	}
+
 
 	/**
 	 * 导出当前列表的数据（EXCEL、PDF、CSV） 如果须要导出其它数据，只须将数据集和导出的列做一定量调整及可
@@ -218,69 +254,85 @@ public class FkAreaController extends BaseController implements Preparable {
 	 * @throws ActionException
 	 */
 	@SuppressWarnings("deprecation")
-	public String report() throws Exception {
+	public String report() throws Exception
+	{
 		fkAreaModels = fkAreaService.getCollection(fkAreaModel);
 		TableFacade tableFacade = new TableFacade("fkAreaModel", request);
 		tableFacade.setExportTypes(response, ExportType.EXCEL, ExportType.PDF, ExportType.CSV);
-		String[] columns = { "createDate", "isDeleted", "modifyDate", "sortNum", "areaCode", "areaName", "fatherId", "fiftharea", "firstarea", "fourtharea", "secondarea",
-		        "thirdarea", };
+		String[] columns = { "createDate", "isDeleted", "modifyDate", "sortNum", "areaCode", "areaName", "fatherId", "fiftharea", "firstarea", "fourtharea", "secondarea", "thirdarea", };
 		tableFacade.setColumnProperties(columns);
 		tableFacade.setItems(fkAreaModels);
 		Limit limit = tableFacade.getLimit();
-		if (limit.isExported()) {
+		if (limit.isExported())
+		{
 			tableFacade.render();
 		}
 		return NONE;
 	}
 
-	public void prepare() throws Exception {
-		if (fkAreaModel == null) {
+
+	public void prepare() throws Exception
+	{
+		if (fkAreaModel == null)
+		{
 			fkAreaModel = new FkAreaModel(request, "fkAreaModel");
 		}
 	}
 
+
 	/**
 	 * @return the fkAreaModel
 	 */
-	public FkAreaModel getFkAreaModel() {
+	public FkAreaModel getFkAreaModel()
+	{
 		return fkAreaModel;
 	}
+
 
 	/**
 	 * @param fkAreaModel
 	 *            the fkAreaModel to set
 	 */
-	public void setFkAreaModel(FkAreaModel fkAreaModel) {
+	public void setFkAreaModel(FkAreaModel fkAreaModel)
+	{
 		this.fkAreaModel = fkAreaModel;
 	}
+
 
 	/**
 	 * @return the fkAreaModels
 	 */
-	public List<FkAreaModel> getFkAreaModels() {
+	public List<FkAreaModel> getFkAreaModels()
+	{
 		return fkAreaModels;
 	}
+
 
 	/**
 	 * @param fkAreaModels
 	 *            the fkAreaModels to set
 	 */
-	public void setFkAreaModels(List<FkAreaModel> fkAreaModels) {
+	public void setFkAreaModels(List<FkAreaModel> fkAreaModels)
+	{
 		this.fkAreaModels = fkAreaModels;
 	}
+
 
 	/**
 	 * @return the areaCode
 	 */
-	public String getAreaCode() {
+	public String getAreaCode()
+	{
 		return areaCode;
 	}
+
 
 	/**
 	 * @param areaCode
 	 *            the areaCode to set
 	 */
-	public void setAreaCode(String areaCode) {
+	public void setAreaCode(String areaCode)
+	{
 		this.areaCode = areaCode;
 	}
 

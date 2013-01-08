@@ -26,8 +26,8 @@ public class WorkSpaceController extends BaseController {
 	private static final String page_leftmenu_workspace = "/template/workspace/left-menu.ftl";
 	private static final String page_leftinfo_workspace = "/template/workspace/left-info.ftl";
 	private static final String page_control_workspace = "/template/workspace/control.ftl";
-//	private static final String page_content_workspace = "/template/workspace/welcome.ftl";
-	private static final String page_content_workspace = "/template/statistic/company_highcharts_statistic.ftl";
+	private static final String page_content_workspace = "/template/workspace/welcome.ftl";
+//	private static final String page_content_workspace = "/template/statistic/company_highcharts_statistic.ftl";
 	private List<FkResourceModel> fkResourceModels;
 	@Resource(name = "fkResourceService")
 	private IFkResourceService fkResourceService;

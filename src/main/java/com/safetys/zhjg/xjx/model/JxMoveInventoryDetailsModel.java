@@ -49,10 +49,6 @@ public class JxMoveInventoryDetailsModel extends BaseModel
 
 
 
-	private java.lang.String jmdBarcode;
-	private java.lang.String jmdCode;
-	private java.lang.String jmdName;
-	private java.lang.Integer jmdUnit;
 	private java.lang.Float jmdQuantity;
 	private java.lang.Float jmdCost;
 	private java.lang.Float jmdAmount;
@@ -63,59 +59,9 @@ public class JxMoveInventoryDetailsModel extends BaseModel
 	private java.lang.Float jmdWcost;
 	private java.lang.Float jmdWamount;
 	private JxMoveInventoryModel jmdMoveInventory;
+	private JxUnitModel jmdUnit;
+	private JxGoodsModel goodsModel;
 
-
-
-	@Column(name = "JMD_BARCODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJmdBarcode()
-	{
-		return this.jmdBarcode;
-	}
-
-
-	public void setJmdBarcode(java.lang.String jmdBarcode)
-	{
-		this.jmdBarcode = jmdBarcode;
-	}
-
-
-	@Column(name = "JMD_CODE", unique = false, nullable = false, insertable = true, updatable = true, length = 20)
-	public java.lang.String getJmdCode()
-	{
-		return this.jmdCode;
-	}
-
-
-	public void setJmdCode(java.lang.String jmdCode)
-	{
-		this.jmdCode = jmdCode;
-	}
-
-
-	@Column(name = "JMD_NAME", unique = false, nullable = false, insertable = true, updatable = true, length = 50)
-	public java.lang.String getJmdName()
-	{
-		return this.jmdName;
-	}
-
-
-	public void setJmdName(java.lang.String jmdName)
-	{
-		this.jmdName = jmdName;
-	}
-
-
-	@Column(name = "JMD_UNIT", unique = false, nullable = false, insertable = true, updatable = true, length = 10)
-	public java.lang.Integer getJmdUnit()
-	{
-		return this.jmdUnit;
-	}
-
-
-	public void setJmdUnit(java.lang.Integer jmdUnit)
-	{
-		this.jmdUnit = jmdUnit;
-	}
 
 
 	@Column(name = "JMD_QUANTITY", unique = false, nullable = true, insertable = true, updatable = true, length = 10)
@@ -242,9 +188,38 @@ public class JxMoveInventoryDetailsModel extends BaseModel
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "JMD_MOVE_INVENTORY", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "JMD_MOVE_INVENTORY", nullable = false, insertable = true, updatable = true)
 	public JxMoveInventoryModel getJmdMoveInventory()
 	{
 		return jmdMoveInventory;
 	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JMD_UNIT", nullable = false, insertable = true, updatable = true)
+	public JxUnitModel getJmdUnit()
+	{
+		return jmdUnit;
+	}
+
+
+	public void setJmdUnit(JxUnitModel jmdUnit)
+	{
+		this.jmdUnit = jmdUnit;
+	}
+
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "JMD_GOODS", nullable = false, insertable = true, updatable = true)
+	public JxGoodsModel getGoodsModel()
+	{
+		return goodsModel;
+	}
+
+
+	public void setGoodsModel(JxGoodsModel goodsModel)
+	{
+		this.goodsModel = goodsModel;
+	}
+
 }

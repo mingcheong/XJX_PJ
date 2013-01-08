@@ -36,24 +36,6 @@
 	</head><@loading /><body>
 </#macro>
 
-<#-- 页面头文件EasyUI -->
-<#macro uiHeader>
-<@taglibs />
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<head>
-		<@title />
-			<link href="${resourcePath}/default/css/form.css" rel="stylesheet" type="text/css" />
-			<link href="${resourcePath}/themes/default/easyui.css" rel="stylesheet" type="text/css" />
-			<link href="${resourcePath}/themes/icon.css" rel="stylesheet" type="text/css" />
-			<script src="${resourcePath}/javascript/global/jquery-1.8.0.min.js" type="text/javascript"></script>
-			<script src="${resourcePath}/javascript/global/jquery.easyui.min.js" type="text/javascript"></script>
-			<script src="${resourcePath}/javascript/global/easyui-lang-zh_CN.js" type="text/javascript"></script>
-	</head><@loading /><body>
-</#macro>
-
 <#-- 页面加载动态提示 -->
 <#macro loading>
 <link rel="stylesheet" type="text/css" href="${resourcePath}/loading/style.css" /><script src="${resourcePath}/loading/loading.js"></script><div id="loading"><div class="loading-indicator">页面正在加载中...</div></div>

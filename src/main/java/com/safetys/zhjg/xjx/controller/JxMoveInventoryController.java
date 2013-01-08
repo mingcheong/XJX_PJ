@@ -5,17 +5,23 @@
 package com.safetys.zhjg.xjx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.opensymphony.xwork2.Preparable;
-import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.exception.ActionException;
 import com.safetys.framework.jmesa.facade.TableFacade;
 import com.safetys.framework.jmesa.limit.ExportType;
 import com.safetys.framework.jmesa.limit.Limit;
+import com.safetys.framework.kernel.controller.BaseController;
 import com.safetys.framework.utils.AppUtils;
-import com.safetys.framework.utils.OperateResult;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import com.safetys.framework.utils.Struts2Utils;
 import com.safetys.zhjg.xjx.model.JxMoveInventoryModel;
 import com.safetys.zhjg.xjx.service.IJxMoveInventoryService;
 
@@ -40,11 +46,14 @@ public class JxMoveInventoryController extends BaseController implements Prepara
 	private static final String page_forward_showupdate_jxMoveInventory = "/template/xjx/JxMoveInventory_Input.ftl";
 	private static final String page_forward_showdetail_jxMoveInventory = "/template/xjx/JxMoveInventory_Detail.ftl";
 	private static final String page_forward_tomanagers_jxMoveInventory = "/template/xjx/JxMoveInventory_Manager.ftl";
-	private static final String action_forward_managers_jxMoveInventory = "jxMoveInventory_insert.xhtml";
+
 	@Resource(name = "jxMoveInventoryService")
 	private IJxMoveInventoryService jxMoveInventoryService;
 	private JxMoveInventoryModel jxMoveInventoryModel;
 	private List<JxMoveInventoryModel> jxMoveInventoryModels;
+
+	// 移库明细数据
+	private String jsonData;
 
 
 
@@ -55,6 +64,7 @@ public class JxMoveInventoryController extends BaseController implements Prepara
 	 */
 	public String insert() throws Exception
 	{
+		jxMoveInventoryModel.setJmDate(getCuurentDate());
 		this.setParameters(page_forward_showinsert_jxMoveInventory);
 		return SUCCESS;
 	}
@@ -95,26 +105,23 @@ public class JxMoveInventoryController extends BaseController implements Prepara
 	 */
 	public String save() throws Exception
 	{
-		OperateResult or = null;
-		or = jxMoveInventoryService.save(jxMoveInventoryModel);
-		this.setJxMoveInventoryModel(null);
-		this.setParameters(or.getMessage(), action_forward_managers_jxMoveInventory);
-		return SUCCESS;
-	}
 
-
-	/**
-	 * 删除数据
-	 * 
-	 * @throws ActionException
-	 */
-	public String remove() throws Exception
-	{
-		OperateResult or = null;
-		if (AppUtils.isNullOrEmptyString(this.getSelectedIds())) { throw new ActionException("将要删除的对象编号不可为空！"); }
-		or = jxMoveInventoryService.remove(this.getSelectedIds());
-		this.setParameters(or.getMessage(), action_forward_managers_jxMoveInventory);
-		return SUCCESS;
+		JSONObject jo = new JSONObject();
+		if (StringUtils.isNotEmpty(jsonData))
+		{
+			JSONArray array = new JSONArray(jsonData);
+			try
+			{
+				jxMoveInventoryService.save(jxMoveInventoryModel, array);
+				jo.put("msg", "调库成功！");
+			}
+			catch (Exception e)
+			{
+				jo.put("error", e.getMessage());
+			}
+			this.setJxMoveInventoryModel(null);
+		}
+		return Struts2Utils.renderJson(jo.toString());
 	}
 
 
@@ -198,5 +205,11 @@ public class JxMoveInventoryController extends BaseController implements Prepara
 	public void setJxMoveInventoryModels(List<JxMoveInventoryModel> jxMoveInventoryModels)
 	{
 		this.jxMoveInventoryModels = jxMoveInventoryModels;
+	}
+
+
+	public void setJsonData(String jsonData)
+	{
+		this.jsonData = jsonData;
 	}
 }

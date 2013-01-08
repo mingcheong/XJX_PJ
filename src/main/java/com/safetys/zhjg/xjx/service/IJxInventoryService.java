@@ -23,9 +23,19 @@ import com.safetys.zhjg.xjx.model.JxWarehouseModel;
  */
 public interface IJxInventoryService extends IBaseService<JxInventoryModel, Long>
 {
+	/**
+	 * 根据仓库和商品代码查询商品库存信息
+	 * 
+	 * @param warehouse
+	 * @param goods
+	 * @return
+	 * @throws Exception
+	 */
+	public JxInventoryModel findStore(JxWarehouseModel warehouse, JxGoodsModel goods) throws Exception;
+
 
 	/**
-	 * 保存库存信息
+	 * 进货入库操作
 	 * 
 	 * @param warehouse
 	 *            所属仓库
@@ -40,5 +50,24 @@ public interface IJxInventoryService extends IBaseService<JxInventoryModel, Long
 	 * @return
 	 * @throws Exception
 	 */
-	public OperateResult save(JxWarehouseModel warehouse, JxGoodsModel goods, Float quantitySum, Float wasteSum, Float spareSum) throws Exception;
+	public OperateResult inStore(JxWarehouseModel warehouse, JxGoodsModel goods, Float quantitySum, Float wasteSum, Float spareSum) throws Exception;
+
+
+	/**
+	 * 调减出库操作
+	 * 
+	 * @param warehouse
+	 *            所属仓库
+	 * @param goods
+	 *            商品代码
+	 * @param quantitySum
+	 *            可用数
+	 * @param wasteSum
+	 *            废品数
+	 * @param spareSum
+	 *            备用数
+	 * @return
+	 * @throws Exception
+	 */
+	public OperateResult outStore(JxWarehouseModel warehouse, JxGoodsModel goods, Float quantitySum, Float wasteSum, Float spareSum) throws Exception;
 }
